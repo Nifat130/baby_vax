@@ -19,6 +19,37 @@ extension ResponsiveExtension on num {
   double get sp => (this * SizeUtils.width) / kFigmaDesignWidth;
 }
 
+extension CustomSizedBox on num {
+  SizedBox get heightSpace => SizedBox(height: toDouble().h,);
+  SizedBox get widthSpace => SizedBox(height: toDouble().w,);
+}
+extension CustomBorderRadius on num {
+  BorderRadius get radius => BorderRadius.circular(toDouble().h);
+}
+extension CustomColorTransformer on String {
+
+  Color toColor(){
+    String hex = replaceAll("#", "").toUpperCase();
+
+    if(hex.length == 5){
+      hex = "FFF$hex";
+    }
+    else if(hex.length == 6){
+      hex = "FF$hex";
+    }
+    else if(hex.length == 7){
+      hex = "F$hex";
+    }
+    else if(hex.length == 4){
+      hex = "FFF$hex";
+    }
+    else{
+      hex = hex;
+    }
+    return Color(int.parse(hex, radix: 16));
+  }
+}
+
 
 extension FormatExtension on double {
   double toFixed(int fractionDigits) => double.parse(toStringAsFixed(fractionDigits));
