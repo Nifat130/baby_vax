@@ -3,6 +3,7 @@ import 'package:baby_vax/core/utils/constants/app_sizer.dart';
 import 'package:baby_vax/core/utils/constants/logo_path.dart';
 import 'package:baby_vax/features/authentication/controllers/sign_up_controller.dart';
 import 'package:baby_vax/features/authentication/presentation/widgets/role_container.dart';
+import 'package:baby_vax/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -51,7 +52,9 @@ class RoleScreen extends GetView<SignUpController> {
           child: CustomSubmitButton(
             text: "Continue",
             onTap: (){
-
+              controller.selectedRole.value == "Hospital" ?
+                  Get.toNamed(AppRoute.hospitalSignUpScreen) :
+                  Get.toNamed(AppRoute.parentSignUpScreen)
             },
           ),
         ),
