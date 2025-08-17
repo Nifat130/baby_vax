@@ -1,5 +1,6 @@
 import 'package:baby_vax/features/authentication/presentation/screens/sign_in_screen.dart';
-import 'package:get/get.dart';import '../features/authentication/presentation/screens/parent_sign_up_screen.dart';
+import 'package:get/get.dart';import '../features/authentication/presentation/screens/hospital_sign_up_screen.dart';
+import '../features/authentication/presentation/screens/parent_sign_up_screen.dart';
 
 import '../features/authentication/presentation/screens/role_screen.dart';
 import '../features/onboarding/screens/onboarding_screen_one.dart';
@@ -14,6 +15,7 @@ class AppRoute {
   static String onboardingScreenOne = "/onboardingScreenOne";
   static String onboardingScreenTwo = "/onboardingScreenTwo";
   static String onboardingScreenThree = "/onboardingScreenThree";
+  static String hospitalSignUpScreen = "/hospitalSignUpScreen";
 
 
   static List<GetPage> routes = [
@@ -34,6 +36,7 @@ class AppRoute {
     GetPage(name: signInScreen, page: () => const SignInScreen()),
     GetPage(name: roleScreen, page: () => const RoleScreen()),
     GetPage(name: parentSignUpScreen, page: () => ParentSignUpScreen()),
+    GetPage(name: hospitalSignUpScreen, page: () => HospitalSignUpScreen()),
 
   ];
 }
