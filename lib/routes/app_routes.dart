@@ -1,3 +1,4 @@
+import 'package:baby_vax/features/authentication/presentation/screens/sign_in_screen.dart';
 import 'package:get/get.dart';
 import '../features/onboarding/screens/onboarding_screen_one.dart';
 import '../features/onboarding/screens/onboarding_screen_three.dart';
@@ -9,7 +10,7 @@ class AppRoute {
   static String splashScreen = "/splashScreen";
 
   static String selectRole = "/selectRole";
-  static String loginScreen = "/loginScreen";
+  static String signInScreen = "/signInScreen";
   static String passwordScreen = "/passwordScreen";
 
   static String signUpScreen = "/signUpScreen";
@@ -42,12 +43,8 @@ class AppRoute {
       transition: Transition.rightToLeftWithFade,
       transitionDuration: Duration(milliseconds: 500),
     ),
-    GetPage(
-      name: onboardingScreenThree,
-      page: () => const OnboardingScreenThree(),
-      transition: Transition.rightToLeftWithFade,
-      transitionDuration: Duration(milliseconds: 500),
-    ),
+    GetPage(name: onboardingScreenThree, page: () => const OnboardingScreenThree(), transition: Transition.rightToLeftWithFade, transitionDuration: Duration(milliseconds: 500),),
+    GetPage(name: signInScreen, page: () => const SignInScreen(), transition: Transition.rightToLeftWithFade, transitionDuration: Duration(milliseconds: 500),),
 
   ];
 }
