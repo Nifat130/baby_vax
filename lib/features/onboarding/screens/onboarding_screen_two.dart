@@ -35,14 +35,17 @@ class OnboardingScreenTwo extends StatelessWidget {
                   bottom: -280.h,
                   child: Align(
                     alignment: Alignment.center,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        CustomText(text: "Securely Store Your \nCredentials", maxLines: 2, fontSize: 24.sp, fontWeight: FontWeight.w700, textAlign: TextAlign.center,),
-                        SizedBox(height: 20.h,),
-                        CustomText(text: "Upload your DEA, licenses, and certifications to your private vault for quick and easy hospital sharing.", maxLines: 2, fontSize: 16.sp, fontWeight: FontWeight.w400, textAlign: TextAlign.center, color: AppColors.textSecondary,),
-                      ],
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 16.w),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          CustomText(text: "Build Your Parental Profile", maxLines: 2, fontSize: 24.sp, fontWeight: FontWeight.w700, textAlign: TextAlign.center,),
+                          SizedBox(height: 20.h,),
+                          CustomText(text: "Add your baby’s details to keep track of their vaccines easily", maxLines: 2, fontSize: 16.sp, fontWeight: FontWeight.w400, textAlign: TextAlign.center, color: AppColors.textSecondary,),
+                        ],
+                      ),
                     ),
                   )
               ),
