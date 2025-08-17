@@ -20,6 +20,16 @@ class SignUpController extends GetxController{
       profileImage.value = image.path;
     }
   }
+
+  var licensesImage = ''.obs;
+
+  void licenseImagePicker() async{
+    final image = await ImagePicker().pickImage(source: ImageSource.gallery);
+
+    if(image != null){
+      licensesImage.value = image.path;
+    }
+  }
   var passVisibility = false.obs;
   var confirmPassVisibility = false.obs;
   final hospitalName = TextEditingController();

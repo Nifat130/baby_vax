@@ -12,8 +12,8 @@ import '../../../../core/utils/constants/app_colors.dart';
 import '../../../../core/utils/validators/app_validator.dart';
 import '../../../../routes/app_routes.dart';
 
-class ParentSignUpScreen extends GetView<SignUpController> {
-  ParentSignUpScreen({super.key});
+class HospitalSignUpScreen extends GetView<SignUpController> {
+  HospitalSignUpScreen({super.key});
 
   final GlobalKey<FormState> formState = GlobalKey<FormState>();
   @override
@@ -75,35 +75,82 @@ class ParentSignUpScreen extends GetView<SignUpController> {
                     ),
                   ),
                   16.heightSpace,
-                  CustomText(text: "Your Name", fontSize: 12.sp, textAlign: TextAlign.center, color: AppColors.textSecondary,),
+                  CustomText(text: "Hospital Name", fontSize: 12.sp, textAlign: TextAlign.center, color: AppColors.textSecondary,),
                   8.heightSpace,
                   CustomTextFormField(
-                    controller: controller.parentName,
-                    hintText: "Enter your name",
+                    controller: controller.hospitalName,
+                    hintText: "Enter hospital name",
                     validator: (value) => AppValidator.validateField(value, "Name"),
                   ),
                   16.heightSpace,
-                  CustomText(text: "Your Email", fontSize: 12.sp, textAlign: TextAlign.center, color: AppColors.textSecondary,),
+                  CustomText(text: "Hospital Email", fontSize: 12.sp, textAlign: TextAlign.center, color: AppColors.textSecondary,),
                   8.heightSpace,
                   CustomTextFormField(
-                    controller: controller.parentEmail,
-                    hintText: "Enter your email",
+                    controller: controller.hospitalEmail,
+                    hintText: "Enter hospital email",
                     validator: AppValidator.validateEmail,
                   ),
                   16.heightSpace,
-                  CustomText(text: "Your Address", fontSize: 12.sp, textAlign: TextAlign.center, color: AppColors.textSecondary,),
+                  CustomText(text: "Hospital Address", fontSize: 12.sp, textAlign: TextAlign.center, color: AppColors.textSecondary,),
                   8.heightSpace,
                   CustomTextFormField(
-                    controller: controller.parentAddress,
-                    hintText: "Enter your address",
+                    controller: controller.hospitalAddress,
+                    hintText: "Enter hospital address",
                     validator: (value) => AppValidator.validateField(value, "Address"),
+                  ),
+                  16.heightSpace,
+                  CustomText(text: "Hospital License", fontSize: 12.sp, textAlign: TextAlign.center, color: AppColors.textSecondary,),
+                  8.heightSpace,
+                  Obx(() =>
+                    controller.licensesImage.value != '' ?
+                        Stack(
+                          children: [
+                            ClipRRect(
+                                borderRadius: 8.radius,
+                                child: Image.file(File(controller.licensesImage.value), fit: BoxFit.fill, height: 200.h, width: SizeUtils.width,)
+                            ),
+                            Positioned(
+                              right: 8.w,
+                              top: 8.h,
+                              child: GestureDetector(
+                                onTap: (){
+                                  controller.licensesImage.value = '';
+                                },
+                                child: Icon(Icons.cancel, color: AppColors.error, size: 40.h,),
+                              ),
+                            )
+                          ],
+                        ) :
+                        GestureDetector(
+                          onTap: (){
+                            controller.licenseImagePicker();
+                          },
+                          child: Container(
+                            height: 200.h,
+                            width: SizeUtils.width,
+                            decoration: BoxDecoration(
+                              border: Border.all(color: AppColors.textFormFieldBorder),
+                              borderRadius: 8.radius
+                            ),
+                            alignment: Alignment.center,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Icon(Icons.upload_file_outlined, color: AppColors.textSecondary,),
+                                8.heightSpace,
+                                CustomText(text: "Upload hospital license image", color: AppColors.textSecondary,)
+                              ],
+                            ),
+                          ),
+                        )
                   ),
                   16.heightSpace,
                   CustomText(text: "Password", fontSize: 12.sp, textAlign: TextAlign.center, color: AppColors.textSecondary,),
                   8.heightSpace,
                   Obx(() =>
                       CustomTextFormField(
-                        controller: controller.parentPass,
+                        controller: controller.hospitalPass,
                         hintText: "Enter your password",
                         obscureText: !controller.passVisibility.value,
                         validator: AppValidator.validatePassword,
@@ -122,10 +169,10 @@ class ParentSignUpScreen extends GetView<SignUpController> {
                   8.heightSpace,
                   Obx(() =>
                       CustomTextFormField(
-                        controller: controller.parentConfirmPass,
+                        controller: controller.hospitalConfirmPass,
                         hintText: "Confirm your password",
                         obscureText: !controller.confirmPassVisibility.value,
-                        validator: (value) => AppValidator.matchPassword(value, controller.parentPass.text),
+                        validator: (value) => AppValidator.matchPassword(value, controller.hospitalPass.text),
                         suffixIcon: GestureDetector(
                             onTap: (){
                               controller.confirmPassVisibility.value = !controller.confirmPassVisibility.value;
