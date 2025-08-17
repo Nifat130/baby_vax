@@ -21,7 +21,7 @@ Widget customBackTitleHeading(String title, {Widget? icon}){
             onTap: (){
               Get.back();
             },
-            child: Image.asset(IconPath.backIcon, fit: BoxFit.fill,),
+            child: Icon(Icons.arrow_back_rounded),
           ),
           SizedBox(width: 12.w,),
           CustomText(text: title, fontSize: 18.sp, fontWeight: FontWeight.w600,),

@@ -54,7 +54,7 @@ class OnboardingScreenThree extends StatelessWidget {
                   alignment: Alignment.bottomCenter,
                   child: GestureDetector(
                     onTap: (){
-                      Get.toNamed(AppRoute.selectRole);
+                      Get.toNamed(AppRoute.signInScreen);
                     },
                     child: Image.asset(ImagePath.onboardingButtonImage),
                   ),
@@ -64,12 +64,7 @@ class OnboardingScreenThree extends StatelessWidget {
                 bottom: 0.h,
                 child: Align(
                   alignment: Alignment.bottomCenter,
-                  child: GestureDetector(
-                    onTap: (){
-                      Get.toNamed(AppRoute.signInScreen);
-                    },
-                    child: Image.asset(ImagePath.onboardingBottomImage),
-                  ),
+                  child: Image.asset(ImagePath.onboardingBottomImage),
                 ),
               )
             ],
