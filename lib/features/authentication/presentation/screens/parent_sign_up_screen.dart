@@ -139,7 +139,9 @@ class ParentSignUpScreen extends GetView<SignUpController> {
                   32.heightSpace,
                   CustomSubmitButton(
                     text: "Create Account",
-                    onTap: (){},
+                    onTap: (){
+                      Get.offAllNamed(AppRoute.signInScreen);
+                    },
                   ),
                   16.heightSpace,
                   Row(
