@@ -25,8 +25,8 @@ class MyApp extends StatelessWidget {
       builder: (context, orientation, deviceType) {
         return GetMaterialApp(
           debugShowCheckedModeBanner: false,
-          //initialRoute: AppRoute.init,
-          initialRoute: AppRoute.roleScreen,
+          initialRoute: AppRoute.parentSignUpScreen,
+          //initialRoute: AppRoute.roleScreen,
           getPages: AppRoute.routes,
           initialBinding: ControllerBinder(),
           themeMode: ThemeMode.system,

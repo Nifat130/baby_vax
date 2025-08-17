@@ -1,11 +1,10 @@
 import 'package:baby_vax/core/utils/constants/app_sizer.dart';
+import 'package:baby_vax/core/utils/constants/logo_path.dart';
 import 'package:baby_vax/features/authentication/controllers/sign_up_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
-
 import '../../../../core/common/widgets/custom_text.dart';
 import '../../../../core/utils/constants/app_colors.dart';
-import '../../../../core/utils/constants/icon_path.dart';
 
 Widget roleContainer(SignUpController controller, String role){
 
@@ -25,7 +24,7 @@ Widget roleContainer(SignUpController controller, String role){
             crossAxisAlignment: CrossAxisAlignment.center,
             spacing: 16.w,
             children: [
-              Image.asset(IconPath.hospitalIcon, color: controller.selectedRole.value == role ? AppColors.textWhite : AppColors.textSecondary,),
+              //Image.asset(LogoPath.hospitalIcon, color: controller.selectedRole.value == role ? AppColors.textWhite : AppColors.textSecondary,),
               CustomText(text: role, fontSize: 18.sp, textAlign: TextAlign.start, color: controller.selectedRole.value == role ? AppColors.textWhite : AppColors.textSecondary, fontWeight: FontWeight.w600,)
             ],
           ),

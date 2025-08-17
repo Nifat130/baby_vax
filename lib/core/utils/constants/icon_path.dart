@@ -4,7 +4,4 @@ class IconPath {
   static const String hospitalIcon = '$_basePath/hospitalIcon.png';
   static const String parentIcon = '$_basePath/parentIcon.png';
 
-
-
-
 }

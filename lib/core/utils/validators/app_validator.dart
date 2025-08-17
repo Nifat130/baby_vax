@@ -26,6 +26,19 @@ class AppValidator {
     return null;
   }
 
+  static String? matchPassword(String? value, String matchWith) {
+    if (value == null || value.isEmpty) {
+      return 'Confirm your password';
+    }
+    else if (value != matchWith) {
+      return 'Passwords do not matches';
+    }
+
+    // Regular expression for email validation
+
+    return null;
+  }
+
   static String? validatePassword(String? value) {
     if (value == null || value.isEmpty) {
       return 'Password is required.';
