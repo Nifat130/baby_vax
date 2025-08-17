@@ -8,7 +8,7 @@ class SplashController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    //navigate();
+    navigate();
   }
 
   void navigate() {

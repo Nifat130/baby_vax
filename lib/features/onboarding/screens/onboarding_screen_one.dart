@@ -39,9 +39,12 @@ class OnboardingScreenOne extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        CustomText(text: "Build Your Professional \nProfile", maxLines: 2, fontSize: 24.sp, fontWeight: FontWeight.w700, textAlign: TextAlign.center,),
+                        CustomText(text: "Build Your Hospital \nProfile", maxLines: 2, fontSize: 24.sp, fontWeight: FontWeight.w700, textAlign: TextAlign.center,),
                         SizedBox(height: 20.h,),
-                        CustomText(text: "Tell us about your specialty, licenses, and certifications so we", maxLines: 2, fontSize: 16.sp, fontWeight: FontWeight.w400, textAlign: TextAlign.center, color: AppColors.textSecondary,),
+                        SizedBox(
+                          width: 350.w,
+                          child: CustomText(text: "Showcase your healthcare credentials to build trust with families.", maxLines: 2, fontSize: 16.sp, fontWeight: FontWeight.w400, textAlign: TextAlign.center, color: AppColors.textSecondary,),
+                        ),
                       ],
                     ),
                   )
