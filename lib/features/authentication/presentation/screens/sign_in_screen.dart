@@ -5,6 +5,7 @@ import 'package:baby_vax/core/utils/constants/app_colors.dart';
 import 'package:baby_vax/core/utils/constants/app_sizer.dart';
 import 'package:baby_vax/core/utils/validators/app_validator.dart';
 import 'package:baby_vax/features/authentication/controllers/sign_in_controller.dart';
+import 'package:baby_vax/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -84,7 +85,7 @@ class SignInScreen extends GetView<SignInController> {
                     CustomText(text: "Don't have an account? ", color: AppColors.textSecondary,),
                     GestureDetector(
                       onTap: (){
-
+                        Get.toNamed(AppRoute.roleScreen);
                       },
                       child: CustomText(text: "Sign Up", color: AppColors.primary,),
                     ),

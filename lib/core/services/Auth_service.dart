@@ -68,7 +68,7 @@ class AuthService {
 
   // Navigate to the login screen (e.g., after logout or token expiry)
   static Future<void> goToLogin() async {
-    Get.offAllNamed(AppRoute.selectRole);
+    Get.offAllNamed(AppRoute.signInScreen);
   }
 
   // Getter for token

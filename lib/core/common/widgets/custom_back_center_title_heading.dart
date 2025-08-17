@@ -12,7 +12,7 @@ Widget customBackCenterTitleHeading(String title, {Widget? icon}){
     children: [
       GestureDetector(
         onTap: (){},
-        child: Image.asset(IconPath.backIcon, fit: BoxFit.fill,),
+        child: Icon(Icons.arrow_back_rounded),
       ),
       CustomText(text: title, fontSize: 18.sp, fontWeight: FontWeight.w600,),
       Icon(Icons.circle, color: AppColors.textWhite,)

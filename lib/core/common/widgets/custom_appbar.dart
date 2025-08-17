@@ -41,7 +41,7 @@ class CustomAppbar extends StatelessWidget {
               alignment: Alignment.centerLeft,
               child: IconButton(
                 onPressed: () => Get.back(),
-                icon: icon ?? Image.asset(IconPath.arrowBac),
+                icon: icon ?? Icon(Icons.arrow_back_rounded),
                 color: iconColor,
               ),
             ),
