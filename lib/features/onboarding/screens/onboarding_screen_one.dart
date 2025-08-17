@@ -35,17 +35,17 @@ class OnboardingScreenOne extends StatelessWidget {
                   bottom: -280.h,
                   child: Align(
                     alignment: Alignment.center,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        CustomText(text: "Build Your Hospital \nProfile", maxLines: 2, fontSize: 24.sp, fontWeight: FontWeight.w700, textAlign: TextAlign.center,),
-                        SizedBox(height: 20.h,),
-                        SizedBox(
-                          width: 350.w,
-                          child: CustomText(text: "Showcase your healthcare credentials to build trust with families.", maxLines: 2, fontSize: 16.sp, fontWeight: FontWeight.w400, textAlign: TextAlign.center, color: AppColors.textSecondary,),
-                        ),
-                      ],
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 16.w),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          CustomText(text: "Build Your Hospital \nProfile", maxLines: 2, fontSize: 24.sp, fontWeight: FontWeight.w700, textAlign: TextAlign.center,),
+                          SizedBox(height: 20.h,),
+                          CustomText(text: "Showcase your healthcare credentials to build trust with families.", maxLines: 2, fontSize: 16.sp, fontWeight: FontWeight.w400, textAlign: TextAlign.center, color: AppColors.textSecondary,),
+                        ],
+                      ),
                     ),
                   )
               ),
