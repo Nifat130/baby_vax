@@ -2,6 +2,7 @@ import 'package:baby_vax/core/common/widgets/custom_text.dart';
 import 'package:baby_vax/core/utils/constants/app_colors.dart';
 import 'package:baby_vax/core/utils/constants/app_sizer.dart';
 import 'package:baby_vax/core/utils/constants/image_path.dart';
+import 'package:baby_vax/features/authentication/presentation/screens/sign_in_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../routes/app_routes.dart';
@@ -54,7 +55,7 @@ class OnboardingScreenThree extends StatelessWidget {
                   alignment: Alignment.bottomCenter,
                   child: GestureDetector(
                     onTap: (){
-                      Get.toNamed(AppRoute.signInScreen);
+                      Get.to(() => SignInScreen());
                     },
                     child: Image.asset(ImagePath.onboardingButtonImage),
                   ),
