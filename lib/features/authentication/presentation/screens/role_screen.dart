@@ -54,7 +54,7 @@ class RoleScreen extends GetView<SignUpController> {
             onTap: (){
               controller.selectedRole.value == "Hospital" ?
                   Get.toNamed(AppRoute.hospitalSignUpScreen) :
-                  Get.toNamed(AppRoute.parentSignUpScreen)
+                  Get.toNamed(AppRoute.parentSignUpScreen);
             },
           ),
         ),
