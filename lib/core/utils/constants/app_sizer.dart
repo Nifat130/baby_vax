@@ -21,7 +21,7 @@ extension ResponsiveExtension on num {
 
 extension CustomSizedBox on num {
   SizedBox get heightSpace => SizedBox(height: toDouble().h,);
-  SizedBox get widthSpace => SizedBox(height: toDouble().w,);
+  SizedBox get widthSpace => SizedBox(width: toDouble().w,);
 }
 extension CustomBorderRadius on num {
   BorderRadius get radius => BorderRadius.circular(toDouble().h);
