@@ -1,3 +1,4 @@
+import 'package:baby_vax/core/utils/constants/app_sizer.dart';
 import 'package:flutter/material.dart';
 
 import '../../utils/constants/app_sizes.dart';
@@ -105,7 +106,10 @@ class CustomDropdownField extends StatelessWidget {
                         child: CustomText(
                           text: item,
                           fontWeight: FontWeight.w500,
-                          fontSize: getWidth(16),
+                          fontSize: 12.sp,
+                          color: selectedValue == item
+                              ? AppColors.primary
+                              : AppColors.textPrimary,
                         ),
                       ),
                     );

@@ -13,6 +13,7 @@ class HospitalNavBarScreen extends GetView<HospitalNavBarController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBody: true,
       body: Obx(() =>
         controller.screens[controller.selectedIndex.value]
       ),
@@ -23,7 +24,7 @@ class HospitalNavBarScreen extends GetView<HospitalNavBarController> {
           onTap: (index){
             controller.selectedIndex.value = index;
           },
-          backgroundColor: AppColors.textWhite,
+          backgroundColor: Colors.transparent,
           items: [
             navBarButtonWidget(IconPath.homeIcon, "Home"),
             navBarButtonWidget(IconPath.eventIcon, "Event"),
