@@ -2,6 +2,7 @@ import 'package:baby_vax/features/authentication/controllers/sign_in_controller.
 import 'package:get/get.dart';
 
 import '../../features/authentication/controllers/sign_up_controller.dart';
+import '../../features/hospital_flow/hospital_nav_bar/controllers/hospital_nav_bar_controller.dart';
 
 class ControllerBinder extends Bindings {
 
@@ -9,5 +10,6 @@ class ControllerBinder extends Bindings {
   void dependencies() {
     Get.lazyPut<SignInController>(() => SignInController(), fenix: true,);
     Get.lazyPut<SignUpController>(() => SignUpController(), fenix: true,);
+    Get.lazyPut<HospitalNavBarController>(() => HospitalNavBarController(), fenix: true,);
   }
 }
