@@ -8,6 +8,7 @@ import '../features/hospital_flow/hospital_home/presentation/screens/hospital_ho
 import '../features/onboarding/screens/onboarding_screen_one.dart';
 import '../features/onboarding/screens/onboarding_screen_three.dart';
 import '../features/onboarding/screens/onboarding_screen_two.dart';
+import '../features/splash_screen/presentation/screens/splash_screen.dart';
 
 class AppRoute {
   static String init = "/";
@@ -23,7 +24,7 @@ class AppRoute {
 
 
   static List<GetPage> routes = [
-    GetPage(name: init, page: () => OnboardingScreenOne()),
+    GetPage(name: init, page: () => SplashScreen()),
     GetPage(
       name: onboardingScreenOne,
       page: () => const OnboardingScreenOne(),

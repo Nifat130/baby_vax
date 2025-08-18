@@ -75,7 +75,9 @@ class SignInScreen extends GetView<SignInController> {
               children: [
                 CustomSubmitButton(
                   text: "Sign In",
-                  onTap: (){},
+                  onTap: (){
+                    Get.toNamed(AppRoute.hospitalNavBarScreen);
+                  },
                 ),
                 16.heightSpace,
                 Row(
