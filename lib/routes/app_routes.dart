@@ -42,7 +42,7 @@ class AppRoute {
       transitionDuration: Duration(milliseconds: 500),
     ),
     GetPage(name: onboardingScreenThree, page: () => const OnboardingScreenThree(), transition: Transition.rightToLeftWithFade, transitionDuration: Duration(milliseconds: 500),),
-    GetPage(name: signInScreen, page: () => const SignInScreen()),
+    GetPage(name: signInScreen, page: () => SignInScreen()),
     GetPage(name: roleScreen, page: () => const RoleScreen()),
     GetPage(name: parentSignUpScreen, page: () => ParentSignUpScreen()),
     GetPage(name: hospitalSignUpScreen, page: () => HospitalSignUpScreen()),

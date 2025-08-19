@@ -1,3 +1,4 @@
+import 'package:baby_vax/features/hospital_flow/hospital_event/presentation/screens/hospital_event_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
@@ -10,7 +11,7 @@ class HospitalNavBarController extends GetxController{
 
   List<Widget> screens = [
     HospitalHomeScreen(),
-    SizedBox(),
+    HospitalEventScreen(),
     HospitalProfileScreen(),
   ];
 

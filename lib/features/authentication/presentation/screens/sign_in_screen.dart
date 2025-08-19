@@ -10,8 +10,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class SignInScreen extends GetView<SignInController> {
-  const SignInScreen({super.key});
+  SignInScreen({super.key});
 
+  final GlobalKey<FormState> formState = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,44 +22,47 @@ class SignInScreen extends GetView<SignInController> {
           child: SizedBox(
             width: SizeUtils.width,
             child: SingleChildScrollView(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  46.heightSpace,
-                  Center(
-                    child: CustomText(text: "Sign In", fontSize: 28.sp, textAlign: TextAlign.center, fontWeight: FontWeight.w600,),
-                  ),
-                  12.heightSpace,
-                  CustomText(text: "Your Simple Path to Stress-Free Vaccine Management", fontSize: 14.sp, textAlign: TextAlign.center, color: AppColors.textSecondary,),
-                  36.heightSpace,
-                  CustomText(text: "Email", fontSize: 12.sp, textAlign: TextAlign.center, color: AppColors.textSecondary,),
-                  8.heightSpace,
-                  CustomTextFormField(
-                    controller: controller.emailTEController,
-                    hintText: "Enter your email",
-                    validator: (value) => AppValidator.validateField(value, "Email"),
-                  ),
-                  16.heightSpace,
-                  CustomText(text: "Password", fontSize: 12.sp, textAlign: TextAlign.center, color: AppColors.textSecondary,),
-                  8.heightSpace,
-                  Obx(() =>
-                      CustomTextFormField(
-                        controller: controller.passwordTEController,
-                        hintText: "Enter your password",
-                        obscureText: !controller.visiblePass.value,
-                        validator: (value) => AppValidator.validateField(value, "Email"),
-                        suffixIcon: GestureDetector(
-                          onTap: (){
-                            controller.visiblePass.value = !controller.visiblePass.value;
-                          },
-                          child: !controller.visiblePass.value ?
-                          Icon(Icons.visibility_outlined) :
-                          Icon(Icons.visibility_off_outlined)
-                        ),
-                      )
-                  ),
-                ],
+              child: Form(
+                key: formState,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    46.heightSpace,
+                    Center(
+                      child: CustomText(text: "Sign In", fontSize: 28.sp, textAlign: TextAlign.center, fontWeight: FontWeight.w600,),
+                    ),
+                    12.heightSpace,
+                    CustomText(text: "Your Simple Path to Stress-Free Vaccine Management", fontSize: 14.sp, textAlign: TextAlign.center, color: AppColors.textSecondary,),
+                    36.heightSpace,
+                    CustomText(text: "Email", fontSize: 12.sp, textAlign: TextAlign.center, color: AppColors.textSecondary,),
+                    8.heightSpace,
+                    CustomTextFormField(
+                      controller: controller.emailTEController,
+                      hintText: "Enter your email",
+                      validator: (value) => AppValidator.validateField(value, "Email"),
+                    ),
+                    16.heightSpace,
+                    CustomText(text: "Password", fontSize: 12.sp, textAlign: TextAlign.center, color: AppColors.textSecondary,),
+                    8.heightSpace,
+                    Obx(() =>
+                        CustomTextFormField(
+                          controller: controller.passwordTEController,
+                          hintText: "Enter your password",
+                          obscureText: !controller.visiblePass.value,
+                          validator: (value) => AppValidator.validateField(value, "Password"),
+                          suffixIcon: GestureDetector(
+                            onTap: (){
+                              controller.visiblePass.value = !controller.visiblePass.value;
+                            },
+                            child: !controller.visiblePass.value ?
+                            Icon(Icons.visibility_outlined) :
+                            Icon(Icons.visibility_off_outlined)
+                          ),
+                        )
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
@@ -76,7 +80,11 @@ class SignInScreen extends GetView<SignInController> {
                 CustomSubmitButton(
                   text: "Sign In",
                   onTap: (){
-                    Get.toNamed(AppRoute.hospitalNavBarScreen);
+                    if(formState.currentState!.validate()){
+                      if(controller.emailTEController.text == "hospital@fexpost.com"){
+                        Get.toNamed(AppRoute.hospitalNavBarScreen);
+                      }
+                    }
                   },
                 ),
                 16.heightSpace,
