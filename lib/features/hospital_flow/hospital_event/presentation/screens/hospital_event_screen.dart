@@ -25,10 +25,20 @@ class HospitalEventScreen extends GetView<HospitalEventController> {
                   child: CustomText(text: "Event List", fontSize: 20.sp, fontWeight: FontWeight.w500,),
                 ),
                 30.heightSpace,
-                eventContainer(),
-                eventContainer(),
-                eventContainer(),
-                eventContainer(),
+                Obx(() =>
+                  controller.vaccineEvents.isEmpty ?
+                      Center(
+                        child: CustomText(text: "No events yet", textAlign: TextAlign.center, color: AppColors.textSecondary,),
+                      ) :
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          ...controller.vaccineEvents.map((event) =>
+                              eventContainer(controller, event)
+                          )
+                        ],
+                      )
+                )
               ],
             ),
           ),
