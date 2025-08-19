@@ -4,6 +4,7 @@ import 'package:get/get.dart';import '../features/authentication/presentation/sc
 import '../features/authentication/presentation/screens/parent_sign_up_screen.dart';
 
 import '../features/authentication/presentation/screens/role_screen.dart';
+import '../features/hospital_flow/hospital_event/presentation/screens/hospital_event_screen.dart';
 import '../features/hospital_flow/hospital_home/presentation/screens/hospital_home_screen.dart';
 import '../features/hospital_flow/hospital_profile/presentation/screens/hospital_profile_screen.dart';
 import '../features/onboarding/screens/onboarding_screen_one.dart';
@@ -23,6 +24,7 @@ class AppRoute {
   static String hospitalNavBarScreen = "/hospitalNavBarScreen";
   static String hospitalHomeScreen = "/hospitalHomeScreen";
   static String hospitalProfileScreen = "/hospitalProfileScreen";
+  static String hospitalEventScreen = "/hospitalEventScreen";
 
 
   static List<GetPage> routes = [
@@ -47,6 +49,7 @@ class AppRoute {
     GetPage(name: hospitalNavBarScreen, page: () => HospitalNavBarScreen()),
     GetPage(name: hospitalHomeScreen, page: () => HospitalHomeScreen()),
     GetPage(name: hospitalProfileScreen, page: () => HospitalProfileScreen()),
+    GetPage(name: hospitalEventScreen, page: () => HospitalEventScreen()),
 
   ];
 }
