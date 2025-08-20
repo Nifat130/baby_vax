@@ -1,5 +1,6 @@
 import 'package:baby_vax/core/common/widgets/custom_submit_button.dart';
 import 'package:baby_vax/core/utils/constants/app_sizer.dart';
+import 'package:baby_vax/core/utils/constants/icon_path.dart';
 import 'package:baby_vax/core/utils/constants/logo_path.dart';
 import 'package:baby_vax/features/authentication/controllers/sign_up_controller.dart';
 import 'package:baby_vax/features/authentication/presentation/widgets/role_container.dart';
@@ -37,9 +38,9 @@ class RoleScreen extends GetView<SignUpController> {
                 12.heightSpace,
                 CustomText(text: "Your Simple Path to Stress-Free Vaccine Management", fontSize: 14.sp, textAlign: TextAlign.start, color: AppColors.textSecondary,),
                 24.heightSpace,
-                roleContainer(controller, "Hospital"),
+                roleContainer(controller, "Hospital", IconPath.hospitalIcon),
                 16.heightSpace,
-                roleContainer(controller, "Parent"),
+                roleContainer(controller, "Parent", IconPath.parentIcon),
               ],
             ),
           ),

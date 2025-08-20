@@ -50,14 +50,17 @@ class OnboardingScreenTwo extends StatelessWidget {
                   )
               ),
               Positioned.fill(
-                bottom: 28.h,
+                bottom: 10.h,
                 child: Align(
                   alignment: Alignment.bottomCenter,
                   child: GestureDetector(
                     onTap: (){
                       Get.toNamed(AppRoute.onboardingScreenThree);
                     },
-                    child: Image.asset(ImagePath.onboardingButtonImage),
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
+                      child: Image.asset(ImagePath.onboardingButtonImage),
+                    ),
                   ),
                 ),
               ),

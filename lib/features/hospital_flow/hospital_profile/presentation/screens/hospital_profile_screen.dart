@@ -47,7 +47,7 @@ class HospitalProfileScreen extends StatelessWidget {
                 SizedBox(height: 20.h,),
                 CustomText(text: "Terms & Support",),
                 SizedBox(height: 16.h,),
-                profileOptionContainer(Icons.policy_outlined, "Legal and Policies", AppRoute.signInScreen),
+                profileOptionContainer(Icons.policy_outlined, "Legal and Policies", AppRoute.legalAndPoliciesScreen),
                 profileOptionContainer(Icons.logout_rounded, "Log Out", AppRoute.signInScreen),
               ],
             ),
