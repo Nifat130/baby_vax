@@ -10,6 +10,7 @@ import '../features/hospital_flow/hospital_profile/presentation/screens/hospital
 import '../features/hospital_flow/hospital_profile/presentation/screens/hospital_information_screen.dart';
 import '../features/hospital_flow/hospital_profile/presentation/screens/hospital_profile_screen.dart';
 import '../features/hospital_flow/hospital_profile/presentation/screens/legal_and_policies_screen.dart';
+import '../features/notification/presentation/screens/notification_screen.dart';
 import '../features/onboarding/screens/onboarding_screen_one.dart';
 import '../features/onboarding/screens/onboarding_screen_three.dart';
 import '../features/onboarding/screens/onboarding_screen_two.dart';
@@ -31,6 +32,7 @@ class AppRoute {
   static String hospitalInformationScreen = "/hospitalInformationScreen";
   static String hospitalChangePasswordScreen = "/hospitalChangePasswordScreen";
   static String legalAndPoliciesScreen = "/legalAndPoliciesScreen";
+  static String notificationScreen = "/notificationScreen";
 
 
   static List<GetPage> routes = [
@@ -59,5 +61,6 @@ class AppRoute {
     GetPage(name: hospitalInformationScreen, page: () => HospitalInformationScreen()),
     GetPage(name: hospitalChangePasswordScreen, page: () => HospitalChangePasswordScreen()),
     GetPage(name: legalAndPoliciesScreen, page: () => LegalAndPoliciesScreen()),
+    GetPage(name: notificationScreen, page: () => NotificationScreen()),
   ];
 }
