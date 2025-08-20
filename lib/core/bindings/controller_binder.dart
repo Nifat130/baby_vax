@@ -5,6 +5,7 @@ import '../../features/authentication/controllers/sign_up_controller.dart';
 import '../../features/hospital_flow/hospital_event/controllers/hospital_event_controller.dart';
 import '../../features/hospital_flow/hospital_home/controllers/hospital_home_controller.dart';
 import '../../features/hospital_flow/hospital_nav_bar/controllers/hospital_nav_bar_controller.dart';
+import '../../features/hospital_flow/hospital_profile/controllers/hospital_information_controller.dart';
 import '../../features/splash_screen/controllers/splash_controller.dart';
 
 class ControllerBinder extends Bindings {
@@ -17,5 +18,6 @@ class ControllerBinder extends Bindings {
     Get.lazyPut<HospitalNavBarController>(() => HospitalNavBarController(), fenix: true,);
     Get.lazyPut<HospitalHomeController>(() => HospitalHomeController(), fenix: true,);
     Get.lazyPut<HospitalEventController>(() => HospitalEventController(), fenix: true,);
+    Get.lazyPut<HospitalInformationController>(() => HospitalInformationController(), fenix: true,);
   }
 }
