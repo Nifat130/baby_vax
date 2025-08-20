@@ -1,10 +1,11 @@
 import 'package:baby_vax/core/utils/constants/app_sizer.dart';
+import 'package:baby_vax/routes/app_routes.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../../../core/common/widgets/custom_text.dart';
 import '../../../../../core/utils/constants/app_colors.dart';
 import '../../../../../core/utils/constants/icon_path.dart';
-import '../../../../../core/utils/constants/image_path.dart';
 
 Widget hospitalHomeAppbar(String name, String address, String imagePath){
 
@@ -41,7 +42,9 @@ Widget hospitalHomeAppbar(String name, String address, String imagePath){
       Flexible(
         flex: 1,
         child: GestureDetector(
-          onTap: (){},
+          onTap: (){
+            Get.toNamed(AppRoute.notificationScreen);
+          },
           child: Image.asset(IconPath.notificationIcon, fit: BoxFit.fill, height: 28.h, width: 28.w,),
         ),
       )
