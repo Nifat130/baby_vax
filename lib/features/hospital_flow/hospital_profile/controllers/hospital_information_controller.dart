@@ -36,11 +36,13 @@ class HospitalInformationController extends GetxController{
       licensesImage.value = image.path;
     }
   }
+  var currentPassVisibility = false.obs;
   var passVisibility = false.obs;
   var confirmPassVisibility = false.obs;
   final hospitalName = TextEditingController(text: "Dhaka Hospital");
   final hospitalEmail = TextEditingController(text: "dhakahospital@gmail.com");
-  final hospitalPass = TextEditingController();
+  final hospitalCurrentPass = TextEditingController();
+  final hospitalNewPass = TextEditingController();
   final hospitalConfirmPass = TextEditingController();
   final hospitalAddress = TextEditingController(text: "Mirpur, Dhaka, Bangladesh");
 
