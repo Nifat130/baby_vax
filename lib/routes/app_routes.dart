@@ -9,6 +9,7 @@ import '../features/hospital_flow/hospital_home/presentation/screens/hospital_ho
 import '../features/hospital_flow/hospital_profile/presentation/screens/hospital_change_password_screen.dart';
 import '../features/hospital_flow/hospital_profile/presentation/screens/hospital_information_screen.dart';
 import '../features/hospital_flow/hospital_profile/presentation/screens/hospital_profile_screen.dart';
+import '../features/hospital_flow/hospital_profile/presentation/screens/legal_and_policies_screen.dart';
 import '../features/onboarding/screens/onboarding_screen_one.dart';
 import '../features/onboarding/screens/onboarding_screen_three.dart';
 import '../features/onboarding/screens/onboarding_screen_two.dart';
@@ -29,6 +30,7 @@ class AppRoute {
   static String hospitalEventScreen = "/hospitalEventScreen";
   static String hospitalInformationScreen = "/hospitalInformationScreen";
   static String hospitalChangePasswordScreen = "/hospitalChangePasswordScreen";
+  static String legalAndPoliciesScreen = "/legalAndPoliciesScreen";
 
 
   static List<GetPage> routes = [
@@ -46,7 +48,7 @@ class AppRoute {
       transitionDuration: Duration(milliseconds: 500),
     ),
     GetPage(name: onboardingScreenThree, page: () => const OnboardingScreenThree(), transition: Transition.rightToLeftWithFade, transitionDuration: Duration(milliseconds: 500),),
-    GetPage(name: signInScreen, page: () => SignInScreen()),
+    GetPage(name: signInScreen, page: () => SignInScreen(), transition: Transition.rightToLeftWithFade, transitionDuration: Duration(milliseconds: 500),),
     GetPage(name: roleScreen, page: () => const RoleScreen()),
     GetPage(name: parentSignUpScreen, page: () => ParentSignUpScreen()),
     GetPage(name: hospitalSignUpScreen, page: () => HospitalSignUpScreen()),
@@ -56,5 +58,6 @@ class AppRoute {
     GetPage(name: hospitalEventScreen, page: () => HospitalEventScreen()),
     GetPage(name: hospitalInformationScreen, page: () => HospitalInformationScreen()),
     GetPage(name: hospitalChangePasswordScreen, page: () => HospitalChangePasswordScreen()),
+    GetPage(name: legalAndPoliciesScreen, page: () => LegalAndPoliciesScreen()),
   ];
 }
