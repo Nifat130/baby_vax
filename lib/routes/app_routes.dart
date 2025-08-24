@@ -14,6 +14,8 @@ import '../features/notification/presentation/screens/notification_screen.dart';
 import '../features/onboarding/screens/onboarding_screen_one.dart';
 import '../features/onboarding/screens/onboarding_screen_three.dart';
 import '../features/onboarding/screens/onboarding_screen_two.dart';
+import '../features/parent_flow/parent_home_screen/presentation/screens/parent_home_screen.dart';
+import '../features/parent_flow/parent_nav_bar/presentation/screens/parent_nav_bar_screen.dart';
 import '../features/splash_screen/presentation/screens/splash_screen.dart';
 
 class AppRoute {
@@ -33,6 +35,8 @@ class AppRoute {
   static String hospitalChangePasswordScreen = "/hospitalChangePasswordScreen";
   static String legalAndPoliciesScreen = "/legalAndPoliciesScreen";
   static String notificationScreen = "/notificationScreen";
+  static String parentHomeScreen = "/parentHomeScreen";
+  static String parentNavBarScreen = "/parentNavBarScreen";
 
 
   static List<GetPage> routes = [
@@ -62,5 +66,9 @@ class AppRoute {
     GetPage(name: hospitalChangePasswordScreen, page: () => HospitalChangePasswordScreen()),
     GetPage(name: legalAndPoliciesScreen, page: () => LegalAndPoliciesScreen()),
     GetPage(name: notificationScreen, page: () => NotificationScreen()),
+
+    /// Parent Flow
+    GetPage(name: parentNavBarScreen, page: () => ParentNavBarScreen()),
+    GetPage(name: parentHomeScreen, page: () => ParentHomeScreen()),
   ];
 }
