@@ -4,6 +4,8 @@ import 'package:baby_vax/core/common/widgets/custom_back_center_title_heading.da
 import 'package:baby_vax/core/utils/constants/app_sizer.dart';
 import 'package:baby_vax/core/utils/constants/image_path.dart';
 import 'package:baby_vax/features/hospital_flow/hospital_profile/controllers/hospital_information_controller.dart';
+import 'package:baby_vax/features/parent_flow/parent_profile/controllers/parent_information_controller.dart';
+import 'package:baby_vax/features/parent_flow/parent_profile/controllers/parent_information_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
@@ -16,8 +18,8 @@ import '../../../../../core/utils/constants/app_colors.dart';
 import '../../../../../core/utils/validators/app_validator.dart';
 import '../../../../../routes/app_routes.dart';
 
-class HospitalInformationScreen extends GetView<HospitalInformationController> {
-  HospitalInformationScreen({super.key});
+class ParentInformationScreen extends GetView<ParentInformationController> {
+  ParentInformationScreen({super.key});
 
   final GlobalKey<FormState> formState = GlobalKey<FormState>();
   @override
@@ -37,9 +39,8 @@ class HospitalInformationScreen extends GetView<HospitalInformationController> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      customBackCenterTitleHeading("Hospital Information"),
-                      24.heightSpace,
-                      24.heightSpace,
+                      customBackCenterTitleHeading("Parent Information"),
+                      48.heightSpace,
                       Center(
                         child: Stack(
                           children: [
