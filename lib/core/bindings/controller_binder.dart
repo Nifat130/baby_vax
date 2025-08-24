@@ -8,6 +8,7 @@ import '../../features/hospital_flow/hospital_nav_bar/controllers/hospital_nav_b
 import '../../features/hospital_flow/hospital_profile/controllers/hospital_information_controller.dart';
 import '../../features/parent_flow/parent_home_screen/controllers/parent_home_controller.dart';
 import '../../features/parent_flow/parent_nav_bar/controllers/parent_nav_bar_controller.dart';
+import '../../features/parent_flow/parent_profile/controllers/parent_information_controller.dart';
 import '../../features/splash_screen/controllers/splash_controller.dart';
 
 class ControllerBinder extends Bindings {
@@ -24,5 +25,6 @@ class ControllerBinder extends Bindings {
 
     Get.lazyPut<ParentHomeController>(() => ParentHomeController(), fenix: true,);
     Get.lazyPut<ParentNavBarController>(() => ParentNavBarController(), fenix: true,);
+    Get.lazyPut<ParentInformationController>(() => ParentInformationController(), fenix: true,);
   }
 }
