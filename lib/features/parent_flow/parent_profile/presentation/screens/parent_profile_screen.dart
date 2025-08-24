@@ -6,8 +6,8 @@ import '../../../../../core/utils/constants/image_path.dart';
 import '../../../../../routes/app_routes.dart';
 import '../widgets/profile_option_container.dart';
 
-class HospitalProfileScreen extends StatelessWidget {
-  const HospitalProfileScreen({super.key});
+class ParentProfileScreen extends StatelessWidget {
+  const ParentProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -42,8 +42,8 @@ class HospitalProfileScreen extends StatelessWidget {
                 SizedBox(height: 32.h,),
                 CustomText(text: "Edit Information",),
                 SizedBox(height: 16.h,),
-                profileOptionContainer(Icons.home_outlined, "Hospital Information", AppRoute.hospitalInformationScreen),
-                profileOptionContainer(Icons.lock_outline, "Change Password", AppRoute.hospitalChangePasswordScreen),
+                profileOptionContainer(Icons.home_outlined, "Personal Information", AppRoute.parentInformationScreen),
+                profileOptionContainer(Icons.lock_outline, "Change Password", AppRoute.parentChangePasswordScreen),
                 SizedBox(height: 20.h,),
                 CustomText(text: "Terms & Support",),
                 SizedBox(height: 16.h,),
