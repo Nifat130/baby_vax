@@ -39,11 +39,11 @@ class ParentInformationController extends GetxController{
   var currentPassVisibility = false.obs;
   var passVisibility = false.obs;
   var confirmPassVisibility = false.obs;
-  final hospitalName = TextEditingController(text: "Dhaka Hospital");
-  final hospitalEmail = TextEditingController(text: "dhakahospital@gmail.com");
-  final hospitalCurrentPass = TextEditingController();
-  final hospitalNewPass = TextEditingController();
-  final hospitalConfirmPass = TextEditingController();
-  final hospitalAddress = TextEditingController(text: "Mirpur, Dhaka, Bangladesh");
+  final parentName = TextEditingController(text: "Abdullah Talukdar");
+  final parentNumber = TextEditingController(text: "01565555555");
+  final parentCurrentPass = TextEditingController();
+  final parentNewPass = TextEditingController();
+  final parentConfirmPass = TextEditingController();
+  final parentAddress = TextEditingController(text: "Mirpur, Dhaka, Bangladesh");
 
 }

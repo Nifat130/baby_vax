@@ -77,80 +77,28 @@ class ParentInformationScreen extends GetView<ParentInformationController> {
                         ),
                       ),
                       16.heightSpace,
-                      CustomText(text: "Hospital Name", fontSize: 12.sp, textAlign: TextAlign.center, color: AppColors.textSecondary,),
+                      CustomText(text: "Your Name", fontSize: 12.sp, textAlign: TextAlign.center, color: AppColors.textSecondary,),
                       8.heightSpace,
                       CustomTextFormField(
-                        controller: controller.hospitalName,
-                        hintText: "Enter hospital name",
+                        controller: controller.parentName,
+                        hintText: "Enter your name",
                         validator: (value) => AppValidator.validateField(value, "Name"),
                       ),
                       16.heightSpace,
-                      CustomText(text: "Hospital Email", fontSize: 12.sp, textAlign: TextAlign.center, color: AppColors.textSecondary,),
+                      CustomText(text: "Your Number", fontSize: 12.sp, textAlign: TextAlign.center, color: AppColors.textSecondary,),
                       8.heightSpace,
                       CustomTextFormField(
-                        controller: controller.hospitalEmail,
-                        hintText: "Enter hospital email",
-                        validator: AppValidator.validateEmail,
+                        controller: controller.parentNumber,
+                        hintText: "Enter your number",
+                        validator: (value) => AppValidator.validateField(value, "Number"),
                       ),
                       16.heightSpace,
-                      CustomText(text: "Hospital Address", fontSize: 12.sp, textAlign: TextAlign.center, color: AppColors.textSecondary,),
+                      CustomText(text: "Your Address", fontSize: 12.sp, textAlign: TextAlign.center, color: AppColors.textSecondary,),
                       8.heightSpace,
                       CustomTextFormField(
-                        controller: controller.hospitalAddress,
+                        controller: controller.parentAddress,
                         hintText: "Enter hospital address",
                         validator: (value) => AppValidator.validateField(value, "Address"),
-                      ),
-                      16.heightSpace,
-                      CustomText(text: "Hospital License", fontSize: 12.sp, textAlign: TextAlign.center, color: AppColors.textSecondary,),
-                      8.heightSpace,
-                      Obx(() =>
-                      controller.licensesImage.value != '' ?
-                      Stack(
-                        children: [
-                          ClipRRect(
-                              borderRadius: 8.radius,
-                              child: Image.file(File(controller.licensesImage.value), fit: BoxFit.fill, height: 200.h, width: SizeUtils.width,)
-                          ),
-                          Positioned(
-                            right: 8.w,
-                            top: 8.h,
-                            child: GestureDetector(
-                              onTap: (){
-                                controller.licensesImage.value = '';
-                              },
-                              child: Icon(Icons.cancel, color: AppColors.error, size: 40.h,),
-                            ),
-                          )
-                        ],
-                      ) :
-                      GestureDetector(
-                        onTap: (){
-                          controller.licenseImagePicker();
-                        },
-                        child: Container(
-                          height: 200.h,
-                          width: SizeUtils.width,
-                          decoration: BoxDecoration(
-                              border: Border.all(color: AppColors.textFormFieldBorder),
-                              borderRadius: 8.radius
-                          ),
-                          alignment: Alignment.center,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Icon(Icons.upload_file_outlined, color: AppColors.textSecondary,),
-                              8.heightSpace,
-                              CustomText(text: "Upload hospital license image", color: AppColors.textSecondary,)
-                            ],
-                          ),
-                        ),
-                      )
-                      ),
-                      32.heightSpace,
-                      CustomSubmitButton(
-                        text: "Update",
-                        onTap: (){},
                       ),
                     ],
                   ),
@@ -158,6 +106,16 @@ class ParentInformationScreen extends GetView<ParentInformationController> {
               );
             }
           }),
+        ),
+      ),
+      bottomNavigationBar: SafeArea(
+        top: false,
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
+          child: CustomSubmitButton(
+            text: "Update",
+            onTap: (){},
+          ),
         ),
       ),
     );
