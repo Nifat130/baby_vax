@@ -9,45 +9,58 @@ import '../../../../../core/utils/constants/icon_path.dart';
 
 Widget hospitalHomeAppbar(String name, String address, String imagePath){
 
-  return Row(
-    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    children: [
-      Flexible(
-        flex: 9,
+  return Container(
+    decoration: BoxDecoration(
+        color: AppColors.primary,
+        borderRadius: BorderRadius.only(bottomLeft: Radius.circular(36.h), bottomRight: Radius.circular(36.h))
+    ),
+    padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
+    child: SafeArea(
+      bottom: false,
+      child: Padding(
+        padding: EdgeInsets.only(bottom: 12.h),
         child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Flexible(
-              flex: 3,
-              child: CircleAvatar(
-                backgroundImage: AssetImage(imagePath),
-                radius: 24.h,
-              ),
-            ),
-            8.widthSpace,
-            Flexible(
-              flex: 7,
-              child: Column(
+              flex: 9,
+              child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  CustomText(text: name, fontSize: 16.sp, fontWeight: FontWeight.w600, textOverflow: TextOverflow.ellipsis,),
-                  4.heightSpace,
-                  CustomText(text: address, color: AppColors.textSecondary,fontSize: 10.sp, fontWeight: FontWeight.w600, textOverflow: TextOverflow.ellipsis,),
+                  Flexible(
+                    flex: 3,
+                    child: CircleAvatar(
+                      backgroundImage: AssetImage(imagePath),
+                      radius: 24.h,
+                    ),
+                  ),
+                  8.widthSpace,
+                  Flexible(
+                    flex: 7,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        CustomText(text: name, fontSize: 16.sp, fontWeight: FontWeight.w600, textOverflow: TextOverflow.ellipsis, color: AppColors.textWhite,),
+                        4.heightSpace,
+                        CustomText(text: address, color: AppColors.textWhite,fontSize: 10.sp, fontWeight: FontWeight.w600, textOverflow: TextOverflow.ellipsis,),
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ),
+            Flexible(
+              flex: 1,
+              child: GestureDetector(
+                onTap: (){
+                  Get.toNamed(AppRoute.notificationScreen);
+                },
+                child: Image.asset(IconPath.whiteNotificationIcon, fit: BoxFit.fill, height: 28.h, width: 28.w,),
+              ),
+            )
           ],
         ),
       ),
-      Flexible(
-        flex: 1,
-        child: GestureDetector(
-          onTap: (){
-            Get.toNamed(AppRoute.notificationScreen);
-          },
-          child: Image.asset(IconPath.notificationIcon, fit: BoxFit.fill, height: 28.h, width: 28.w,),
-        ),
-      )
-    ],
+    ),
   );
 }
