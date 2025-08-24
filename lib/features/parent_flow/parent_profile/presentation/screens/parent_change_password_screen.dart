@@ -1,6 +1,6 @@
 import 'package:baby_vax/core/common/widgets/custom_back_center_title_heading.dart';
 import 'package:baby_vax/core/utils/constants/app_sizer.dart';
-import 'package:baby_vax/features/hospital_flow/hospital_profile/controllers/hospital_information_controller.dart';
+import 'package:baby_vax/features/parent_flow/parent_profile/controllers/parent_information_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../../../core/common/widgets/custom_submit_button.dart';
@@ -39,7 +39,7 @@ class ParentChangePasswordScreen extends GetView<ParentInformationController> {
                       8.heightSpace,
                       Obx(() =>
                           CustomTextFormField(
-                            controller: controller.hospitalCurrentPass,
+                            controller: controller.parentCurrentPass,
                             hintText: "Enter your password",
                             obscureText: !controller.confirmPassVisibility.value,
                             validator: AppValidator.validatePassword,
@@ -58,7 +58,7 @@ class ParentChangePasswordScreen extends GetView<ParentInformationController> {
                       8.heightSpace,
                       Obx(() =>
                           CustomTextFormField(
-                            controller: controller.hospitalNewPass,
+                            controller: controller.parentNewPass,
                             hintText: "Enter your new password",
                             obscureText: !controller.passVisibility.value,
                             validator: AppValidator.validatePassword,
@@ -77,10 +77,10 @@ class ParentChangePasswordScreen extends GetView<ParentInformationController> {
                       8.heightSpace,
                       Obx(() =>
                           CustomTextFormField(
-                            controller: controller.hospitalConfirmPass,
+                            controller: controller.parentConfirmPass,
                             hintText: "Confirm your password",
                             obscureText: !controller.confirmPassVisibility.value,
-                            validator: (value) => AppValidator.matchPassword(value, controller.hospitalNewPass.text),
+                            validator: (value) => AppValidator.matchPassword(value, controller.parentNewPass.text),
                             suffixIcon: GestureDetector(
                                 onTap: (){
                                   controller.confirmPassVisibility.value = !controller.confirmPassVisibility.value;
