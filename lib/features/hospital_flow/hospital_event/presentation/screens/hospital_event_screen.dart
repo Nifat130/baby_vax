@@ -14,34 +14,45 @@ class HospitalEventScreen extends GetView<HospitalEventController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Center(
-                  child: CustomText(text: "Event List", fontSize: 20.sp, fontWeight: FontWeight.w500,),
-                ),
-                30.heightSpace,
-                Obx(() =>
-                  controller.vaccineEvents.isEmpty ?
-                      Center(
-                        child: CustomText(text: "No events yet", textAlign: TextAlign.center, color: AppColors.textSecondary,),
-                      ) :
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          ...controller.vaccineEvents.map((event) =>
-                              eventContainer(controller, event)
-                          )
-                        ],
-                      )
-                )
-              ],
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              width: double.infinity,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.only(bottomRight: Radius.circular(36.h), bottomLeft: Radius.circular(36.h)),
+                  color: AppColors.primary
+              ),
+              alignment: Alignment.center,
+              padding: EdgeInsets.symmetric(horizontal: 16.h, vertical: 20.h),
+              child: SafeArea(bottom: false,child: CustomText(text: "Event List", fontSize: 20.sp, fontWeight: FontWeight.w500, color: AppColors.textWhite,)),
             ),
-          ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 24.h),
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Obx(() =>
+                      controller.vaccineEvents.isEmpty ?
+                          Center(
+                            child: CustomText(text: "No events yet", textAlign: TextAlign.center, color: AppColors.textSecondary,),
+                          ) :
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              ...controller.vaccineEvents.map((event) =>
+                                  eventContainer(controller, event)
+                              )
+                            ],
+                          )
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
