@@ -5,6 +5,7 @@ import 'package:baby_vax/core/utils/constants/app_sizer.dart';
 import 'package:baby_vax/core/utils/constants/image_path.dart';
 import 'package:baby_vax/features/parent_flow/parent_home_screen/presentation/widgets/parent_children_container.dart';
 import 'package:baby_vax/features/parent_flow/parent_home_screen/presentation/widgets/parent_home_appbar.dart';
+import 'package:baby_vax/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -34,7 +35,9 @@ class ParentHomeScreen extends GetView<ParentHomeController> {
                   16.heightSpace,
                   CustomSubmitButton(
                     text: "Add Child",
-                    onTap: (){},
+                    onTap: (){
+                      Get.toNamed(AppRoute.addChildScreen);
+                    },
                   )
                 ],
               ),
