@@ -99,34 +99,28 @@ class NotificationScreen extends StatelessWidget {
     ];
 
     return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              /// Header
-              customBackCenterTitleHeading("Notification"),
-              30.heightSpace,
-
-              /// Notification List
-              Expanded(
-                child: ListView.builder(
-                  itemCount: notifications.length,
-                  itemBuilder: (context, index) {
-                    final item = notifications[index];
-                    return notificationTile(
-                      title: item["title"] as String,
-                      subtitle: item["subtitle"] as String,
-                      time: item["time"] as String,
-                      isUnread: item["unread"] as bool,
-                    );
-                  },
-                ),
-              ),
-            ],
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          /// Header
+          customBackCenterTitleHeading("Notification"),
+          /// Notification List
+          Expanded(
+            child: ListView.builder(
+              padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
+              itemCount: notifications.length,
+              itemBuilder: (context, index) {
+                final item = notifications[index];
+                return notificationTile(
+                  title: item["title"] as String,
+                  subtitle: item["subtitle"] as String,
+                  time: item["time"] as String,
+                  isUnread: item["unread"] as bool,
+                );
+              },
+            ),
           ),
-        ),
+        ],
       ),
     );
   }
