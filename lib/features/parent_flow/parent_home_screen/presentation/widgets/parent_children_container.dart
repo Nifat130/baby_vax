@@ -76,7 +76,7 @@ Widget parentChildrenContainer(String name, String age, String id){
             onTap: (){
               Get.toNamed(AppRoute.editChildScreen);
             },
-            child: Icon(Icons.edit_note_outlined, color: AppColors.primary,),
+            child: Icon(Icons.edit_note_outlined, color: AppColors.primary, size: 35.h,),
           ),
         )
       ],

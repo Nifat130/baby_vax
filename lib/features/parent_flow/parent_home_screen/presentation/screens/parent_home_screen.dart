@@ -22,24 +22,28 @@ class ParentHomeScreen extends GetView<ParentHomeController> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             parentHomeAppbar("Abdullah Talukdar", "Mirpur 10, Dhaka", ImagePath.dummyProfilePicture),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  CustomText(text: "List of children", fontSize: 18.sp, fontWeight: FontWeight.w500,),
-                  16.heightSpace,
-                  parentChildrenContainer("Kuddus Mia", "2 Years", "2234n5a3434"),
-                  parentChildrenContainer("Sadik Mia", "1 Years", "2234n5a3434"),
-                  parentChildrenContainer("Badik Mia", "6 Months", "2234n5a3434"),
-                  16.heightSpace,
-                  CustomSubmitButton(
-                    text: "Add Child",
-                    onTap: (){
-                      Get.toNamed(AppRoute.addChildScreen);
-                    },
-                  )
-                ],
+            SafeArea(
+              top: false,
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    CustomText(text: "List of children", fontSize: 18.sp, fontWeight: FontWeight.w500,),
+                    16.heightSpace,
+                    parentChildrenContainer("Kuddus Mia", "2 Years", "2234n5a3434"),
+                    parentChildrenContainer("Sadik Mia", "1 Years", "2234n5a3434"),
+                    parentChildrenContainer("Badik Mia", "6 Months", "2234n5a3434"),
+                    16.heightSpace,
+                    CustomSubmitButton(
+                      text: "Add Child",
+                      onTap: (){
+                        Get.toNamed(AppRoute.addChildScreen);
+                      },
+                    ),
+                    16.heightSpace
+                  ],
+                ),
               ),
             )
           ],
