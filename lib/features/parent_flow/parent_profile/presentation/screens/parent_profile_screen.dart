@@ -1,3 +1,4 @@
+import 'package:baby_vax/core/common/widgets/custom_heading.dart';
 import 'package:baby_vax/core/utils/constants/app_sizer.dart';
 import 'package:flutter/material.dart';
 import '../../../../../core/common/widgets/custom_text.dart';
@@ -12,47 +13,49 @@ class ParentProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Center(
-                  child: CustomText(text: "Profile", fontSize: 20.sp, fontWeight: FontWeight.w600,),
-                ),
-                SizedBox(height: 40.h,),
-                SizedBox(
-                  width: SizeUtils.width,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      CircleAvatar(
-                        backgroundImage: AssetImage(ImagePath.dummyProfilePicture),
-                        radius: 45.h,
-                      ),
-                      SizedBox(height: 16.h,),
-                      CustomText(text: "Abdullah Talukdar", fontSize: 16.sp, fontWeight: FontWeight.w500,),
-                      SizedBox(height: 4.h,),
-                      CustomText(text: "talukdar@gmail.com", color: AppColors.textSecondary,)
-                    ],
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          CustomHeading(title: "Profile"),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  16.heightSpace,
+                  SizedBox(
+                    width: SizeUtils.width,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        CircleAvatar(
+                          backgroundImage: AssetImage(ImagePath.dummyProfilePicture),
+                          radius: 45.h,
+                        ),
+                        SizedBox(height: 16.h,),
+                        CustomText(text: "Abdullah Talukdar", fontSize: 16.sp, fontWeight: FontWeight.w500,),
+                        SizedBox(height: 4.h,),
+                        CustomText(text: "talukdar@gmail.com", color: AppColors.textSecondary,)
+                      ],
+                    ),
                   ),
-                ),
-                SizedBox(height: 32.h,),
-                CustomText(text: "Edit Information",),
-                SizedBox(height: 16.h,),
-                profileOptionContainer(Icons.person_outlined, "Personal Information", AppRoute.parentInformationScreen),
-                profileOptionContainer(Icons.lock_outline, "Change Password", AppRoute.parentChangePasswordScreen),
-                SizedBox(height: 20.h,),
-                CustomText(text: "Terms & Support",),
-                SizedBox(height: 16.h,),
-                profileOptionContainer(Icons.policy_outlined, "Legal and Policies", AppRoute.legalAndPoliciesScreen),
-                profileOptionContainer(Icons.logout_rounded, "Log Out", AppRoute.signInScreen),
-              ],
+                  SizedBox(height: 32.h,),
+                  CustomText(text: "Edit Information",),
+                  SizedBox(height: 16.h,),
+                  profileOptionContainer(Icons.person_outlined, "Personal Information", AppRoute.parentInformationScreen),
+                  profileOptionContainer(Icons.lock_outline, "Change Password", AppRoute.parentChangePasswordScreen),
+                  SizedBox(height: 20.h,),
+                  CustomText(text: "Terms & Support",),
+                  SizedBox(height: 16.h,),
+                  profileOptionContainer(Icons.policy_outlined, "Legal and Policies", AppRoute.legalAndPoliciesScreen),
+                  profileOptionContainer(Icons.logout_rounded, "Log Out", AppRoute.signInScreen),
+                ],
+              ),
             ),
           ),
-        ),
+        ],
       ),
     );
   }
