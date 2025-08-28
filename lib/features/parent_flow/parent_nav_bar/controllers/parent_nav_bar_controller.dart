@@ -1,3 +1,4 @@
+import 'package:baby_vax/features/parent_flow/parent_event/presentation/screens/parent_event_screen.dart';
 import 'package:baby_vax/features/parent_flow/parent_home_screen/presentation/screens/parent_home_screen.dart';
 import 'package:baby_vax/features/parent_flow/parent_profile/presentation/screens/parent_profile_screen.dart';
 import 'package:flutter/cupertino.dart';
@@ -9,7 +10,7 @@ class ParentNavBarController extends GetxController{
 
   List<Widget> screens = [
     ParentHomeScreen(),
-    SizedBox(),
+    ParentEventScreen(),
     ParentProfileScreen(),
   ];
 
