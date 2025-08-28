@@ -205,7 +205,7 @@ class HospitalHomeScreen extends GetView<HospitalHomeController> {
                       text: "Create Event",
                       onTap: (){},
                     ),
-                    32.heightSpace
+                    100.heightSpace
                   ],
                 ),
               ),
