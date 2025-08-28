@@ -1,5 +1,7 @@
 import 'package:baby_vax/core/utils/constants/app_sizer.dart';
+import 'package:baby_vax/routes/app_routes.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../../../core/common/widgets/custom_text.dart';
 import '../../../../../core/utils/constants/app_colors.dart';
@@ -71,7 +73,9 @@ Widget parentChildrenContainer(String name, String age, String id){
         Flexible(
           flex: 1,
           child: GestureDetector(
-            onTap: (){},
+            onTap: (){
+              Get.toNamed(AppRoute.editChildScreen);
+            },
             child: Icon(Icons.edit_note_outlined, color: AppColors.primary,),
           ),
         )

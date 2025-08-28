@@ -15,6 +15,7 @@ import '../features/onboarding/screens/onboarding_screen_one.dart';
 import '../features/onboarding/screens/onboarding_screen_three.dart';
 import '../features/onboarding/screens/onboarding_screen_two.dart';
 import '../features/parent_flow/parent_home_screen/presentation/screens/add_child_screen.dart';
+import '../features/parent_flow/parent_home_screen/presentation/screens/edit_child_screen.dart';
 import '../features/parent_flow/parent_home_screen/presentation/screens/parent_home_screen.dart';
 import '../features/parent_flow/parent_nav_bar/presentation/screens/parent_nav_bar_screen.dart';
 import '../features/parent_flow/parent_profile/presentation/screens/parent_change_password_screen.dart';
@@ -43,6 +44,7 @@ class AppRoute {
   static String parentChangePasswordScreen = "/parentChangePasswordScreen";
   static String parentInformationScreen = "/parentInformationScreen";
   static String addChildScreen = "/addChildScreen";
+  static String editChildScreen = "/editChildScreen";
 
 
   static List<GetPage> routes = [
@@ -79,5 +81,6 @@ class AppRoute {
     GetPage(name: parentChangePasswordScreen, page: () => ParentChangePasswordScreen()),
     GetPage(name: parentInformationScreen, page: () => ParentInformationScreen()),
     GetPage(name: addChildScreen, page: () => AddChildScreen()),
+    GetPage(name: editChildScreen, page: () => EditChildScreen()),
   ];
 }
