@@ -22,6 +22,7 @@ import '../features/parent_flow/parent_home_screen/presentation/screens/parent_h
 import '../features/parent_flow/parent_nav_bar/presentation/screens/parent_nav_bar_screen.dart';
 import '../features/parent_flow/parent_profile/presentation/screens/parent_change_password_screen.dart';
 import '../features/parent_flow/parent_profile/presentation/screens/parent_information_screen.dart';
+import '../features/parent_flow/parent_schedule_calendar/presentation/screens/parent_schedule_calendar_screen.dart';
 import '../features/splash_screen/presentation/screens/splash_screen.dart';
 
 class AppRoute {
@@ -49,6 +50,7 @@ class AppRoute {
   static String editChildScreen = "/editChildScreen";
   static String parentEventScreen = "/parentEventScreen";
   static String parentEventDetailsScreen = "/parentEventDetailsScreen";
+  static String parentScheduleCalendarScreen = "/parentScheduleCalendarScreen";
 
 
   static List<GetPage> routes = [
@@ -88,5 +90,6 @@ class AppRoute {
     GetPage(name: editChildScreen, page: () => EditChildScreen()),
     GetPage(name: parentEventScreen, page: () => ParentEventScreen()),
     GetPage(name: parentEventDetailsScreen, page: () => ParentEventDetailsScreen()),
+    GetPage(name: parentScheduleCalendarScreen, page: () => ParentScheduleCalendarScreen()),
   ];
 }

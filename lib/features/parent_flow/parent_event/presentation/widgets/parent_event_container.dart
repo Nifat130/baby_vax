@@ -11,7 +11,7 @@ import '../../../../../core/utils/constants/app_colors.dart';
 import '../../../../../core/utils/constants/app_sizer.dart';
 import '../../../../../core/utils/constants/image_path.dart';
 
-Widget parentEventContainer(ParentEventController controller, Map<String, dynamic> event){
+Widget parentEventContainer(dynamic controller, Map<String, dynamic> event){
 
   return GestureDetector(
     onTap: (){
