@@ -28,6 +28,7 @@ class ParentNavBarScreen extends GetView<ParentNavBarController> {
           items: [
             navBarButtonWidget(IconPath.homeIcon, "Home"),
             navBarButtonWidget(IconPath.eventIcon, "Events"),
+            navBarButtonWidget(IconPath.scheduleIcon, "Schedule"),
             navBarButtonWidget(IconPath.profileIcon, "Profile"),
           ],
         ),
