@@ -135,7 +135,6 @@ class ParentScheduleCalendarScreen extends GetView<ParentScheduleCalendarControl
                       child: CustomText(text: "Event List", fontSize: 18.sp, fontWeight: FontWeight.w600, color: AppColors.textWhite, textAlign: TextAlign.center,),
                     ),
                     16.heightSpace,
-
                     Obx(() =>
                         controller.selectedDayEvent.isEmpty ?
                             SizedBox() :
@@ -147,7 +146,8 @@ class ParentScheduleCalendarScreen extends GetView<ParentScheduleCalendarControl
                                 )
                               ],
                             )
-                    )
+                    ),
+                    16.heightSpace
                   ],
                 ),
               ),
