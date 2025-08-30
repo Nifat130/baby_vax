@@ -25,89 +25,91 @@ class ParentInformationScreen extends GetView<ParentInformationController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
-          child: Obx((){
-            if(controller.isLoading.value){
-              return ShowProgressIndicator();
-            }
-            else{
-              return SingleChildScrollView(
-                child: Form(
+      body: Obx((){
+        if(controller.isLoading.value){
+          return ShowProgressIndicator();
+        }
+        else{
+          return SingleChildScrollView(
+            child: Column(
+              children: [
+                customBackCenterTitleHeading("Parent Information"),
+                Form(
                   key: formState,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      customBackCenterTitleHeading("Parent Information"),
-                      48.heightSpace,
-                      Center(
-                        child: Stack(
-                          children: [
-                            Obx(() =>
-                                Padding(
-                                  padding: EdgeInsets.only(bottom: 16.h),
-                                  child: CircleAvatar(
-                                    backgroundImage: controller.profileImage.value == '' ?
-                                    AssetImage(ImagePath.dummyProfilePicture) :
-                                    FileImage(File(controller.profileImage.value)),
-                                    radius: 50.h,
-                                  ),
-                                )
-                            ),
-                            Positioned(
-                              bottom: 0.h,
-                              right: 0.w,
-                              left: 0.w,
-                              child: GestureDetector(
-                                onTap: (){
-                                  controller.profileImagePicker();
-                                },
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                      color: AppColors.primary,
-                                      shape: BoxShape.circle
-                                  ),
-                                  padding: EdgeInsets.symmetric(horizontal: 2.w, vertical: 2.h),
-                                  child: Icon(Icons.add, color: AppColors.textWhite,),
-                                ),
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 16.w),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        48.heightSpace,
+                        Center(
+                          child: Stack(
+                            children: [
+                              Obx(() =>
+                                  Padding(
+                                    padding: EdgeInsets.only(bottom: 16.h),
+                                    child: CircleAvatar(
+                                      backgroundImage: controller.profileImage.value == '' ?
+                                      AssetImage(ImagePath.dummyProfilePicture) :
+                                      FileImage(File(controller.profileImage.value)),
+                                      radius: 50.h,
+                                    ),
+                                  )
                               ),
-                            )
-                          ],
+                              Positioned(
+                                bottom: 0.h,
+                                right: 0.w,
+                                left: 0.w,
+                                child: GestureDetector(
+                                  onTap: (){
+                                    controller.profileImagePicker();
+                                  },
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                        color: AppColors.primary,
+                                        shape: BoxShape.circle
+                                    ),
+                                    padding: EdgeInsets.symmetric(horizontal: 2.w, vertical: 2.h),
+                                    child: Icon(Icons.add, color: AppColors.textWhite,),
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
                         ),
-                      ),
-                      16.heightSpace,
-                      CustomText(text: "Your Name", fontSize: 12.sp, textAlign: TextAlign.center, color: AppColors.textSecondary,),
-                      8.heightSpace,
-                      CustomTextFormField(
-                        controller: controller.parentName,
-                        hintText: "Enter your name",
-                        validator: (value) => AppValidator.validateField(value, "Name"),
-                      ),
-                      16.heightSpace,
-                      CustomText(text: "Your Number", fontSize: 12.sp, textAlign: TextAlign.center, color: AppColors.textSecondary,),
-                      8.heightSpace,
-                      CustomTextFormField(
-                        controller: controller.parentNumber,
-                        hintText: "Enter your number",
-                        validator: (value) => AppValidator.validateField(value, "Number"),
-                      ),
-                      16.heightSpace,
-                      CustomText(text: "Your Address", fontSize: 12.sp, textAlign: TextAlign.center, color: AppColors.textSecondary,),
-                      8.heightSpace,
-                      CustomTextFormField(
-                        controller: controller.parentAddress,
-                        hintText: "Enter hospital address",
-                        validator: (value) => AppValidator.validateField(value, "Address"),
-                      ),
-                    ],
+                        16.heightSpace,
+                        CustomText(text: "Your Name", fontSize: 12.sp, textAlign: TextAlign.center, color: AppColors.textSecondary,),
+                        8.heightSpace,
+                        CustomTextFormField(
+                          controller: controller.parentName,
+                          hintText: "Enter your name",
+                          validator: (value) => AppValidator.validateField(value, "Name"),
+                        ),
+                        16.heightSpace,
+                        CustomText(text: "Your Number", fontSize: 12.sp, textAlign: TextAlign.center, color: AppColors.textSecondary,),
+                        8.heightSpace,
+                        CustomTextFormField(
+                          controller: controller.parentNumber,
+                          hintText: "Enter your number",
+                          validator: (value) => AppValidator.validateField(value, "Number"),
+                        ),
+                        16.heightSpace,
+                        CustomText(text: "Your Address", fontSize: 12.sp, textAlign: TextAlign.center, color: AppColors.textSecondary,),
+                        8.heightSpace,
+                        CustomTextFormField(
+                          controller: controller.parentAddress,
+                          hintText: "Enter hospital address",
+                          validator: (value) => AppValidator.validateField(value, "Address"),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              );
-            }
-          }),
-        ),
-      ),
+              ],
+            ),
+          );
+        }
+      }),
       bottomNavigationBar: SafeArea(
         top: false,
         child: Padding(
