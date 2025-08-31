@@ -186,7 +186,11 @@ class HospitalSignUpScreen extends GetView<SignUpController> {
                   32.heightSpace,
                   CustomSubmitButton(
                     text: "Create Account",
-                    onTap: (){},
+                    onTap: (){
+                      if(formState.currentState!.validate()){
+                        controller.createHospitalAccount();
+                      }
+                    },
                   ),
                   16.heightSpace,
                   Row(
