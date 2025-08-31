@@ -1,3 +1,4 @@
+import 'package:baby_vax/core/utils/constants/app_sizer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
@@ -10,9 +11,9 @@ Future<void> showProgressIndicator() async {
   if (!(Get.isDialogOpen ?? false)) {
     Get.dialog(
       Center(
-        child: SpinKitFadingCircle(
+        child: SpinKitWave(
           color: AppColors.primary,
-          size: getWidth(50),
+          size: 35.h,
         ),
       ),
       barrierDismissible: false,
