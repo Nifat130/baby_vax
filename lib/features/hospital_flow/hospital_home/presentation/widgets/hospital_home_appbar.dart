@@ -55,7 +55,7 @@ Widget hospitalHomeAppbar(String name, String address, String imagePath){
                 onTap: (){
                   Get.toNamed(AppRoute.notificationScreen);
                 },
-                child: Image.asset(IconPath.whiteNotificationIcon, fit: BoxFit.fill, height: 28.h, width: 28.w,),
+                child: Image.asset(IconPath.notificationTwo, fit: BoxFit.fill, height: 28.h, width: 28.w,),
               ),
             )
           ],
