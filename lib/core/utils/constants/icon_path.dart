@@ -10,5 +10,6 @@ class IconPath {
   static const String logoutIcon = '$_basePath/logoutIcon.png';
   static const String whiteNotificationIcon = '$_basePath/white_notification_icon.png';
   static const String scheduleIcon = '$_basePath/scheduleIcon.png';
+  static const String notificationTwo = '$_basePath/notification_two.png';
 
 }
