@@ -17,6 +17,7 @@ import '../features/onboarding/screens/onboarding_screen_two.dart';
 import '../features/parent_flow/parent_event/presentation/screens/parent_event_details_screen.dart';
 import '../features/parent_flow/parent_event/presentation/screens/parent_event_screen.dart';
 import '../features/parent_flow/parent_home_screen/presentation/screens/add_child_screen.dart';
+import '../features/parent_flow/parent_home_screen/presentation/screens/child_details_screen.dart';
 import '../features/parent_flow/parent_home_screen/presentation/screens/edit_child_screen.dart';
 import '../features/parent_flow/parent_home_screen/presentation/screens/parent_home_screen.dart';
 import '../features/parent_flow/parent_nav_bar/presentation/screens/parent_nav_bar_screen.dart';
@@ -51,6 +52,7 @@ class AppRoute {
   static String parentEventScreen = "/parentEventScreen";
   static String parentEventDetailsScreen = "/parentEventDetailsScreen";
   static String parentScheduleCalendarScreen = "/parentScheduleCalendarScreen";
+  static String childDetailsScreen = "/childDetailsScreen";
 
 
   static List<GetPage> routes = [
@@ -91,5 +93,6 @@ class AppRoute {
     GetPage(name: parentEventScreen, page: () => ParentEventScreen()),
     GetPage(name: parentEventDetailsScreen, page: () => ParentEventDetailsScreen()),
     GetPage(name: parentScheduleCalendarScreen, page: () => ParentScheduleCalendarScreen()),
+    GetPage(name: childDetailsScreen, page: () => ChildDetailsScreen()),
   ];
 }

@@ -9,6 +9,7 @@ import '../../features/hospital_flow/hospital_profile/controllers/hospital_infor
 import '../../features/parent_flow/parent_event/controllers/parent_event_controller.dart';
 import '../../features/parent_flow/parent_event/controllers/parent_event_details_controller.dart';
 import '../../features/parent_flow/parent_home_screen/controllers/add_child_controller.dart';
+import '../../features/parent_flow/parent_home_screen/controllers/child_details_controller.dart';
 import '../../features/parent_flow/parent_home_screen/controllers/edit_child_controller.dart';
 import '../../features/parent_flow/parent_home_screen/controllers/parent_home_controller.dart';
 import '../../features/parent_flow/parent_nav_bar/controllers/parent_nav_bar_controller.dart';
@@ -38,5 +39,6 @@ class ControllerBinder extends Bindings {
     Get.lazyPut<ParentEventController>(() => ParentEventController(), fenix: true,);
     Get.lazyPut<ParentEventDetailsController>(() => ParentEventDetailsController(), fenix: true,);
     Get.lazyPut<ParentScheduleCalendarController>(() => ParentScheduleCalendarController(), fenix: true,);
+    Get.lazyPut<ChildDetailsScreenController>(() => ChildDetailsScreenController(), fenix: true,);
   }
 }
