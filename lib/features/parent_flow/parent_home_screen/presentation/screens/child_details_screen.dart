@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:baby_vax/core/common/widgets/custom_back_center_title_heading.dart';
 import 'package:baby_vax/core/common/widgets/custom_text.dart';
 import 'package:baby_vax/core/utils/constants/app_colors.dart';
@@ -42,7 +40,9 @@ class ChildDetailsScreen extends GetView<ChildDetailsScreenController> {
                             ),
                           ),
                           16.heightSpace,
-                          CustomText(text: "Kuddus Mia", color: AppColors.primary, fontWeight: FontWeight.w600, fontSize: 16.sp,),
+                          Obx(() =>
+                              CustomText(text: controller.childName.value ?? "Kuddus Mia", color: AppColors.primary, fontWeight: FontWeight.w600, fontSize: 16.sp,)
+                          ),
                           16.heightSpace,
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,

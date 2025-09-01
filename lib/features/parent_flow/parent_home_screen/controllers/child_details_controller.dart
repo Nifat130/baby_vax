@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 
 class ChildDetailsScreenController extends GetxController{
   var isLoading = false.obs;
+  var childName = "".obs;
 
   var toShow = [].obs;
   var takenVaccines = [].obs;
@@ -73,6 +74,15 @@ class ChildDetailsScreenController extends GetxController{
       ]
     },
   ];
+
+  @override
+  void onInit() {
+    // TODO: implement onInit
+    super.onInit();
+    if(Get.arguments != null){
+      childName.value = Get.arguments;
+    }
+  }
 
 
 }
