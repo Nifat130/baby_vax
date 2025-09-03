@@ -8,10 +8,8 @@ class AuthenticationRepo{
 
   final supabase = Supabase.instance.client;
   Future<bool> createHospitalProfile(Map<String, dynamic> requestBody) async{
-
     try{
-      showProgressIndicator();
-      final response = await supabase.from("hospital_profiles").insert(requestBody).select();
+      final response = await supabase.from("user_profiles").insert(requestBody).select();
       if(response is List){
         Get.back();
         AppSnackBar.showSuccess("Profile created successfully!!");
@@ -29,7 +27,6 @@ class AuthenticationRepo{
         log("Message: ${e.message}");
         log("Details: ${e.details}");
         log("Hint: ${e.hint}");
-
         // Show a nice error message to user
         if (e.code == '23505') { // duplicate key
           Get.back();

@@ -99,6 +99,14 @@ class ParentSignUpScreen extends GetView<SignUpController> {
                     validator: (value) => AppValidator.validateField(value, "Address"),
                   ),
                   16.heightSpace,
+                  CustomText(text: "Your Phone Number", fontSize: 12.sp, textAlign: TextAlign.center, color: AppColors.textSecondary,),
+                  8.heightSpace,
+                  CustomTextFormField(
+                    controller: controller.parentNumber,
+                    hintText: "Enter your number",
+                    validator: (value) => AppValidator.validateField(value, "Phone number"),
+                  ),
+                  16.heightSpace,
                   CustomText(text: "Password", fontSize: 12.sp, textAlign: TextAlign.center, color: AppColors.textSecondary,),
                   8.heightSpace,
                   Obx(() =>
@@ -140,7 +148,9 @@ class ParentSignUpScreen extends GetView<SignUpController> {
                   CustomSubmitButton(
                     text: "Create Account",
                     onTap: (){
-                      Get.offAllNamed(AppRoute.signInScreen);
+                      if(formState.currentState!.validate()){
+                        controller.createParentAccount();
+                      }
                     },
                   ),
                   16.heightSpace,
