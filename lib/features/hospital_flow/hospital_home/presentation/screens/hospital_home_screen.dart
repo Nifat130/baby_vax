@@ -22,7 +22,15 @@ class HospitalHomeScreen extends GetView<HospitalHomeController> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            hospitalHomeAppbar("Dhaka Hospital", "Shewrapara, Mirpur, Dhaka", ImagePath.dummyProfilePicture),
+            Obx((){
+              if(controller.profileIsLoading.value){
+                return hospitalHomeAppbar("Hospital Name"!, "Hospital Address", ImagePath.dummyProfilePicture, controller.profileIsLoading.value);
+              }
+              else{
+                final information = controller.myInformation.profileDetails!;
+                return hospitalHomeAppbar(information.hospitalName!, information.hospitalAddress!.fullAddress!, information.hospitalProfilePicture!, controller.profileIsLoading.value);
+              }
+            }),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
               child: SingleChildScrollView(

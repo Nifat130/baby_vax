@@ -7,7 +7,7 @@ import '../../../../../core/common/widgets/custom_submit_button.dart';
 import '../../../../../core/common/widgets/custom_text.dart';
 import '../../../../../core/utils/constants/app_colors.dart';
 
-Widget profileOptionContainer(IconData icon, String title, String routeName){
+Widget hospitalProfileOptionContainer(IconData icon, String title, String routeName){
 
   return GestureDetector(
     onTap: (){

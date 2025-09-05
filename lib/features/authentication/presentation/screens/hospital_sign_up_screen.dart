@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:baby_vax/core/common/app_snackber.dart';
 import 'package:baby_vax/core/utils/constants/app_sizer.dart';
 import 'package:baby_vax/core/utils/constants/image_path.dart';
 import 'package:baby_vax/features/authentication/controllers/sign_up_controller.dart';
@@ -188,7 +189,11 @@ class HospitalSignUpScreen extends GetView<SignUpController> {
                     text: "Create Account",
                     onTap: (){
                       if(formState.currentState!.validate()){
-                        controller.createHospitalAccount();
+                        controller.profileImage.value != '' ?
+                        controller.licensesImage.value != '' ?
+                        controller.createHospitalAccount() :
+                            AppSnackBar.showError("Upload license picture"):
+                            AppSnackBar.showError("Upload profile picture");
                       }
                     },
                   ),
