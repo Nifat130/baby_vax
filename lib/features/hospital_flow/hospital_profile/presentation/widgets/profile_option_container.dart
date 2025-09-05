@@ -1,3 +1,4 @@
+import 'package:baby_vax/core/services/Auth_service.dart';
 import 'package:baby_vax/core/utils/constants/app_sizer.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -5,7 +6,6 @@ import '../../../../../core/common/widgets/custom_outline_button.dart';
 import '../../../../../core/common/widgets/custom_submit_button.dart';
 import '../../../../../core/common/widgets/custom_text.dart';
 import '../../../../../core/utils/constants/app_colors.dart';
-import '../../../../../routes/app_routes.dart';
 
 Widget profileOptionContainer(IconData icon, String title, String routeName){
 
@@ -67,7 +67,7 @@ Widget profileOptionContainer(IconData icon, String title, String routeName){
                                 child: CustomSubmitButton(
                                   text: "Yes, Logout",
                                   onTap: (){
-                                    Get.offAllNamed(AppRoute.signInScreen);
+                                    AuthService.logoutUser();
                                   },
                                 ),
                               )

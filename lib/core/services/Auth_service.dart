@@ -59,6 +59,7 @@ class AuthService {
 
       // Reset private variables
       _id = null;
+      _userRole = null;
       // Redirect to the login screen
       await goToLogin();
     } catch (e) {
