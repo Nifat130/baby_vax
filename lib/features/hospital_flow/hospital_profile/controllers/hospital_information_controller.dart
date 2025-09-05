@@ -1,6 +1,9 @@
+import 'package:baby_vax/data/hospital_flow/get_hospital_information_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+
+import '../../hospital_home/controllers/hospital_home_controller.dart';
 
 class HospitalInformationController extends GetxController{
 
@@ -11,9 +14,8 @@ class HospitalInformationController extends GetxController{
     // TODO: implement onInit
     super.onInit();
     isLoading.value = true;
-    await Future.delayed(Duration(seconds: 2), (){});
+    await getMyInformation();
     isLoading.value = false;
-
   }
   var profileImage = "".obs;
 
@@ -37,11 +39,21 @@ class HospitalInformationController extends GetxController{
   var currentPassVisibility = false.obs;
   var passVisibility = false.obs;
   var confirmPassVisibility = false.obs;
-  final hospitalName = TextEditingController(text: "Dhaka Hospital");
-  final hospitalEmail = TextEditingController(text: "dhakahospital@gmail.com");
+  final hospitalName = TextEditingController();
+  final hospitalEmail = TextEditingController();
   final hospitalCurrentPass = TextEditingController();
   final hospitalNewPass = TextEditingController();
   final hospitalConfirmPass = TextEditingController();
-  final hospitalAddress = TextEditingController(text: "Mirpur, Dhaka, Bangladesh");
+  final hospitalAddress = TextEditingController();
+
+  final homeController = Get.find<HospitalHomeController>();
+  var myInformation = GetHospitalInformationModel();
+  Future<void> getMyInformation() async{
+    myInformation = homeController.myInformation;
+    hospitalName.text = myInformation.profileDetails!.hospitalName!;
+    hospitalAddress.text = myInformation.profileDetails!.hospitalAddress!.fullAddress!;
+    profileImage.value = myInformation.profileDetails!.hospitalProfilePicture!;
+    licensesImage.value = myInformation.profileDetails!.hospitalLicenseImage!;
+  }
 
 }

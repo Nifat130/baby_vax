@@ -7,7 +7,7 @@ class HospitalProfileController extends GetxController{
   String hospitalName = '';
   String profilePicture = '';
   String hospitalEmail = '';
-  final homeController = Get.find<HospitalHomeController>();
+
 
   var isLoading = false.obs;
 
@@ -20,7 +20,7 @@ class HospitalProfileController extends GetxController{
     isLoading.value = false;
   }
 
-
+  final homeController = Get.find<HospitalHomeController>();
   Future<void> getMyInformation() async{
     hospitalName = homeController.myInformation.profileDetails!.hospitalName ?? 'Unknown';
     profilePicture = homeController.myInformation.profileDetails!.hospitalProfilePicture ?? '';
