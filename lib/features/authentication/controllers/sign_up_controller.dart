@@ -54,66 +54,45 @@ class SignUpController extends GetxController{
   String profileUrl = '';
   String licenseUrl = '';
 
-  Future<void> uploadFacilityImages() async {
-    try {
-      final profileFilePath =
-          "hospital/${hospitalEmail.text}/profile_picture/profile_picture.png";
-      final licenseFilePath =
-          "hospital/${hospitalEmail.text}/license_picture/license_picture.png";
-      // Upload profile image
-      await Supabase.instance.client.storage
-          .from("user_pictures") // ✅ make sure bucket name matches
-          .upload(profileFilePath, File(profileImage.value),
-          fileOptions: const FileOptions(upsert: true));
-
-      profileUrl = Supabase.instance.client.storage
-          .from('user_pictures')
-          .getPublicUrl(profileFilePath);
-
-      // Upload license image
-      await Supabase.instance.client.storage
-          .from("user_pictures")
-          .upload(licenseFilePath, File(licensesImage.value),
-          fileOptions: const FileOptions(upsert: true));
-
-      licenseUrl = Supabase.instance.client.storage
-          .from('user_pictures')
-          .getPublicUrl(licenseFilePath);
-
-      log("✅ Profile URL: $profileUrl");
-      log("✅ License URL: $licenseUrl");
-    } catch (e) {
-      log("❌ Upload error: $e");
-    }
-  }
 
   void createHospitalAccount() async{
 
+    final profileFilePath =
+        "hospital/${hospitalEmail.text}/profile_picture/profile_picture.png";
+    final licenseFilePath =
+        "hospital/${hospitalEmail.text}/license_picture/license_picture.png";
     try{
       showProgressIndicator();
       final location = await locationFromAddress(hospitalAddress.text);
       final lat = location.first.latitude;
       final long = location.first.longitude;
-      await uploadFacilityImages();
-      final requestBody = {
-        "email": hospitalEmail.text,
-        "password": hospitalPass.text,
-        "role": "HOSPITAL",
-        'profileDetails' : {
-          "hospitalName": hospitalName.text,
-          "hospitalAddress": {
-            "lat": lat,
-            "long": long,
-            "fullAddress": hospitalAddress.text
-          },
-          "hospitalProfilePicture": profileUrl,
-          "hospitalLicenseImage": licenseUrl
-        }
-      };
+      profileUrl = await authRepoObject.uploadProfilePicture(path: profileFilePath, file: profileImage.value);
+      licenseUrl = await authRepoObject.uploadProfilePicture(path: licenseFilePath, file: profileImage.value);
+      if(profileUrl != 'failed' && licenseUrl != 'failed'){
+        final requestBody = {
+          "email": hospitalEmail.text,
+          "password": hospitalPass.text,
+          "role": "HOSPITAL",
+          'profileDetails' : {
+            "hospitalName": hospitalName.text,
+            "hospitalAddress": {
+              "lat": lat,
+              "long": long,
+              "fullAddress": hospitalAddress.text
+            },
+            "hospitalProfilePicture": profileUrl,
+            "hospitalLicenseImage": licenseUrl
+          }
+        };
 
-      log(requestBody.toString());
-      if(await authRepoObject.createHospitalProfile(requestBody)){
-        Get.offAllNamed(AppRoute.signInScreen);
+        log(requestBody.toString());
+        if(await authRepoObject.createAccount(requestBody)){
+          Get.offAllNamed(AppRoute.signInScreen);
+        }
+      }
+      else{
+        AppSnackBar.showError("Failed to register!!");
+        log("profileUrl: $profileUrl, licenseUrl: $licenseUrl");
       }
     }catch(e){
       AppSnackBar.showError("Invalid address");
@@ -121,33 +100,40 @@ class SignUpController extends GetxController{
     }
   }
   void createParentAccount() async{
-
+    final profileFilePath =
+        "parent/${parentEmail.text}/profile_picture/profile_picture.png";
     try{
+      showProgressIndicator();
       final location = await locationFromAddress(parentAddress.text);
       final lat = location.first.latitude;
       final long = location.first.longitude;
-
-      final requestBody = {
-        "email": parentEmail.text,
-        "password": parentPass.text,
-        "role": "PARENT",
-        'profileDetails' : {
-          "parentName": parentName.text,
-          "parentAddress": {
-            "lat": lat,
-            "long": long,
-            "fullAddress": parentAddress.text
-          },
-          "parentProfilePicture": profileImage.value,
-          "parentNumber": parentNumber.text,
-          'children' : [],
-          'schedule' : [],
+      profileUrl = await authRepoObject.uploadProfilePicture(path: profileFilePath, file: profileImage.value);
+      if(profileUrl != 'failed'){
+        final requestBody = {
+          "email": parentEmail.text,
+          "password": parentPass.text,
+          "role": "PARENT",
+          'profileDetails' : {
+            "parentName": parentName.text,
+            "parentAddress": {
+              "lat": lat,
+              "long": long,
+              "fullAddress": parentAddress.text
+            },
+            "parentProfilePicture": profileUrl,
+            "parentNumber": parentNumber.text,
+            'children' : [],
+            'schedule' : [],
+          }
+        };
+        log(requestBody.toString());
+        if(await authRepoObject.createAccount(requestBody)){
+          Get.offAllNamed(AppRoute.signInScreen);
         }
-      };
-
-      log(requestBody.toString());
-      if(await authRepoObject.createHospitalProfile(requestBody)){
-        Get.offAllNamed(AppRoute.signInScreen);
+      }
+      else{
+        AppSnackBar.showError("Failed to register!!");
+        log("profileUrl: $profileUrl");
       }
     }catch(e){
       AppSnackBar.showError("Invalid address");

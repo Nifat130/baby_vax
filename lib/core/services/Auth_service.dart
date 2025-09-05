@@ -8,37 +8,37 @@ import 'package:shared_preferences/shared_preferences.dart';
 class AuthService {
 
   static const String _role = 'userRole';
-  static const String _tokenKey = 'token';
+  static const String _idKey = 'id';
 
   // Singleton instance for SharedPreferences
   static late SharedPreferences _preferences;
 
 
-  // Private variables to hold token and userId
-  static String? _token;
+  // Private variables to hold id and userId
+  static String? _id;
   static String? _userRole;
 
   // Initialize SharedPreferences (call this during app startup)
   static Future<void> init() async {
     _preferences = await SharedPreferences.getInstance();
     _userRole = _preferences.getString(_role);
-    // Load token and userId from SharedPreferences into private variables
-    _token = _preferences.getString(_tokenKey);
+    // Load id and userId from SharedPreferences into private variables
+    _id = _preferences.getString(_idKey);
   }
 
-  // Check if a token exists in local storage
-  static bool hasToken() {
-    return _preferences.containsKey(_tokenKey);
+  // Check if a id exists in local storage
+  static bool hasId() {
+    return _preferences.containsKey(_idKey);
   }
 
-  // Save the token and user ID to local storage
-  static Future<void> saveToken(String token, String id) async {
+  // Save the id and user email to local storage
+  static Future<void> saveId(String id, String email) async {
     try {
-      await _preferences.setString(_tokenKey, token);
+      await _preferences.setString(_idKey, id);
       // Update private variables
-      _token = token;
+      _id = id;
     } catch (e) {
-      log('Error saving token: $e');
+      log('Error saving id: $e');
     }
   }
   static Future<void> saveRole(String role) async {
@@ -46,7 +46,7 @@ class AuthService {
       await _preferences.setString(_role, role);
       _userRole = role;
     } catch (e) {
-      log('Error saving token: $e');
+      log('Error saving id: $e');
     }
   }
 
@@ -58,7 +58,7 @@ class AuthService {
       await _preferences.clear();
 
       // Reset private variables
-      _token = null;
+      _id = null;
       // Redirect to the login screen
       await goToLogin();
     } catch (e) {
@@ -66,12 +66,12 @@ class AuthService {
     }
   }
 
-  // Navigate to the login screen (e.g., after logout or token expiry)
+  // Navigate to the login screen (e.g., after logout or id expiry)
   static Future<void> goToLogin() async {
     Get.offAllNamed(AppRoute.signInScreen);
   }
 
-  // Getter for token
-  static String? get token => _token;
+  // Getter for id
+  static String? get id => _id;
   static String? get userRole => _userRole;
 }

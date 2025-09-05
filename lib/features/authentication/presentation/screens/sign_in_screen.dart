@@ -81,12 +81,13 @@ class SignInScreen extends GetView<SignInController> {
                   text: "Sign In",
                   onTap: (){
                     if(formState.currentState!.validate()){
-                      if(controller.emailTEController.text == "hospital@fexpost.com"){
-                        Get.offAllNamed(AppRoute.hospitalNavBarScreen);
-                      }
-                      else{
-                        Get.offAllNamed(AppRoute.parentNavBarScreen);
-                      }
+                      // if(controller.emailTEController.text == "hospital@fexpost.com"){
+                      //   Get.offAllNamed(AppRoute.hospitalNavBarScreen);
+                      // }
+                      // else{
+                      //   Get.offAllNamed(AppRoute.parentNavBarScreen);
+                      // }
+                      controller.requestToSignIn();
                     }
                   },
                 ),
