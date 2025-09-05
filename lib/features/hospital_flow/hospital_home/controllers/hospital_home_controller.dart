@@ -1,10 +1,14 @@
 
 
+import 'package:baby_vax/core/common/app_snackber.dart';
 import 'package:baby_vax/core/common/widgets/custom_picker_theme.dart';
+import 'package:baby_vax/data/hospital_flow/get_hospital_information_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+
+import '../../../../repositories/hsopital_flow_repositories/hospital_repo.dart';
 
 class HospitalHomeController extends GetxController{
   final vaccineName = TextEditingController();
@@ -52,5 +56,28 @@ class HospitalHomeController extends GetxController{
       eventStart.text = DateFormat("hh:mm a").format(DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day, time.hour, time.minute)) :
       eventEnd.text = DateFormat("hh:mm a").format(DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day, time.hour, time.minute)) ;
     }
+  }
+
+  var profileIsLoading = false.obs;
+  var myInformation = GetHospitalInformationModel();
+  var hospitalRepo = HospitalRepo();
+
+  @override
+  void onInit() async{
+    // TODO: implement onInit
+    super.onInit();
+    await getMyInformation();
+  }
+
+  Future<void> getMyInformation() async{
+    profileIsLoading.value = true;
+    final dataList = await hospitalRepo.getMeAsHospital();
+    if(dataList.isNotEmpty){
+      myInformation = GetHospitalInformationModel.fromJson(dataList[0]);
+    }
+    else{
+      AppSnackBar.showError('Failed to fetch data!');
+    }
+    profileIsLoading.value = false;
   }
 }

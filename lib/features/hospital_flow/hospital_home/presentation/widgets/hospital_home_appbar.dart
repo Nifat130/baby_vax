@@ -1,4 +1,6 @@
+import 'package:baby_vax/core/common/widgets/custom_progress_indicator.dart';
 import 'package:baby_vax/core/utils/constants/app_sizer.dart';
+import 'package:baby_vax/core/utils/constants/image_path.dart';
 import 'package:baby_vax/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -7,7 +9,7 @@ import '../../../../../core/common/widgets/custom_text.dart';
 import '../../../../../core/utils/constants/app_colors.dart';
 import '../../../../../core/utils/constants/icon_path.dart';
 
-Widget hospitalHomeAppbar(String name, String address, String imagePath){
+Widget hospitalHomeAppbar(String name, String address, String imagePath, bool isLoading){
 
   return Container(
     decoration: BoxDecoration(
@@ -19,7 +21,8 @@ Widget hospitalHomeAppbar(String name, String address, String imagePath){
       bottom: false,
       child: Padding(
         padding: EdgeInsets.only(bottom: 12.h),
-        child: Row(
+        child: !isLoading ?
+        Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Flexible(
@@ -30,7 +33,7 @@ Widget hospitalHomeAppbar(String name, String address, String imagePath){
                   Flexible(
                     flex: 3,
                     child: CircleAvatar(
-                      backgroundImage: AssetImage(imagePath),
+                      backgroundImage: imagePath == ImagePath.dummyProfilePicture ? AssetImage(imagePath) : NetworkImage(imagePath),
                       radius: 24.h,
                     ),
                   ),
@@ -59,7 +62,7 @@ Widget hospitalHomeAppbar(String name, String address, String imagePath){
               ),
             )
           ],
-        ),
+        ) : CustomProgressIndicator(color: AppColors.textWhite,)
       ),
     ),
   );
