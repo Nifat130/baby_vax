@@ -1,13 +1,16 @@
 import 'package:baby_vax/core/common/widgets/custom_heading.dart';
+import 'package:baby_vax/core/common/widgets/custom_progress_indicator.dart';
 import 'package:baby_vax/core/utils/constants/app_sizer.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../../../../../core/common/widgets/custom_text.dart';
 import '../../../../../core/utils/constants/app_colors.dart';
 import '../../../../../core/utils/constants/image_path.dart';
 import '../../../../../routes/app_routes.dart';
+import '../../controllers/hospital_profile_controller.dart';
 import '../widgets/profile_option_container.dart';
 
-class HospitalProfileScreen extends StatelessWidget {
+class HospitalProfileScreen extends GetView<HospitalProfileController> {
   const HospitalProfileScreen({super.key});
 
   @override
@@ -25,22 +28,30 @@ class HospitalProfileScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   16.heightSpace,
-                  SizedBox(
-                    width: SizeUtils.width,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        CircleAvatar(
-                          backgroundImage: AssetImage(ImagePath.dummyProfilePicture),
-                          radius: 45.h,
+                  Obx((){
+                    if(controller.isLoading.value){
+                      return CustomProgressIndicator(color: AppColors.textWhite);
+                    }
+                    else{
+                      return SizedBox(
+                        width: SizeUtils.width,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            CircleAvatar(
+                              backgroundImage: controller.profilePicture == '' ?
+                              AssetImage(ImagePath.dummyProfilePicture) : NetworkImage(controller.profilePicture),
+                              radius: 45.h,
+                            ),
+                            SizedBox(height: 16.h,),
+                            CustomText(text: controller.hospitalName, fontSize: 16.sp, fontWeight: FontWeight.w500,),
+                            SizedBox(height: 4.h,),
+                            CustomText(text: controller.hospitalEmail, color: AppColors.textSecondary,)
+                          ],
                         ),
-                        SizedBox(height: 16.h,),
-                        CustomText(text: "Dhaka Hospital", fontSize: 16.sp, fontWeight: FontWeight.w500,),
-                        SizedBox(height: 4.h,),
-                        CustomText(text: "dhakahospital@gmail.com", color: AppColors.textSecondary,)
-                      ],
-                    ),
-                  ),
+                      );
+                    }
+                  }),
                   SizedBox(height: 32.h,),
                   CustomText(text: "Edit Information",),
                   SizedBox(height: 16.h,),
