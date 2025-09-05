@@ -1,16 +1,15 @@
 import 'dart:io';
 
 import 'package:baby_vax/core/common/widgets/custom_back_center_title_heading.dart';
+import 'package:baby_vax/core/common/widgets/custom_progress_indicator.dart';
 import 'package:baby_vax/core/utils/constants/app_sizer.dart';
 import 'package:baby_vax/core/utils/constants/image_path.dart';
 import 'package:baby_vax/features/hospital_flow/hospital_profile/controllers/hospital_information_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../../../../core/common/widgets/custom_submit_button.dart';
 import '../../../../../core/common/widgets/custom_text.dart';
 import '../../../../../core/common/widgets/custom_textformfield.dart';
-import '../../../../../core/common/widgets/show_progress_indicator.dart';
 import '../../../../../core/utils/constants/app_colors.dart';
 import '../../../../../core/utils/validators/app_validator.dart';
 
@@ -21,20 +20,21 @@ class HospitalInformationScreen extends GetView<HospitalInformationController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Obx((){
-        if(controller.isLoading.value){
-          return ShowProgressIndicator();
-        }
-        else{
-          return SingleChildScrollView(
-            child: Form(
-              key: formState,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  customBackCenterTitleHeading("Hospital Information"),
-                  24.heightSpace,
-                  Padding(
+      extendBody: true,
+      body: SingleChildScrollView(
+        child: Form(
+          key: formState,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              customBackCenterTitleHeading("Hospital Information"),
+              24.heightSpace,
+              Obx((){
+                if(controller.isLoading.value){
+                  return CustomProgressIndicator();
+                }
+                else{
+                  return Padding(
                     padding: EdgeInsets.symmetric(horizontal: 16.w),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -46,7 +46,8 @@ class HospitalInformationScreen extends GetView<HospitalInformationController> {
                                   Padding(
                                     padding: EdgeInsets.only(bottom: 16.h),
                                     child: CircleAvatar(
-                                      backgroundImage: controller.profileImage.value == '' ?
+                                      backgroundImage: controller.profileImage.value.startsWith("https") ?
+                                      NetworkImage(controller.profileImage.value) : controller.profileImage.value == '' ?
                                       AssetImage(ImagePath.dummyProfilePicture) :
                                       FileImage(File(controller.profileImage.value)),
                                       radius: 50.h,
@@ -82,14 +83,15 @@ class HospitalInformationScreen extends GetView<HospitalInformationController> {
                           hintText: "Enter hospital name",
                           validator: (value) => AppValidator.validateField(value, "Name"),
                         ),
-                        16.heightSpace,
-                        CustomText(text: "Hospital Email", fontSize: 12.sp, textAlign: TextAlign.center, color: AppColors.textSecondary,),
-                        8.heightSpace,
-                        CustomTextFormField(
-                          controller: controller.hospitalEmail,
-                          hintText: "Enter hospital email",
-                          validator: AppValidator.validateEmail,
-                        ),
+                        // 16.heightSpace,
+                        // CustomText(text: "Hospital Email", fontSize: 12.sp, textAlign: TextAlign.center, color: AppColors.textSecondary,),
+                        // 8.heightSpace,
+                        // CustomTextFormField(
+                        //   controller: controller.hospitalEmail,
+                        //   hintText: "Enter hospital email",
+                        //   readonly: true,
+                        //   validator: AppValidator.validateEmail,
+                        // ),
                         16.heightSpace,
                         CustomText(text: "Hospital Address", fontSize: 12.sp, textAlign: TextAlign.center, color: AppColors.textSecondary,),
                         8.heightSpace,
@@ -107,7 +109,9 @@ class HospitalInformationScreen extends GetView<HospitalInformationController> {
                           children: [
                             ClipRRect(
                                 borderRadius: 8.radius,
-                                child: Image.file(File(controller.licensesImage.value), fit: BoxFit.fill, height: 200.h, width: SizeUtils.width,)
+                                child: controller.licensesImage.value.startsWith('https') ?
+                                Image.network(controller.licensesImage.value, fit: BoxFit.fill, height: 200.h, width: SizeUtils.width,) :
+                                Image.file(File(controller.licensesImage.value), fit: BoxFit.fill, height: 200.h, width: SizeUtils.width,)
                             ),
                             Positioned(
                               right: 8.w,
@@ -146,19 +150,25 @@ class HospitalInformationScreen extends GetView<HospitalInformationController> {
                         )
                         ),
                         32.heightSpace,
-                        CustomSubmitButton(
-                          text: "Update",
-                          onTap: (){},
-                        ),
                       ],
                     ),
-                  )
-                ],
-              ),
-            ),
-          );
-        }
-      }),
+                  );
+                }
+              }),
+            ],
+          ),
+        ),
+      ),
+      bottomNavigationBar: SafeArea(
+        top: false,
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 16.h, vertical: 16.h),
+          child: CustomSubmitButton(
+            text: "Update",
+            onTap: (){},
+          ),
+        ),
+      ),
     );
   }
 }

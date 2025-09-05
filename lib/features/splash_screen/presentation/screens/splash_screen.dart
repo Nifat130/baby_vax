@@ -1,3 +1,4 @@
+import 'package:baby_vax/core/common/widgets/custom_progress_indicator.dart';
 import 'package:baby_vax/core/common/widgets/progress_indicator.dart';
 import 'package:baby_vax/core/utils/constants/app_colors.dart';
 import 'package:baby_vax/core/utils/constants/app_sizer.dart';
@@ -25,12 +26,10 @@ class SplashScreen extends StatelessWidget{
           height: 100.h,
           child: Padding(
             padding: EdgeInsets.symmetric(vertical: 16.h),
-            child: Center(
-              child: SpinKitCircle(
-                color: AppColors.primary,
-                size: 50.h,
-              ),
-            ),
+            child: CustomProgressIndicator(
+              color: AppColors.primary,
+              size: 35.h,
+            )
           ),
         ),
       ),

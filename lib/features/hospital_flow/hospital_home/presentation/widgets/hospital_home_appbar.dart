@@ -62,7 +62,7 @@ Widget hospitalHomeAppbar(String name, String address, String imagePath, bool is
               ),
             )
           ],
-        ) : CustomProgressIndicator(color: AppColors.textWhite,)
+        ) : CustomProgressIndicator(color: AppColors.textWhite, size: 25.h,)
       ),
     ),
   );
