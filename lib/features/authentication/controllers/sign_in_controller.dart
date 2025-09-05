@@ -20,7 +20,7 @@ class SignInController extends GetxController{
   void requestToSignIn() async{
 
     showProgressIndicator();
-    log("I am going to loing");
+    log("I am going to sign in");
     final response = await authRepo.signInToAccount(email: emailTEController.text, password: passwordTEController.text);
 
     if(response.isNotEmpty){
@@ -34,7 +34,7 @@ class SignInController extends GetxController{
     }
     else{
       Get.back();
-      AppSnackBar.showSuccess("Failed to sign in!!");
+      AppSnackBar.showError("Wrong credentials");
     }
 
     log("I came from loing");

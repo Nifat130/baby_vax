@@ -1,3 +1,4 @@
+import 'package:baby_vax/core/services/Auth_service.dart';
 import 'package:baby_vax/core/utils/constants/app_sizer.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -67,7 +68,7 @@ Widget profileOptionContainer(IconData icon, String title, String routeName){
                                 child: CustomSubmitButton(
                                   text: "Yes, Logout",
                                   onTap: (){
-                                    Get.offAllNamed(AppRoute.signInScreen);
+                                    AuthService.logoutUser();
                                   },
                                 ),
                               )
