@@ -41,8 +41,8 @@ class HospitalChangePasswordScreen extends GetView<HospitalInformationController
                             CustomTextFormField(
                               controller: controller.hospitalCurrentPass,
                               hintText: "Enter your password",
-                              obscureText: !controller.confirmPassVisibility.value,
-                              validator: AppValidator.validatePassword,
+                              obscureText: !controller.currentPassVisibility.value,
+                              validator: (value) => AppValidator.validateField(value, "Current password"),
                               suffixIcon: GestureDetector(
                                   onTap: (){
                                     controller.currentPassVisibility.value = !controller.currentPassVisibility.value;
@@ -94,7 +94,11 @@ class HospitalChangePasswordScreen extends GetView<HospitalInformationController
                         32.heightSpace,
                         CustomSubmitButton(
                           text: "Save",
-                          onTap: (){},
+                          onTap: (){
+                            if(formState.currentState!.validate()){
+                              controller.changePassword();
+                            }
+                          },
                         ),
                       ],
                     ),

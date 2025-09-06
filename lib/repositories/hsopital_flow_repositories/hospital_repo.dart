@@ -36,7 +36,7 @@ class HospitalRepo{
       // Upload profile image
       final response = await Supabase.instance.client.storage
           .from("user_pictures")
-          .update(path, File(file));
+          .update(path, File(file),);
 
       // String profileUrl = Supabase.instance.client.storage
       //     .from('user_pictures')
@@ -68,5 +68,68 @@ class HospitalRepo{
       return null;
     }
   }
+
+  Future<String> uploadProfilePicture({required String path, required String file}) async{
+    try{
+      // Upload profile image
+      await Supabase.instance.client.storage
+          .from("user_pictures")
+          .update(path, File(file),
+          fileOptions: const FileOptions(upsert: true));
+
+      String profileUrl = Supabase.instance.client.storage
+          .from('user_pictures')
+          .getPublicUrl(path);
+
+      log("✅ Profile URL: $profileUrl");
+      return profileUrl;
+
+    }catch(e){
+      log("❌ Upload error: $e");
+    }
+    return "failed";
+  }
+
+  Future<String> uploadLicensePicture({required String path, required String file}) async{
+    try{
+      // Upload profile image
+      await Supabase.instance.client.storage
+          .from("user_pictures")
+          .update(path, File(file),
+          fileOptions: const FileOptions(upsert: true));
+
+      String licenseUrl = Supabase.instance.client.storage
+          .from('user_pictures')
+          .getPublicUrl(path);
+
+      log("✅ License URL: $licenseUrl");
+      return licenseUrl;
+
+    }catch(e){
+      log("❌ Upload error: $e");
+    }
+    return "failed";
+  }
+
+  Future<List> changePassword({required String currentPassword, required String newPassword}) async{
+
+    var response = [];
+    try{
+      // Upload profile image
+      final response = await Supabase.instance.client
+          .from("user_profiles")
+          .update({"password": newPassword})
+          .eq('id', AuthService.id.toString())
+          .eq('password', currentPassword)
+          .select();
+
+      return response;
+
+    }catch(e){
+      log("❌ Upload error: $e");
+    }
+    return response;
+  }
+
 
 }

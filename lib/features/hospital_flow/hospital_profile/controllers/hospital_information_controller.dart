@@ -85,17 +85,20 @@ class HospitalInformationController extends GetxController{
       if(!profileImage.value.startsWith('https')){
         final profileFilePath =
             "hospital/${AuthService.email}/profile_picture/profile_picture.png";
-        if(!await hospitalRepo.updatePicture(path: profileFilePath, file: profileImage.value)){
-          throw Exception();
-        }
+        // if(!await hospitalRepo.updatePicture(path: profileFilePath, file: profileImage.value)){
+        //   throw Exception();
+        // }
+        profilePicture = await hospitalRepo.uploadProfilePicture(path: profileFilePath, file: profileImage.value);
       }
 
       if(!licensesImage.value.startsWith('https')){
         final licenseFilePath =
             "hospital/${AuthService.email}/license_picture/license_picture.png";
-        if(!await hospitalRepo.updatePicture(path: licenseFilePath, file: licensesImage.value)){
-          throw Exception();
-        }
+        // if(!await hospitalRepo.updatePicture(path: licenseFilePath, file: licensesImage.value)){
+        //   throw Exception();
+        // }
+
+        licensePicture = await hospitalRepo.uploadLicensePicture(path: licenseFilePath, file: profileImage.value);
       }
 
       final requestBody = {
@@ -127,6 +130,22 @@ class HospitalInformationController extends GetxController{
     }catch(e){
       AppSnackBar.showError("Failed to update!");
       log("Failed to update");
+    }
+  }
+
+  void changePassword() async{
+    showProgressIndicator();
+    final response = await hospitalRepo.changePassword(currentPassword: hospitalCurrentPass.text, newPassword: hospitalNewPass.text);
+
+    if(response.isNotEmpty){
+      Get.back();
+      Get.back();
+      AppSnackBar.showSuccess("Password changed successfully!!");
+    }
+    else{
+
+      Get.back();
+      AppSnackBar.showError("Failed to change password");
     }
   }
 
