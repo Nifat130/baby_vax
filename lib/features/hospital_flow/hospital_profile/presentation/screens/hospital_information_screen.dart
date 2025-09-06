@@ -165,7 +165,9 @@ class HospitalInformationScreen extends GetView<HospitalInformationController> {
           padding: EdgeInsets.symmetric(horizontal: 16.h, vertical: 16.h),
           child: CustomSubmitButton(
             text: "Update",
-            onTap: (){},
+            onTap: (){
+              controller.updateHospitalInfo();
+            },
           ),
         ),
       ),

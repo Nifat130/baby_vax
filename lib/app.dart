@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
         return GetMaterialApp(
           debugShowCheckedModeBanner: false,
           //initialRoute: AppRoute.parentNavBarScreen,
-          initialRoute: AppRoute.init,
+          initialRoute: AppRoute.hospitalNavBarScreen,
           getPages: AppRoute.routes,
           initialBinding: ControllerBinder(),
           themeMode: ThemeMode.system,

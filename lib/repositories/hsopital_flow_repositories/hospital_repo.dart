@@ -1,6 +1,7 @@
 
 
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:baby_vax/core/services/Auth_service.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -21,10 +22,51 @@ class HospitalRepo{
           .select("*")
           .eq('id', AuthService.id.toString());
 
+      log("User id is: ${AuthService.id.toString()}");
+      log("Response is: ${response[0].toString()}");
       return response;
     }catch(e){
       log("❌ Fetch error: $e");
     }
     return response;
   }
+
+  Future<bool> updatePicture({required String path, required String file}) async{
+    try{
+      // Upload profile image
+      final response = await Supabase.instance.client.storage
+          .from("user_pictures")
+          .update(path, File(file));
+
+      // String profileUrl = Supabase.instance.client.storage
+      //     .from('user_pictures')
+      //     .getPublicUrl(path);
+
+      //log("✅ Profile URL: $profileUrl");
+      if(response.isEmpty){
+        return false;
+      }
+      return true;
+    }catch(e){
+      log("❌ Upload error: $e");
+    }
+    return false;
+  }
+
+  Future<List<Map<String, dynamic>>?> updateHospitalInformation(
+      Map<String, dynamic> requestBody) async {
+    try {
+      final response = await Supabase.instance.client
+          .from("user_profiles")
+          .update({"profileDetails": requestBody})
+          .eq('id', AuthService.id.toString())
+          .select(); // ✅ ensures you get the updated row(s)
+
+      return response; // this is a List<Map<String, dynamic>>
+    } catch (e) {
+      log("❌ Fetch error: $e");
+      return null;
+    }
+  }
+
 }

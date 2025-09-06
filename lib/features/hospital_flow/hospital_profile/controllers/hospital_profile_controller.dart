@@ -15,16 +15,16 @@ class HospitalProfileController extends GetxController{
   void onInit() async{
     // TODO: implement onInit
     super.onInit();
-    isLoading.value = true;
     await getMyInformation();
-    isLoading.value = false;
   }
 
   final homeController = Get.find<HospitalHomeController>();
   Future<void> getMyInformation() async{
+    isLoading.value = true;
     hospitalName = homeController.myInformation.profileDetails!.hospitalName ?? 'Unknown';
     profilePicture = homeController.myInformation.profileDetails!.hospitalProfilePicture ?? '';
     hospitalEmail = homeController.myInformation.email ?? 'Unknown';
+    isLoading.value = false;
   }
 
 }
