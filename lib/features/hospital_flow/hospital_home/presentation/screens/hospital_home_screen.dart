@@ -24,7 +24,7 @@ class HospitalHomeScreen extends GetView<HospitalHomeController> {
           children: [
             Obx((){
               if(controller.profileIsLoading.value){
-                return hospitalHomeAppbar("Hospital Name"!, "Hospital Address", ImagePath.dummyProfilePicture, controller.profileIsLoading.value);
+                return hospitalHomeAppbar("Hospital Name", "Hospital Address", ImagePath.dummyProfilePicture, controller.profileIsLoading.value);
               }
               else{
                 final information = controller.myInformation.profileDetails!;

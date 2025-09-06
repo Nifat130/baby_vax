@@ -9,6 +9,7 @@ class AuthService {
 
   static const String _role = 'userRole';
   static const String _idKey = 'id';
+  static const String _emailKey = 'email';
 
   // Singleton instance for SharedPreferences
   static late SharedPreferences _preferences;
@@ -17,6 +18,7 @@ class AuthService {
   // Private variables to hold id and userId
   static String? _id;
   static String? _userRole;
+  static String? _email;
 
   // Initialize SharedPreferences (call this during app startup)
   static Future<void> init() async {
@@ -24,6 +26,7 @@ class AuthService {
     _userRole = _preferences.getString(_role);
     // Load id and userId from SharedPreferences into private variables
     _id = _preferences.getString(_idKey);
+    _email = _preferences.getString(_emailKey);
   }
 
   // Check if a id exists in local storage
@@ -37,6 +40,7 @@ class AuthService {
       await _preferences.setString(_idKey, id);
       // Update private variables
       _id = id;
+      _email = email;
     } catch (e) {
       log('Error saving id: $e');
     }
@@ -60,6 +64,7 @@ class AuthService {
       // Reset private variables
       _id = null;
       _userRole = null;
+      _email = null;
       // Redirect to the login screen
       await goToLogin();
     } catch (e) {
@@ -75,4 +80,5 @@ class AuthService {
   // Getter for id
   static String? get id => _id;
   static String? get userRole => _userRole;
+  static String? get email => _email;
 }
