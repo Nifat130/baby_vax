@@ -24,6 +24,7 @@ Widget hospitalHomeAppbar(String name, String address, String imagePath, bool is
         child: !isLoading ?
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Flexible(
               flex: 9,
@@ -58,7 +59,7 @@ Widget hospitalHomeAppbar(String name, String address, String imagePath, bool is
                 onTap: (){
                   Get.toNamed(AppRoute.notificationScreen);
                 },
-                child: Image.asset(IconPath.notificationTwo, fit: BoxFit.fill, height: 28.h, width: 28.w,),
+                child: Image.asset(IconPath.notificationTwo, fit: BoxFit.fill),
               ),
             )
           ],
