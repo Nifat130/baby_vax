@@ -1,7 +1,9 @@
 import 'package:baby_vax/core/common/app_snackber.dart';
+import 'package:baby_vax/data/hospital_flow/get_events_model.dart';
 import 'package:baby_vax/features/hospital_flow/hospital_event/controllers/hospital_event_controller.dart';
 import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import '../../../../../core/common/widgets/custom_text.dart';
 import '../../../../../core/utils/constants/app_colors.dart';
@@ -10,6 +12,10 @@ import '../../../../../core/utils/constants/image_path.dart';
 
 Widget eventContainer(HospitalEventController controller, Map<String, dynamic> event){
 
+  final information = GetEventsModel.fromJson(event);
+  final eventDate = DateFormat("dd MMM, yyyy").format(information.date!.toLocal());
+  final startTime = DateFormat("hh:mm a").format(information.startTime!.toLocal());
+  final endTime = DateFormat("hh:mm a").format(information.endTime!.toLocal());
   return Container(
     width: SizeUtils.width,
     decoration: BoxDecoration(
@@ -28,15 +34,15 @@ Widget eventContainer(HospitalEventController controller, Map<String, dynamic> e
             children: [
               Flexible(
                 flex: 9,
-                child: CustomText(text: event['title'], fontWeight: FontWeight.w500, fontSize: 16.sp,),
+                child: CustomText(text: information.name!, fontWeight: FontWeight.w500, fontSize: 16.sp,),
               ),
               4.widthSpace,
               Flexible(
                 flex: 1,
                 child: GestureDetector(
                   onTap: (){
-                    controller.vaccineEvents.removeAt(event['id'] - 1);
-                    AppSnackBar.showError("Event id ${event['id']} removed");
+                    //controller.vaccineEvents.removeAt(event['id'] - 1);
+                    //AppSnackBar.showError("Event id ${event['id']} removed");
                   },
                   child: Icon(Icons.delete_outline, color: AppColors.error,),
                 ),
@@ -44,16 +50,16 @@ Widget eventContainer(HospitalEventController controller, Map<String, dynamic> e
             ],
           ),
           8.heightSpace,
-          CustomText(text: "Vaccine Type: ${event['vaccineType']}", fontSize: 12.sp, color: AppColors.textSecondary,),
+          CustomText(text: "Vaccine Type: ${information.type}", fontSize: 12.sp, color: AppColors.textSecondary,),
           4.heightSpace,
-          CustomText(text: "Maximum Age: ${event['maxAge']}", fontSize: 12.sp, color: AppColors.textSecondary,),
+          CustomText(text: "Maximum Age: ${information.age}", fontSize: 12.sp, color: AppColors.textSecondary,),
           4.heightSpace,
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              CustomText(text: "Date:  ${event['date']}", fontSize: 12.sp, color: AppColors.textSecondary,),
+              CustomText(text: "Date:  $eventDate", fontSize: 12.sp, color: AppColors.textSecondary,),
               4.heightSpace,
-              CustomText(text: "Start Time:  ${event['startTime']}", fontSize: 12.sp, color: AppColors.textSecondary,)
+              CustomText(text: "Start Time:  $startTime", fontSize: 12.sp, color: AppColors.textSecondary,)
             ],
           ),
           16.heightSpace,
@@ -61,16 +67,16 @@ Widget eventContainer(HospitalEventController controller, Map<String, dynamic> e
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               CircleAvatar(
-                backgroundImage: AssetImage(ImagePath.dummyProfilePicture),
+                backgroundImage: NetworkImage(information.hospitalInfo!.hospitalPicture!),
                 radius: 20.h,
               ),
               8.widthSpace,
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  CustomText(text: event['hospitalName'], fontWeight: FontWeight.w500, fontSize: 12.sp,),
+                  CustomText(text: information.hospitalInfo!.hospitalName!, fontWeight: FontWeight.w500, fontSize: 12.sp,),
                   4.heightSpace,
-                  CustomText(text: event['hospitalAddress'], color: AppColors.textSecondary, fontSize: 10.sp,),
+                  CustomText(text: information.hospitalInfo!.hospitalAddress!, color: AppColors.textSecondary, fontSize: 10.sp,),
                 ],
               )
             ],
@@ -78,7 +84,7 @@ Widget eventContainer(HospitalEventController controller, Map<String, dynamic> e
         ],
       ),
       back: CustomText(
-        text: event['details'],
+        text: information.description!,
         maxLines: 4, textOverflow: TextOverflow.fade, fontSize: 10.sp, color: AppColors.textSecondary,),
     ),
   );

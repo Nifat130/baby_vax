@@ -165,4 +165,25 @@ class HospitalRepo{
     return false;
   }
 
+  Future<List> getMyEvents() async{
+    try{
+      final response = await supabase.from("vaccines")
+          .select("*")
+          .eq("hospitalID", AuthService.id.toString());
+      log(response.toString());
+      if(response.isNotEmpty){
+        return response;
+      }
+      else{
+        return [];
+      }
+    }catch(e){
+      if(e is PostgrestException){
+        AppSnackBar.showError(e.message);
+        log(e.message);
+      }
+    }
+    return [];
+  }
+
 }
