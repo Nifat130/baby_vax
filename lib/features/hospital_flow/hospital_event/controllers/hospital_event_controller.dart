@@ -1,4 +1,5 @@
-
+import 'package:baby_vax/core/common/app_snackber.dart';
+import 'package:baby_vax/repositories/hsopital_flow_repositories/hospital_repo.dart';
 import 'package:get/get.dart';
 
 import '../../../../core/utils/constants/image_path.dart';
@@ -98,6 +99,29 @@ class HospitalEventController extends GetxController{
       "The chickenpox vaccine protects against varicella infection, a highly contagious disease. It is given in two doses for lasting protection.",
     },
   ].obs;
+  var isLoading = false.obs;
+
+  var hospitalRepo = HospitalRepo();
+  @override
+  void onInit() async{
+    // TODO: implement onInit
+    super.onInit();
+    await getMyEvents();
+  }
+
+  var myEvents = [].obs;
+  Future<void> getMyEvents() async{
+    isLoading.value = true;
+    final result = await hospitalRepo.getMyEvents();
+    if(result.isNotEmpty){
+      myEvents.value = result;
+    }
+    else{
+      AppSnackBar.showError("Failed to retrieve data");
+    }
+    isLoading.value = false;
+  }
+
 
 
 }
