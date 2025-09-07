@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:baby_vax/core/common/app_snackber.dart';
 import 'package:baby_vax/data/hospital_flow/get_events_model.dart';
 import 'package:baby_vax/features/hospital_flow/hospital_event/controllers/hospital_event_controller.dart';
@@ -43,6 +45,9 @@ Widget eventContainer(HospitalEventController controller, Map<String, dynamic> e
                   onTap: (){
                     //controller.vaccineEvents.removeAt(event['id'] - 1);
                     //AppSnackBar.showError("Event id ${event['id']} removed");
+                    log(information.id!);
+                    controller.deleteEvent(eventId: information.id!);
+
                   },
                   child: Icon(Icons.delete_outline, color: AppColors.error,),
                 ),

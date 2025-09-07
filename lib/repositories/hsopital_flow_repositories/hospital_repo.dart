@@ -130,7 +130,7 @@ class HospitalRepo{
 
   Future<bool> createEvent(Map<String, dynamic> requestBody) async{
     try{
-      final response = await supabase.from("vaccines").insert(requestBody).select();
+      final response = await supabase.from("vaccine_events").insert(requestBody).select();
       if(response is List){
         Get.back();
         AppSnackBar.showSuccess("Event Created Successfully");
@@ -167,7 +167,7 @@ class HospitalRepo{
 
   Future<List> getMyEvents() async{
     try{
-      final response = await supabase.from("vaccines")
+      final response = await supabase.from("vaccine_events")
           .select("*")
           .eq("hospitalID", AuthService.id.toString());
       log(response.toString());
@@ -184,6 +184,26 @@ class HospitalRepo{
       }
     }
     return [];
+  }
+
+  Future<bool> deleteEvent(String eventId) async {
+    try {
+      final response = await Supabase.instance.client
+          .from("vaccine_events") // 👈 replace with your table name
+          .delete()
+          .eq("id", eventId);
+      // If response is empty, delete worked
+      if (response == null) {
+        log("✅ Event deleted successfully");
+        return true;
+      } else {
+        log("⚠️ Delete response: $response");
+        return false;
+      }
+    } catch (e) {
+      log("❌ Error deleting event: $e");
+      return false;
+    }
   }
 
 }
