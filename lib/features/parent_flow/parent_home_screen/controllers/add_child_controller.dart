@@ -23,7 +23,7 @@ class AddChildController extends GetxController{
       firstDate: DateTime(DateTime.now().year - 18),
       lastDate: DateTime.now(),
       builder: (context, child){
-        return Theme(data: customPickerTheme(context), child: child!);
+        return customPickerTheme(context, child!);
       }
     );
 

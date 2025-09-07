@@ -64,56 +64,22 @@ class HospitalHomeScreen extends GetView<HospitalHomeController> {
                                 hintText: "Select vaccine type",
                                 onChanged: (value){
                                   controller.selectedVaccineType.value = value;
+                                  controller.maxAge.text = controller.vaccineTime[controller.selectedVaccineType.value]!;
                                 },
                                 selectedValue: controller.selectedVaccineType.value,
                               )
                           ),
                           16.heightSpace,
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Flexible(
-                                flex: 1,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    CustomText(text: "Age Limit", fontSize: 12.sp, color: AppColors.textSecondary,),
-                                    8.heightSpace,
-                                    CustomTextFormField(
-                                      controller: controller.maxAge,
-                                      hintText: "Enter age limit",
-                                      keyboardType: TextInputType.number,
-                                      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                                      validator: (value) => AppValidator.validateField(value, "Age limit"),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              8.widthSpace,
-                              Flexible(
-                                flex: 1,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    CustomText(text: "Age Unit", fontSize: 12.sp, color: AppColors.textSecondary,),
-                                    8.heightSpace,
-                                    Obx(() =>
-                                        CustomDropdownField(
-                                          items: controller.ageUnit,
-                                          hintText: "Select age unit",
-                                          onChanged: (value){
-                                            controller.selectedAgeUnit.value = value;
-                                          },
-                                          selectedValue: controller.selectedAgeUnit.value,
-                                        )
-                                    ),
-                                  ],
-                                ),
-                              )
-                            ],
+                          CustomText(text: "Age Limit", fontSize: 12.sp, color: AppColors.textSecondary,),
+                          8.heightSpace,
+                          CustomTextFormField(
+                            controller: controller.maxAge,
+                            hintText: "Enter age limit",
+                            readonly: true,
+                            keyboardType: TextInputType.number,
                           ),
                           16.heightSpace,
-                          CustomText(text: "Vaccine Name", fontSize: 12.sp, color: AppColors.textSecondary,),
+                          CustomText(text: "Vaccine Date", fontSize: 12.sp, color: AppColors.textSecondary,),
                           8.heightSpace,
                           CustomTextFormField(
                             controller: controller.eventDate,
@@ -211,7 +177,9 @@ class HospitalHomeScreen extends GetView<HospitalHomeController> {
                     16.heightSpace,
                     CustomSubmitButton(
                       text: "Create Event",
-                      onTap: (){},
+                      onTap: (){
+                        controller.createEvent();
+                      },
                     ),
                     100.heightSpace
                   ],

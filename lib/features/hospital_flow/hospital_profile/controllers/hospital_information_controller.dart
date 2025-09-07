@@ -82,24 +82,21 @@ class HospitalInformationController extends GetxController{
       final lat = location.first.latitude;
       final long = location.first.longitude;
 
-      if(!profileImage.value.startsWith('https')){
-        final profileFilePath =
-            "hospital/${AuthService.email}/profile_picture/profile_picture.png";
-        // if(!await hospitalRepo.updatePicture(path: profileFilePath, file: profileImage.value)){
-        //   throw Exception();
-        // }
-        profilePicture = await hospitalRepo.uploadProfilePicture(path: profileFilePath, file: profileImage.value);
-      }
-
-      if(!licensesImage.value.startsWith('https')){
-        final licenseFilePath =
-            "hospital/${AuthService.email}/license_picture/license_picture.png";
-        // if(!await hospitalRepo.updatePicture(path: licenseFilePath, file: licensesImage.value)){
-        //   throw Exception();
-        // }
-
-        licensePicture = await hospitalRepo.uploadLicensePicture(path: licenseFilePath, file: profileImage.value);
-      }
+      // if(!profileImage.value.startsWith('https')){
+      //   final profileFilePath =
+      //       "hospital/${AuthService.email}/profile_picture/profile_picture.png";
+      //   if(!await hospitalRepo.updatePicture(path: profileFilePath, file: profileImage.value)){
+      //     throw Exception();
+      //   }
+      // }
+      //
+      // if(!licensesImage.value.startsWith('https')){
+      //   final licenseFilePath =
+      //       "hospital/${AuthService.email}/license_picture/license_picture.png";
+      //   if(!await hospitalRepo.updatePicture(path: licenseFilePath, file: licensesImage.value)){
+      //     throw Exception();
+      //   }
+      // }
 
       final requestBody = {
         "hospitalName": hospitalName.text,
