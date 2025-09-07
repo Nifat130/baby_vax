@@ -122,6 +122,17 @@ class HospitalEventController extends GetxController{
     isLoading.value = false;
   }
 
+  void deleteEvent({required String eventId}) async{
+
+    if(await hospitalRepo.deleteEvent(eventId)){
+      AppSnackBar.showSuccess("Event deleted successfully!");
+      await getMyEvents();
+    }
+    else{
+      AppSnackBar.showSuccess("Failed to deleted event!!");
+    }
+  }
+
 
 
 }

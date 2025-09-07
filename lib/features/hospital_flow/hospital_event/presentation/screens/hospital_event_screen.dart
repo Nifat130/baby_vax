@@ -42,19 +42,8 @@ class HospitalEventScreen extends GetView<HospitalEventController> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Obx(() =>
-                        controller.vaccineEvents.isEmpty ?
-                        Center(
-                          child: CustomText(text: "No events yet", textAlign: TextAlign.center, color: AppColors.textSecondary,),
-                        ) :
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            ...controller.myEvents.map((event) =>
-                                eventContainer(controller, event)
-                            )
-                          ],
-                        )
+                        ...controller.myEvents.map((event) =>
+                            eventContainer(controller, event)
                         )
                       ],
                     ),
