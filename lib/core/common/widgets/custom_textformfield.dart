@@ -81,6 +81,7 @@ class CustomTextFormField extends StatelessWidget {
       child: TextFormField(
         controller: controller,
         onFieldSubmitted: onFieldSubmit,
+        cursorColor: AppColors.primary,
         onTapOutside: onTapOutside,
         readOnly: readonly,
         obscureText: obscureText,
