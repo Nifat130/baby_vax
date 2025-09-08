@@ -1,13 +1,9 @@
 import 'package:baby_vax/core/common/widgets/custom_progress_indicator.dart';
 import 'package:baby_vax/core/utils/constants/app_sizer.dart';
 import 'package:baby_vax/core/utils/constants/image_path.dart';
-import 'package:baby_vax/routes/app_routes.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-
 import '../../../../../core/common/widgets/custom_text.dart';
 import '../../../../../core/utils/constants/app_colors.dart';
-import '../../../../../core/utils/constants/icon_path.dart';
 
 Widget hospitalHomeAppbar(String name, String address, String imagePath, bool isLoading){
 
