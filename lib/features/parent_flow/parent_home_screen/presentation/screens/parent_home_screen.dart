@@ -1,5 +1,9 @@
+import 'dart:developer';
+
+import 'package:baby_vax/core/common/widgets/custom_progress_indicator.dart';
 import 'package:baby_vax/core/common/widgets/custom_submit_button.dart';
 import 'package:baby_vax/core/common/widgets/custom_text.dart';
+import 'package:baby_vax/core/utils/constants/app_colors.dart';
 import 'package:baby_vax/core/utils/constants/app_sizer.dart';
 import 'package:baby_vax/core/utils/constants/image_path.dart';
 import 'package:baby_vax/features/parent_flow/parent_home_screen/presentation/widgets/parent_children_container.dart';
@@ -38,9 +42,33 @@ class ParentHomeScreen extends GetView<ParentHomeController> {
                   children: [
                     CustomText(text: "List of children", fontSize: 18.sp, fontWeight: FontWeight.w500,),
                     16.heightSpace,
-                    parentChildrenContainer("Kuddus Mia", "2 Years", "2234n5a3434"),
-                    parentChildrenContainer("Sadik Mia", "1 Years", "2234n5a3434"),
-                    parentChildrenContainer("Badik Mia", "6 Months", "2234n5a3434"),
+                    Obx((){
+                      if(controller.childrenListIsLoading.value){
+                        return Padding(
+                          padding: EdgeInsets.symmetric(vertical: SizeUtils.height / 4),
+                          child: CustomProgressIndicator(),
+                        );
+                      }
+                      else if(controller.children.isEmpty){
+                        return Center(
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(vertical: 16.h),
+                            child: CustomText(text: "No child added yet", color: AppColors.textSecondary, fontWeight: FontWeight.w500,),
+                          ),
+                        );
+                      }
+                      else{
+                        return Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            ...controller.children.map((child) {
+                              return parentChildrenContainer(child);
+                            }
+                            )
+                          ],
+                        );
+                      }
+                    }),
                     16.heightSpace,
                     CustomSubmitButton(
                       text: "Add Child",
