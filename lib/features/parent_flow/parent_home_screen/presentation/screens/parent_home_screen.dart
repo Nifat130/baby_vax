@@ -1,6 +1,5 @@
 import 'package:baby_vax/core/common/widgets/custom_submit_button.dart';
 import 'package:baby_vax/core/common/widgets/custom_text.dart';
-import 'package:baby_vax/core/utils/constants/app_colors.dart';
 import 'package:baby_vax/core/utils/constants/app_sizer.dart';
 import 'package:baby_vax/core/utils/constants/image_path.dart';
 import 'package:baby_vax/features/parent_flow/parent_home_screen/presentation/widgets/parent_children_container.dart';
@@ -21,7 +20,15 @@ class ParentHomeScreen extends GetView<ParentHomeController> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            parentHomeAppbar("Abdullah Talukdar", "Mirpur 10, Dhaka", ImagePath.dummyProfilePicture),
+            Obx((){
+              if(controller.profileIsLoading.value){
+                return parentHomeAppbar("Abdullah Talukdar", "Mirpur 10, Dhaka", ImagePath.dummyProfilePicture, controller.profileIsLoading.value);
+              }
+              else{
+                final information = controller.myInformation.profileDetails!;
+                return parentHomeAppbar(information.parentName!, information.parentAddress!.fullAddress!, information.parentProfilePicture!, controller.profileIsLoading.value);
+              }
+            }),
             SafeArea(
               top: false,
               child: Padding(

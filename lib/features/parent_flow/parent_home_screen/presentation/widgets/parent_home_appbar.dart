@@ -1,13 +1,15 @@
 import 'package:baby_vax/core/utils/constants/app_sizer.dart';
+import 'package:baby_vax/core/utils/constants/image_path.dart';
 import 'package:baby_vax/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../../core/common/widgets/custom_progress_indicator.dart';
 import '../../../../../core/common/widgets/custom_text.dart';
 import '../../../../../core/utils/constants/app_colors.dart';
 import '../../../../../core/utils/constants/icon_path.dart';
 
-Widget parentHomeAppbar(String name, String address, String imagePath){
+Widget parentHomeAppbar(String name, String address, String imagePath, bool isLoading){
 
   return Container(
     decoration: BoxDecoration(
@@ -19,7 +21,7 @@ Widget parentHomeAppbar(String name, String address, String imagePath){
       bottom: false,
       child: Padding(
         padding: EdgeInsets.only(bottom: 12.h),
-        child: Row(
+        child: !isLoading ? Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Flexible(
@@ -30,7 +32,7 @@ Widget parentHomeAppbar(String name, String address, String imagePath){
                   Flexible(
                     flex: 3,
                     child: CircleAvatar(
-                      backgroundImage: AssetImage(imagePath),
+                      backgroundImage: imagePath == ImagePath.dummyProfilePicture ? AssetImage(imagePath) : NetworkImage(imagePath),
                       radius: 24.h,
                     ),
                   ),
@@ -40,9 +42,9 @@ Widget parentHomeAppbar(String name, String address, String imagePath){
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        CustomText(text: name, fontSize: 16.sp, fontWeight: FontWeight.w600, textOverflow: TextOverflow.ellipsis, color: AppColors.textWhite,),
+                        CustomText(text: "✋ Welcome, ${name.split(" ").first}", fontSize: 16.sp, fontWeight: FontWeight.w600, textOverflow: TextOverflow.ellipsis, color: AppColors.textWhite,),
                         4.heightSpace,
-                        CustomText(text: address, color: AppColors.textWhite,fontSize: 10.sp, fontWeight: FontWeight.w600, textOverflow: TextOverflow.ellipsis,),
+                        CustomText(text: address, color: AppColors.textWhite,fontSize: 12.sp, fontWeight: FontWeight.w500, textOverflow: TextOverflow.ellipsis,),
                       ],
                     ),
                   ),
@@ -55,11 +57,11 @@ Widget parentHomeAppbar(String name, String address, String imagePath){
                 onTap: (){
                   Get.toNamed(AppRoute.notificationScreen);
                 },
-                child: Image.asset(IconPath.notificationTwo, fit: BoxFit.fill, height: 28.h, width: 28.w,),
+                child: Image.asset(IconPath.notificationTwo, fit: BoxFit.fill, height: 34.h, width: 34.w,),
               ),
             )
           ],
-        ),
+        ) : CustomProgressIndicator(color: AppColors.textWhite, size: 25.h,),
       ),
     ),
   );
