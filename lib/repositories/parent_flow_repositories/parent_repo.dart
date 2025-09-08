@@ -1,9 +1,12 @@
 
 
 import 'dart:developer';
+import 'dart:io';
 
+import 'package:get/get.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import '../../core/common/app_snackber.dart';
 import '../../core/services/Auth_service.dart';
 
 class ParentRepo{
@@ -19,6 +22,79 @@ class ParentRepo{
           .from("user_profiles")
           .select("*")
           .eq('id', AuthService.id.toString());
+
+      log("User id is: ${AuthService.id.toString()}");
+      log("Response is: ${response[0].toString()}");
+      return response;
+    }catch(e){
+      log("❌ Fetch error: $e");
+    }
+    return response;
+  }
+
+  Future<String> uploadChildrenPicture({required String path, required String file}) async{
+    try{
+      // Upload profile image
+      await Supabase.instance.client.storage
+          .from("user_pictures")
+          .upload(path, File(file),
+          fileOptions: const FileOptions(upsert: true));
+
+      String profileUrl = Supabase.instance.client.storage
+          .from('user_pictures')
+          .getPublicUrl(path);
+
+      log("✅ Profile URL: $profileUrl");
+      return profileUrl;
+
+    }catch(e){
+      log("❌ Upload error: $e");
+    }
+    return "failed";
+  }
+
+  Future<bool> addChild(Map<String, dynamic> requestBody) async{
+    try{
+      final response = await supabase.from("children").insert(requestBody).select();
+      if(response is List){
+        log(response.toString());
+        return true;
+      }
+      else{
+        log(response.toString());
+      }
+    }catch(e){
+      if (e is PostgrestException) {
+        log("Error Code: ${e.code}");
+        log("Message: ${e.message}");
+        log("Details: ${e.details}");
+        log("Hint: ${e.hint}");
+        // Show a nice error message to user
+        if (e.code == '23505') { // duplicate key
+          Get.back();
+          AppSnackBar.showError("Child already exists");
+        } else {
+          Get.back();
+          AppSnackBar.showError(e.message);
+        }
+      } else {
+        log("Unexpected error: $e");
+        AppSnackBar.showError("Something went wrong. Try again.");
+      }
+    }
+
+    return false;
+  }
+
+  Future<List> getMyChildren() async{
+
+    var response = [];
+    try{
+      // Upload profile image
+      response = await Supabase.instance.client
+          .from("children")
+          .select("*")
+          .eq('parent_id', AuthService.id.toString());
 
       log("User id is: ${AuthService.id.toString()}");
       log("Response is: ${response[0].toString()}");

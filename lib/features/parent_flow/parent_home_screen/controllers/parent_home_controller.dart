@@ -1,6 +1,7 @@
 
 
 import 'package:baby_vax/data/hospital_flow/get_parent_information_model.dart';
+import 'package:baby_vax/data/parent_flow/get_my_children_model.dart';
 import 'package:baby_vax/repositories/parent_flow_repositories/parent_repo.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
@@ -9,6 +10,7 @@ import '../../../../core/common/app_snackber.dart';
 
 class ParentHomeController extends GetxController{
   var profileIsLoading = false.obs;
+  var childrenListIsLoading = true.obs;
   var parentRepo = ParentRepo();
 
   @override
@@ -16,6 +18,7 @@ class ParentHomeController extends GetxController{
     // TODO: implement onInit
     super.onInit();
     await getMyInformation();
+    await getMyChildren();
   }
 
   var myInformation = GetParentInformationModel();
@@ -30,6 +33,19 @@ class ParentHomeController extends GetxController{
       AppSnackBar.showError('Failed to fetch data!');
     }
     profileIsLoading.value = false;
+  }
+
+  var children = <GetMyChildrenModel>[];
+  Future<void> getMyChildren() async{
+    childrenListIsLoading.value = true;
+    final childDataList = await parentRepo.getMyChildren();
+    if(childDataList.isNotEmpty){
+      children.addAll(childDataList.map((child) => GetMyChildrenModel.fromJson(child)));
+    }
+    else{
+      AppSnackBar.showError('Failed to fetch data!');
+    }
+    childrenListIsLoading.value = false;
   }
 
 }

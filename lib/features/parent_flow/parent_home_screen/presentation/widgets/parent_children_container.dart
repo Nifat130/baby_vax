@@ -1,4 +1,5 @@
 import 'package:baby_vax/core/utils/constants/app_sizer.dart';
+import 'package:baby_vax/data/parent_flow/get_my_children_model.dart';
 import 'package:baby_vax/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -7,11 +8,25 @@ import '../../../../../core/common/widgets/custom_text.dart';
 import '../../../../../core/utils/constants/app_colors.dart';
 import '../../../../../core/utils/constants/image_path.dart';
 
-Widget parentChildrenContainer(String name, String age, String id){
+Widget parentChildrenContainer(GetMyChildrenModel child){
 
+  final difference = DateTime.now().difference(child.birthDate!.toLocal());
+  var age = '';
+
+  final years = (difference.inDays / 365).floor();
+  final months = ((difference.inDays % 365) / 30).floor();
+  final days = (difference.inDays % 30);
+
+  if (years > 0) {
+    age = "$years Years";
+  } else if (months > 0) {
+    age = "$months Months";
+  } else {
+    age = "$days Days";
+  }
   return GestureDetector(
     onTap: (){
-      Get.toNamed(AppRoute.childDetailsScreen, arguments: name);
+      Get.toNamed(AppRoute.childDetailsScreen, arguments: child.name);
     },
     child: Container(
       decoration: BoxDecoration(
@@ -32,7 +47,7 @@ Widget parentChildrenContainer(String name, String age, String id){
                 Flexible(
                   flex: 2,
                   child: CircleAvatar(
-                    backgroundImage: AssetImage(ImagePath.dummyProfilePicture),
+                    backgroundImage: NetworkImage(child.profilePicture!),
                   ),
                 ),
                 16.widthSpace,
@@ -50,7 +65,7 @@ Widget parentChildrenContainer(String name, String age, String id){
                           ),
                           Flexible(
                             flex: 2,
-                            child: CustomText(text: name, fontSize: 14.sp,),
+                            child: CustomText(text: child.name!, fontSize: 14.sp,),
                           ),
                         ],
                       ),
