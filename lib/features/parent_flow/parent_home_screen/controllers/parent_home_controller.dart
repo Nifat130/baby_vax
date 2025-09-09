@@ -40,6 +40,7 @@ class ParentHomeController extends GetxController{
     childrenListIsLoading.value = true;
     final childDataList = await parentRepo.getMyChildren();
     if(childDataList.isNotEmpty){
+      children.clear();
       children.addAll(childDataList.map((child) => GetMyChildrenModel.fromJson(child)));
     }
     else{

@@ -104,4 +104,21 @@ class ParentRepo{
     }
     return response;
   }
+
+  Future<bool> updateChild(Map<String, dynamic> requestBody, String childId) async{
+
+    try{
+      final response = await supabase.from("children").update(requestBody).eq("id", childId);
+      if(response == null){
+        log(response.toString());
+        return true;
+      }
+      else{
+        log(response.toString());
+      }
+    }catch(e){
+      log("❌ Fetch error: $e");
+    }
+    return false;
+  }
 }

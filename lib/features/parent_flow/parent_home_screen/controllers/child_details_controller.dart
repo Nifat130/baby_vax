@@ -1,10 +1,11 @@
 
 
+import 'package:baby_vax/data/parent_flow/get_my_children_model.dart';
 import 'package:get/get.dart';
 
 class ChildDetailsScreenController extends GetxController{
   var isLoading = false.obs;
-  var childName = "".obs;
+  var childName = GetMyChildrenModel();
 
   var toShow = [].obs;
   var takenVaccines = [].obs;
@@ -80,7 +81,7 @@ class ChildDetailsScreenController extends GetxController{
     // TODO: implement onInit
     super.onInit();
     if(Get.arguments != null){
-      childName.value = Get.arguments;
+      childName = Get.arguments;
     }
   }
 

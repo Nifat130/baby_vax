@@ -41,7 +41,7 @@ class ChildDetailsScreen extends GetView<ChildDetailsScreenController> {
                           ),
                           16.heightSpace,
                           Obx(() =>
-                              CustomText(text: controller.childName.value ?? "Kuddus Mia", color: AppColors.primary, fontWeight: FontWeight.w600, fontSize: 16.sp,)
+                              CustomText(text: controller.childName.name ?? "Kuddus Mia", color: AppColors.primary, fontWeight: FontWeight.w600, fontSize: 16.sp,)
                           ),
                           16.heightSpace,
                           Row(

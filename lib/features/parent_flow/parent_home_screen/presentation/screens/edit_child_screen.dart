@@ -53,24 +53,24 @@ class EditChildScreen extends GetView<EditChildController> {
                                 ),
                               )
                           ),
-                          Positioned(
-                            bottom: 0.h,
-                            right: 0.w,
-                            left: 0.w,
-                            child: GestureDetector(
-                              onTap: (){
-                                controller.profileImagePicker();
-                              },
-                              child: Container(
-                                decoration: BoxDecoration(
-                                    color: AppColors.primary,
-                                    shape: BoxShape.circle
-                                ),
-                                padding: EdgeInsets.symmetric(horizontal: 2.w, vertical: 2.h),
-                                child: Icon(Icons.add, color: AppColors.textWhite,),
-                              ),
-                            ),
-                          )
+                          // Positioned(
+                          //   bottom: 0.h,
+                          //   right: 0.w,
+                          //   left: 0.w,
+                          //   child: GestureDetector(
+                          //     onTap: (){
+                          //       controller.profileImagePicker();
+                          //     },
+                          //     child: Container(
+                          //       decoration: BoxDecoration(
+                          //           color: AppColors.primary,
+                          //           shape: BoxShape.circle
+                          //       ),
+                          //       padding: EdgeInsets.symmetric(horizontal: 2.w, vertical: 2.h),
+                          //       child: Icon(Icons.add, color: AppColors.textWhite,),
+                          //     ),
+                          //   ),
+                          // )
                         ],
                       ),
                     ),
@@ -165,7 +165,7 @@ class EditChildScreen extends GetView<EditChildController> {
                 child: CustomSubmitButton(
                   text: "Update",
                   onTap: (){
-                    Get.back();
+                    controller.updateChild();
                   },
                 ),
               ),
