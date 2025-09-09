@@ -93,7 +93,7 @@ class EditChildScreen extends GetView<EditChildController> {
                         onTap: (){
                           controller.pickDOB(context);
                         },
-                        child: Icon(Icons.access_time_rounded),
+                        child: Icon(Icons.calendar_month_outlined),
                       ),
                       validator: (value) => AppValidator.validateField(value, "DOB"),
                     ),

@@ -1,6 +1,7 @@
 
 
 import 'package:baby_vax/core/common/widgets/custom_picker_theme.dart';
+import 'package:baby_vax/data/parent_flow/get_my_children_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -16,15 +17,19 @@ class EditChildController extends GetxController{
   final birthPlaceTEController = TextEditingController();
   var selectedGender = 'Male'.obs;
   List<String> genderList = ["Male", "Female"];
+  var child = GetMyChildrenModel();
   @override
   void onInit() {
     // TODO: implement onInit
     super.onInit();
-    childNameTEController.text = "Kuddus Mia";
-    dateOfBirthTEController.text = "28 August, 2025";
-    fartherNameTEController.text = 'Abdullah Talukdar';
-    motherNameTEController.text = "Unknown Begum";
-    birthPlaceTEController.text = "Rajshahi";
+    if(Get.arguments != null){
+      child = Get.arguments;
+      childNameTEController.text = child.name!;
+      dateOfBirthTEController.text = DateFormat("dd MMMM, yyyy").format(child.birthDate!.toLocal());
+      fartherNameTEController.text = child.fatherName!;
+      motherNameTEController.text = child.motherName!;
+      birthPlaceTEController.text = child.birthPlace!;
+    }
   }
   void pickDOB(BuildContext context) async{
     final date = await showDatePicker(

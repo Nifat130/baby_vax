@@ -26,7 +26,7 @@ Widget parentChildrenContainer(GetMyChildrenModel child){
   }
   return GestureDetector(
     onTap: (){
-      Get.toNamed(AppRoute.childDetailsScreen, arguments: child.name);
+      Get.toNamed(AppRoute.childDetailsScreen, arguments: child);
     },
     child: Container(
       decoration: BoxDecoration(
@@ -93,7 +93,7 @@ Widget parentChildrenContainer(GetMyChildrenModel child){
             flex: 1,
             child: GestureDetector(
               onTap: (){
-                Get.toNamed(AppRoute.editChildScreen);
+                Get.toNamed(AppRoute.editChildScreen, arguments: child);
               },
               child: Icon(Icons.edit_note_outlined, color: AppColors.primary, size: 35.h,),
             ),
