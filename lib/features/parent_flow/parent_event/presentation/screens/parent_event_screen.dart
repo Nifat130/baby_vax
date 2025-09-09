@@ -1,14 +1,11 @@
 import 'package:baby_vax/core/common/widgets/custom_dropdown.dart';
 import 'package:baby_vax/core/common/widgets/custom_heading.dart';
+import 'package:baby_vax/core/common/widgets/custom_progress_indicator.dart';
 import 'package:baby_vax/core/common/widgets/custom_text.dart';
 import 'package:baby_vax/core/utils/constants/app_colors.dart';
 import 'package:baby_vax/core/utils/constants/app_sizer.dart';
-import 'package:baby_vax/core/utils/constants/image_path.dart';
-import 'package:baby_vax/features/hospital_flow/hospital_event/controllers/hospital_event_controller.dart';
-import 'package:baby_vax/features/hospital_flow/hospital_event/presentation/widgets/event_container.dart';
 import 'package:baby_vax/features/parent_flow/parent_event/controllers/parent_event_controller.dart';
 import 'package:baby_vax/features/parent_flow/parent_event/presentation/widgets/parent_event_container.dart';
-import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -36,23 +33,37 @@ class ParentEventScreen extends GetView<ParentEventController> {
                           selectedValue: controller.selectedVaccineType.value,
                           onChanged: (newValue){
                             controller.selectedVaccineType.value = newValue;
+                            controller.search();
                           },
                         )
                     ),
                     16.heightSpace,
-                    Obx(() =>
-                      controller.vaccineEvents.isEmpty ?
-                          Center(
-                            child: CustomText(text: "No events yet", textAlign: TextAlign.center, color: AppColors.textSecondary,),
-                          ) :
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              ...controller.vaccineEvents.map((event) =>
-                                  parentEventContainer(controller, event)
-                              )
-                            ],
-                          )
+                    Obx((){
+                      if(controller.isLoading.value){
+                        return Padding(
+                          padding: EdgeInsets.symmetric(vertical: SizeUtils.height / 3),
+                          child: CustomProgressIndicator(),
+                        );
+                      }
+                      else if(controller.vaccineEvents.isEmpty){
+                        return Center(
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(vertical: SizeUtils.height / 3),
+                            child: CustomText(text: "No events found", textAlign: TextAlign.center, color: AppColors.textSecondary,),
+                          ),
+                        );
+                      }
+                      else{
+                        return Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            ...controller.vaccineEvents.map((event) =>
+                                parentEventContainer(controller, event)
+                            )
+                          ],
+                        );
+                      }
+                    }
                     )
                   ],
                 ),
