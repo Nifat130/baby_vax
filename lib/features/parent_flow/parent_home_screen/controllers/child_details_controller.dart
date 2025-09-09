@@ -1,11 +1,17 @@
 
 
 import 'package:baby_vax/data/parent_flow/get_my_children_model.dart';
+import 'package:baby_vax/features/parent_flow/parent_home_screen/controllers/parent_home_controller.dart';
 import 'package:get/get.dart';
+
+import '../../../../core/common/app_snackber.dart';
+import '../../../../core/common/widgets/progress_indicator.dart';
+import '../../../../core/utils/logging/logger.dart';
+import '../../../../repositories/parent_flow_repositories/parent_repo.dart';
 
 class ChildDetailsScreenController extends GetxController{
   var isLoading = false.obs;
-  var childName = GetMyChildrenModel();
+  var child = GetMyChildrenModel();
 
   var toShow = [].obs;
   var takenVaccines = [].obs;
@@ -81,7 +87,30 @@ class ChildDetailsScreenController extends GetxController{
     // TODO: implement onInit
     super.onInit();
     if(Get.arguments != null){
-      childName = Get.arguments;
+      child = Get.arguments;
+      takenVaccines.clear();
+      takenVaccines.addAll(child.givenVaccines!);
+    }
+  }
+
+  var parentHomeController = Get.find<ParentHomeController>();
+  var parentRepo = ParentRepo();
+
+  void updateChild() async{
+    final requestBody = {
+      "givenVaccines": takenVaccines
+    };
+    AppLoggerHelper.info(requestBody.toString());
+    showProgressIndicator();
+    if(await parentRepo.updateChild(requestBody, child.id!)){
+      await parentHomeController.getMyChildren();
+      Get.back();
+      Get.back();
+      AppSnackBar.showSuccess("Child information updated!!");
+    }
+    else{
+      Get.back();
+      AppSnackBar.showError("Failed to update information!!");
     }
   }
 

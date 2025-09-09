@@ -1,4 +1,5 @@
 import 'package:baby_vax/core/common/widgets/custom_back_center_title_heading.dart';
+import 'package:baby_vax/core/common/widgets/custom_submit_button.dart';
 import 'package:baby_vax/core/common/widgets/custom_text.dart';
 import 'package:baby_vax/core/utils/constants/app_colors.dart';
 import 'package:baby_vax/core/utils/constants/app_sizer.dart';
@@ -6,6 +7,7 @@ import 'package:baby_vax/core/utils/constants/image_path.dart';
 import 'package:baby_vax/features/parent_flow/parent_home_screen/controllers/child_details_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 class ChildDetailsScreen extends GetView<ChildDetailsScreenController> {
   const ChildDetailsScreen({super.key});
@@ -13,14 +15,15 @@ class ChildDetailsScreen extends GetView<ChildDetailsScreenController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        top: false,
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              customBackCenterTitleHeading("Child Details"),
-              Padding(
+      extendBody: true,
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            customBackCenterTitleHeading("Child Details"),
+            SafeArea(
+              top: false,
+              child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 20.h),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -40,16 +43,14 @@ class ChildDetailsScreen extends GetView<ChildDetailsScreenController> {
                             ),
                           ),
                           16.heightSpace,
-                          Obx(() =>
-                              CustomText(text: controller.childName.name ?? "Kuddus Mia", color: AppColors.primary, fontWeight: FontWeight.w600, fontSize: 16.sp,)
-                          ),
+                          CustomText(text: controller.child.name ?? "Unknown Child", color: AppColors.primary, fontWeight: FontWeight.w600, fontSize: 16.sp,),
                           16.heightSpace,
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              CustomText(text: "DOB: August 27, 2025", color: AppColors.textSecondary, fontSize: 14.sp,),
-                              CustomText(text: "Gender: Mail", color: AppColors.textSecondary, fontSize: 14.sp,),
+                              CustomText(text: "DOB: ${DateFormat("dd MMM, yyyy").format(controller.child.birthDate!.toLocal())}", color: AppColors.textSecondary, fontSize: 14.sp,),
+                              CustomText(text: "Gender: ${controller.child.gender}", color: AppColors.textSecondary, fontSize: 14.sp,),
                             ],
                           ),
                         ],
@@ -126,8 +127,21 @@ class ChildDetailsScreen extends GetView<ChildDetailsScreenController> {
                     )
                   ],
                 ),
-              )
-            ],
+              ),
+            )
+          ],
+        ),
+      ),
+      bottomNavigationBar: SafeArea(
+        top: false,
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
+          child: CustomSubmitButton(
+            text: "Save",
+            color: Colors.orange,
+            onTap: (){
+              controller.updateChild();
+            },
           ),
         ),
       ),
