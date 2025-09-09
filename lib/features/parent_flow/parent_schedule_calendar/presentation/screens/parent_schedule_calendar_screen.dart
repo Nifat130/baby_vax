@@ -134,15 +134,15 @@ class ParentScheduleCalendarScreen extends GetView<ParentScheduleCalendarControl
                     16.heightSpace,
                     Obx(() =>
                         controller.selectedDayEvent.isEmpty ?
-                            SizedBox() :
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                ...controller.selectedDayEvent.map((event) =>
-                                    parentEventContainer(controller, event)
-                                )
-                              ],
-                            )
+                            SizedBox() : SizedBox()
+                            // Column(
+                            //   crossAxisAlignment: CrossAxisAlignment.start,
+                            //   children: [
+                            //     ...controller.selectedDayEvent.map((event) =>
+                            //         parentEventContainer(controller, event)
+                            //     )
+                            //   ],
+                            // )
                     ),
                     16.heightSpace
                   ],

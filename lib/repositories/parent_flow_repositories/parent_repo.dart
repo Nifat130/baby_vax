@@ -3,6 +3,7 @@
 import 'dart:developer';
 import 'dart:io';
 
+import 'package:baby_vax/core/utils/logging/logger.dart';
 import 'package:get/get.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -18,7 +19,7 @@ class ParentRepo{
     var response = [];
     try{
       // Upload profile image
-      response = await Supabase.instance.client
+      response = await supabase
           .from("user_profiles")
           .select("*")
           .eq('id', AuthService.id.toString());
@@ -35,7 +36,7 @@ class ParentRepo{
   Future<String> uploadChildrenPicture({required String path, required String file}) async{
     try{
       // Upload profile image
-      await Supabase.instance.client.storage
+      await supabase.storage
           .from("user_pictures")
           .upload(path, File(file),
           fileOptions: const FileOptions(upsert: true));
@@ -91,7 +92,7 @@ class ParentRepo{
     var response = [];
     try{
       // Upload profile image
-      response = await Supabase.instance.client
+      response = await supabase
           .from("children")
           .select("*")
           .eq('parent_id', AuthService.id.toString());
@@ -120,5 +121,29 @@ class ParentRepo{
       log("❌ Fetch error: $e");
     }
     return false;
+  }
+
+  Future<List> getVaccineEvents(String vaccineType) async{
+
+    var response = [];
+    try{
+      // Upload profile image
+      log("++++++++++++++++++++++++++++++++++++++++++++++++++++");
+      log(vaccineType.toString());
+      vaccineType != "All" ?
+      response = await supabase
+          .from("vaccine_events")
+          .select("*")
+          .eq('type', vaccineType) :
+      response = await supabase
+          .from("vaccine_events")
+          .select("*");
+
+      AppLoggerHelper.info(response.toString());
+      return response;
+    }catch(e){
+      AppLoggerHelper.error("❌ Fetch error: $e");
+    }
+    return response;
   }
 }
