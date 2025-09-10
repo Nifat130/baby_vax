@@ -1,13 +1,17 @@
 import 'package:baby_vax/core/common/widgets/custom_heading.dart';
+import 'package:baby_vax/core/common/widgets/custom_progress_indicator.dart';
 import 'package:baby_vax/core/utils/constants/app_sizer.dart';
+import 'package:baby_vax/features/parent_flow/parent_profile/controllers/parent_profile_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_state_manager/src/simple/get_view.dart';
 import '../../../../../core/common/widgets/custom_text.dart';
 import '../../../../../core/utils/constants/app_colors.dart';
 import '../../../../../core/utils/constants/image_path.dart';
 import '../../../../../routes/app_routes.dart';
 import '../widgets/profile_option_container.dart';
 
-class ParentProfileScreen extends StatelessWidget {
+class ParentProfileScreen extends GetView<ParentProfileController> {
   const ParentProfileScreen({super.key});
 
   @override
@@ -25,21 +29,25 @@ class ParentProfileScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   16.heightSpace,
-                  SizedBox(
-                    width: SizeUtils.width,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        CircleAvatar(
-                          backgroundImage: AssetImage(ImagePath.dummyProfilePicture),
-                          radius: 45.h,
-                        ),
-                        SizedBox(height: 16.h,),
-                        CustomText(text: "Abdullah Talukdar", fontSize: 16.sp, fontWeight: FontWeight.w500,),
-                        SizedBox(height: 4.h,),
-                        CustomText(text: "talukdar@gmail.com", color: AppColors.textSecondary,)
-                      ],
-                    ),
+                  Obx(()=>
+                    controller.isLoading.value ?
+                        CustomProgressIndicator() :
+                    SizedBox(
+                      width: SizeUtils.width,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          CircleAvatar(
+                            backgroundImage: NetworkImage(controller.profilePicture),
+                            radius: 45.h,
+                          ),
+                          SizedBox(height: 16.h,),
+                          CustomText(text: controller.name, fontSize: 16.sp, fontWeight: FontWeight.w500,),
+                          SizedBox(height: 4.h,),
+                          CustomText(text: controller.email, color: AppColors.textSecondary,)
+                        ],
+                      ),
+                    )
                   ),
                   SizedBox(height: 32.h,),
                   CustomText(text: "Edit Information",),

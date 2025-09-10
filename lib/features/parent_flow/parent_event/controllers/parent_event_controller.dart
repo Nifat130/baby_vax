@@ -40,10 +40,10 @@ class ParentEventController extends GetxController{
   var parentRepo = ParentRepo();
   Future<void> getVaccineEvents() async{
     try{
+      vaccineEvents.clear();
       final response = await parentRepo.getVaccineEvents(selectedVaccineType.value);
       AppLoggerHelper.error(response.toString());
       if(response.isNotEmpty){
-        vaccineEvents.clear();
         vaccineEvents.addAll(response.map((event) => GetEventsModel.fromJson(event)));
       }
     }catch(e){

@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:baby_vax/core/common/widgets/custom_back_center_title_heading.dart';
+import 'package:baby_vax/core/common/widgets/custom_progress_indicator.dart';
 import 'package:baby_vax/core/utils/constants/app_sizer.dart';
 import 'package:baby_vax/core/utils/constants/image_path.dart';
 import 'package:baby_vax/features/hospital_flow/hospital_profile/controllers/hospital_information_controller.dart';
@@ -27,7 +28,7 @@ class ParentInformationScreen extends GetView<ParentInformationController> {
     return Scaffold(
       body: Obx((){
         if(controller.isLoading.value){
-          return ShowProgressIndicator();
+          return CustomProgressIndicator();
         }
         else{
           return SingleChildScrollView(
@@ -49,8 +50,8 @@ class ParentInformationScreen extends GetView<ParentInformationController> {
                                   Padding(
                                     padding: EdgeInsets.only(bottom: 16.h),
                                     child: CircleAvatar(
-                                      backgroundImage: controller.profileImage.value == '' ?
-                                      AssetImage(ImagePath.dummyProfilePicture) :
+                                      backgroundImage: controller.profileImage.value.contains("https") ?
+                                      NetworkImage(controller.profileImage.value) :
                                       FileImage(File(controller.profileImage.value)),
                                       radius: 50.h,
                                     ),
