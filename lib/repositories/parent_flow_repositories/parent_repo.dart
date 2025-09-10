@@ -134,7 +134,7 @@ class ParentRepo{
       response = await supabase
           .from("vaccine_events")
           .select("*")
-          .eq('type', vaccineType) :
+          .eq('type', vaccineType):
       response = await supabase
           .from("vaccine_events")
           .select("*");
