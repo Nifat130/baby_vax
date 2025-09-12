@@ -56,8 +56,7 @@ class HospitalInformationController extends GetxController{
   final hospitalConfirmPass = TextEditingController();
   final hospitalAddress = TextEditingController();
 
-  String profilePicture = '';
-  String licensePicture = '';
+
   final homeController = Get.find<HospitalHomeController>();
   final profileController = Get.find<HospitalProfileController>();
   var myInformation = GetHospitalInformationModel();
@@ -67,8 +66,6 @@ class HospitalInformationController extends GetxController{
     hospitalAddress.text = myInformation.profileDetails!.hospitalAddress!.fullAddress!;
     profileImage.value = myInformation.profileDetails!.hospitalProfilePicture!;
     licensesImage.value = myInformation.profileDetails!.hospitalLicenseImage!;
-    profilePicture = myInformation.profileDetails!.hospitalProfilePicture!;
-    licensePicture = myInformation.profileDetails!.hospitalLicenseImage!;
   }
 
   final hospitalRepo = HospitalRepo();
@@ -109,8 +106,8 @@ class HospitalInformationController extends GetxController{
           "long": long,
           "fullAddress": hospitalAddress.text
         },
-        "hospitalProfilePicture": profilePicture,
-        "hospitalLicenseImage": licensePicture
+        "hospitalProfilePicture": myInformation.profileDetails!.hospitalProfilePicture!,
+        "hospitalLicenseImage": myInformation.profileDetails!.hospitalLicenseImage!
       };
 
       log(requestBody.toString());
