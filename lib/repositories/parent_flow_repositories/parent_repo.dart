@@ -52,6 +52,28 @@ class ParentRepo{
     return response;
   }
 
+  Future<bool> updatePicture({
+    required String path, // e.g. "parent/user@email.com/children/profile.png"
+    required File file,
+  }) async {
+    try {
+      final response = await supabase.storage
+          .from("user_pictures") // change to your actual bucket name
+          .update(path, file);
+      AppLoggerHelper.info(response.toString());
+      if (response.isEmpty) {
+        log("❌ Failed to update picture at $path");
+        return false;
+      }
+
+      log("✅ Picture updated successfully: $response");
+      return true;
+    } catch (e) {
+      log("❌ Update error: $e");
+      return false;
+    }
+  }
+
   Future<String> uploadChildrenPicture({required String path, required String file}) async{
     try{
       // Upload profile image
