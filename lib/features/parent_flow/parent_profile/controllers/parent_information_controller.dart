@@ -66,7 +66,7 @@ class ParentInformationController extends GetxController{
       final location = await locationFromAddress(parentAddress.text);
       // change picture
 
-      if(!profileImage.startsWith("https")){
+      if(!profileImage.value.startsWith("https")){
         final parentProfilePath = "parent/${AuthService.email}/profile_picture/profile_picture.png";
         final profileAdded = await parentRepo.updatePicture(path: parentProfilePath, file: File(profileImage.value));
         if(!profileAdded){

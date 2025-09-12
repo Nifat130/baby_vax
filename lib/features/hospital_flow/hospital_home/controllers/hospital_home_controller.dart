@@ -117,7 +117,6 @@ class HospitalHomeController extends GetxController{
   var profileIsLoading = false.obs;
   var myInformation = GetHospitalInformationModel();
   var hospitalRepo = HospitalRepo();
-  var hospitalEventController = Get.find<HospitalEventController>();
 
   @override
   void onInit() async{
@@ -130,6 +129,8 @@ class HospitalHomeController extends GetxController{
   Future<void> getMyInformation() async{
     profileIsLoading.value = true;
     final dataList = await hospitalRepo.getMeAsHospital();
+    log(dataList.toString());
+    log("========================================");
     if(dataList.isNotEmpty){
       myInformation = GetHospitalInformationModel.fromJson(dataList[0]);
     }
@@ -160,6 +161,7 @@ class HospitalHomeController extends GetxController{
     log(requestBody.toString());
     showProgressIndicator();
     if(await hospitalRepo.createEvent(requestBody)){
+      final hospitalEventController = Get.find<HospitalEventController>();
       // refresh event screen
       await hospitalEventController.getMyEvents();
       vaccineName.clear();

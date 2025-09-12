@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../core/common/app_snackber.dart';
+import '../../core/utils/logging/logger.dart';
 import '../../data/hospital_flow/get_hospital_information_model.dart';
 
 class HospitalRepo{
@@ -33,21 +34,26 @@ class HospitalRepo{
     return response;
   }
 
-  Future<bool> updatePicture({required String path, required String file}) async{
-    try{
-      // Upload profile image
-      final response = await Supabase.instance.client.storage
-          .from("user_pictures")
-          .update(path, File(file));
-      if(response.isEmpty){
+  Future<bool> updatePicture({
+    required String path, // e.g. "parent/user@email.com/children/profile.png"
+    required File file,
+  }) async {
+    try {
+      final response = await supabase.storage
+          .from("user_pictures") // change to your actual bucket name
+          .update(path, file);
+      AppLoggerHelper.info(response.toString());
+      if (response.isEmpty) {
+        log("❌ Failed to update picture at $path");
         return false;
-      }else{
-        return true;
       }
-    }catch(e){
-      log("❌ Upload error: $e");
+
+      log("✅ Picture updated successfully: $response");
+      return true;
+    } catch (e) {
+      log("❌ Update error: $e");
+      return false;
     }
-    return false;
   }
 
   Future<List<Map<String, dynamic>>?> updateHospitalInformation(
@@ -66,47 +72,6 @@ class HospitalRepo{
     }
   }
 
-  Future<String> uploadProfilePicture({required String path, required String file}) async{
-    try{
-      // Upload profile image
-      await Supabase.instance.client.storage
-          .from("user_pictures")
-          .update(path, File(file),
-          fileOptions: const FileOptions(upsert: true));
-
-      String profileUrl = Supabase.instance.client.storage
-          .from('user_pictures')
-          .getPublicUrl(path);
-
-      log("✅ Profile URL: $profileUrl");
-      return profileUrl;
-
-    }catch(e){
-      log("❌ Upload error: $e");
-    }
-    return "failed";
-  }
-
-  Future<String> uploadLicensePicture({required String path, required String file}) async{
-    try{
-      // Upload profile image
-      await Supabase.instance.client.storage
-          .from("user_pictures")
-          .update(path, File(file),
-          fileOptions: const FileOptions(upsert: true));
-
-      String licenseUrl = Supabase.instance.client.storage
-          .from('user_pictures')
-          .getPublicUrl(path);
-
-      log("✅ License URL: $licenseUrl");
-      return licenseUrl;
-
-    }catch(e){
-      log("❌ Upload error: $e");
-    }
-    return "failed";
-  }
 
   Future<List> changePassword({required String currentPassword, required String newPassword}) async{
 
