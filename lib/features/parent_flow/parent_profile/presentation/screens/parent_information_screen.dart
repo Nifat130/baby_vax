@@ -117,7 +117,9 @@ class ParentInformationScreen extends GetView<ParentInformationController> {
           padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
           child: CustomSubmitButton(
             text: "Update",
-            onTap: (){},
+            onTap: (){
+              controller.updateParent();
+            },
           ),
         ),
       ),
