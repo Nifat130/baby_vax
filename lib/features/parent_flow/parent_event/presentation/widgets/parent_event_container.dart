@@ -19,7 +19,7 @@ Widget parentEventContainer(dynamic controller, GetEventsModel event){
   final startTime = DateFormat("hh:mm a").format(event.startTime!.toLocal());
   return GestureDetector(
     onTap: (){
-      Get.toNamed(AppRoute.parentEventDetailsScreen);
+      Get.toNamed(AppRoute.parentEventDetailsScreen, arguments: event);
     },
     child: Container(
       width: SizeUtils.width,

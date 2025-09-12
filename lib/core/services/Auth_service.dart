@@ -38,6 +38,7 @@ class AuthService {
   static Future<void> saveId(String id, String email) async {
     try {
       await _preferences.setString(_idKey, id);
+      await _preferences.setString(_emailKey, email);
       // Update private variables
       _id = id;
       _email = email;
