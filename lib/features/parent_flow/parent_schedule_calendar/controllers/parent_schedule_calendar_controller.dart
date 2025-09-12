@@ -2,129 +2,54 @@
 
 import 'dart:developer';
 
+import 'package:baby_vax/core/common/app_snackber.dart';
+import 'package:baby_vax/data/hospital_flow/get_events_model.dart';
+import 'package:baby_vax/features/parent_flow/parent_home_screen/controllers/parent_home_controller.dart';
+import 'package:baby_vax/repositories/parent_flow_repositories/parent_repo.dart';
 import 'package:get/get.dart';
 
 import '../../../../core/utils/constants/image_path.dart';
 
 class ParentScheduleCalendarController extends GetxController{
 
+  var isLoading = false.obs;
   var focusedDay = DateTime.now().obs;
-  var scheduledDays = [
-    {
-      "date" : DateTime.now().add(Duration(days: 2)).day,
-      "events" : [
-        {
-          "id": 1,
-          "title": "Polio Vaccine For Children",
-          "vaccineType": "Polio Vaccine",
-          "maxAge": "3 Years",
-          "date": "25 Aug, 2025",
-          "startTime": "11:00 AM",
-          "hospitalName": "Dhaka Hospital",
-          "hospitalAddress": "Shewrpara, Mirpur, Dhaka",
-          "hospitalImage": ImagePath.dummyProfilePicture,
-          "details":
-          "The polio vaccine is a safe and essential immunization that protects children from poliomyelitis. It is given as Oral Polio Vaccine (drops) or Inactivated Polio Vaccine (injection).",
-        },
-        {
-          "id": 2,
-          "title": "Hepatitis B Vaccine",
-          "vaccineType": "Hepatitis B",
-          "maxAge": "6 Months",
-          "date": "10 Sep, 2025",
-          "startTime": "10:30 AM",
-          "hospitalName": "Apollo Hospital",
-          "hospitalAddress": "Bashundhara, Dhaka",
-          "hospitalImage": ImagePath.dummyProfilePicture,
-          "details":
-          "The hepatitis B vaccine prevents hepatitis B infection, which affects the liver. It is usually given at birth with booster doses for long-term protection.",
-        },
-      ]
-    },
-    {
-      "date" : DateTime.now().add(Duration(days: 6)).day,
-      "events" : [
-        {
-          "id": 1,
-          "title": "Polio Vaccine For Children",
-          "vaccineType": "Polio Vaccine",
-          "maxAge": "3 Years",
-          "date": "25 Aug, 2025",
-          "startTime": "11:00 AM",
-          "hospitalName": "Dhaka Hospital",
-          "hospitalAddress": "Shewrpara, Mirpur, Dhaka",
-          "hospitalImage": ImagePath.dummyProfilePicture,
-          "details":
-          "The polio vaccine is a safe and essential immunization that protects children from poliomyelitis. It is given as Oral Polio Vaccine (drops) or Inactivated Polio Vaccine (injection).",
-        },
-      ]
-    },
-    {
-      "date" : DateTime.now().add(Duration(days: 15)).day,
-      "events" : [
-        {
-          "id": 1,
-          "title": "Polio Vaccine For Children",
-          "vaccineType": "Polio Vaccine",
-          "maxAge": "3 Years",
-          "date": "25 Aug, 2025",
-          "startTime": "11:00 AM",
-          "hospitalName": "Dhaka Hospital",
-          "hospitalAddress": "Shewrpara, Mirpur, Dhaka",
-          "hospitalImage": ImagePath.dummyProfilePicture,
-          "details":
-          "The polio vaccine is a safe and essential immunization that protects children from poliomyelitis. It is given as Oral Polio Vaccine (drops) or Inactivated Polio Vaccine (injection).",
-        },
-        {
-          "id": 2,
-          "title": "Hepatitis B Vaccine",
-          "vaccineType": "Hepatitis B",
-          "maxAge": "6 Months",
-          "date": "10 Sep, 2025",
-          "startTime": "10:30 AM",
-          "hospitalName": "Apollo Hospital",
-          "hospitalAddress": "Bashundhara, Dhaka",
-          "hospitalImage": ImagePath.dummyProfilePicture,
-          "details":
-          "The hepatitis B vaccine prevents hepatitis B infection, which affects the liver. It is usually given at birth with booster doses for long-term protection.",
-        },
-        {
-          "id": 3,
-          "title": "Hepatitis B Vaccine",
-          "vaccineType": "Hepatitis B",
-          "maxAge": "6 Months",
-          "date": "10 Sep, 2025",
-          "startTime": "10:30 AM",
-          "hospitalName": "Apollo Hospital",
-          "hospitalAddress": "Bashundhara, Dhaka",
-          "hospitalImage": ImagePath.dummyProfilePicture,
-          "details":
-          "The hepatitis B vaccine prevents hepatitis B infection, which affects the liver. It is usually given at birth with booster doses for long-term protection.",
-        },
-        {
-          "id": 4,
-          "title": "Hepatitis B Vaccine",
-          "vaccineType": "Hepatitis B",
-          "maxAge": "6 Months",
-          "date": "10 Sep, 2025",
-          "startTime": "10:30 AM",
-          "hospitalName": "Apollo Hospital",
-          "hospitalAddress": "Bashundhara, Dhaka",
-          "hospitalImage": ImagePath.dummyProfilePicture,
-          "details":
-          "The hepatitis B vaccine prevents hepatitis B infection, which affects the liver. It is usually given at birth with booster doses for long-term protection.",
-        },
-      ]
-    },
-  ];
-  RxList<Map<String, dynamic>> selectedDayEvent = <Map<String, dynamic>>[].obs;
+  var scheduledDays = <GetEventsModel>[];
+  var myMarkedEventList = [];
+  RxList<GetEventsModel> selectedDayEvent = <GetEventsModel>[].obs;
 
+  @override
+  void onInit() async{
+    // TODO: implement onInit
+    super.onInit();
+    await getMySchedule();
+  }
+  var parentHomeController = Get.find<ParentHomeController>();
+  var parentRepo = ParentRepo();
 
+  Future<void> getMySchedule() async{
+    isLoading.value = true;
+    selectedDayEvent.value.clear();
+    myMarkedEventList = parentHomeController.myInformation.profileDetails!.schedule!;
+    if(myMarkedEventList.isNotEmpty){
+      final result = await parentRepo.getMyScheduleEvents(myMarkedEventList);
+      if(result.isNotEmpty){
+        scheduledDays.clear();
+        scheduledDays.addAll(result.map((event) => GetEventsModel.fromJson(event)));
+      }
+      else{
+        AppSnackBar.showError("Failed to retrieve event data");
+      }
+    }
+    isLoading.value = false;
+  }
+  
   void getSelectedDateEvents(){
-    for (var date in scheduledDays) {
-      if (date['date'] == focusedDay.value.day) {
+    selectedDayEvent.value.clear();
+    for (var event in scheduledDays) {
+      if (event.date!.toLocal().day == focusedDay.value.day && event.date!.toLocal().month == focusedDay.value.month) {
         // Found a scheduled day, return custom styled text
-        selectedDayEvent.value = date['events'] as List<Map<String, dynamic>>;
+        selectedDayEvent.add(event);
         log(selectedDayEvent.toString());
       }
     }

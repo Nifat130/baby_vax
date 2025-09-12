@@ -218,4 +218,30 @@ class ParentRepo{
     }
     return false;
   }
+
+  Future<List> getMyScheduleEvents(List scheduleIds) async {
+    try {
+      final response = await supabase
+          .from("vaccine_events")
+          .select("*")
+          .inFilter("id", scheduleIds); // 'id' is the column name
+
+      if (response is List) {
+        log("✅ Vaccine events: $response");
+        return response;
+      } else {
+        log("⚠️ Unexpected response: $response");
+      }
+    } catch (e) {
+      if (e is PostgrestException) {
+        log("❌ Supabase error: ${e.message}");
+        AppSnackBar.showError(e.message);
+      } else {
+        log("❌ Unexpected error: $e");
+        AppSnackBar.showError("Something went wrong while fetching events.");
+      }
+    }
+    return [];
+  }
+
 }
