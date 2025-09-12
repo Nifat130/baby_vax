@@ -133,18 +133,11 @@ class ParentEventDetailsScreen extends GetView<ParentEventDetailsController> {
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
           child: Obx(() =>
-            controller.isAssigned.value ?
             CustomSubmitButton(
-              text: "Remove",
-              color: AppColors.error,
+              text: controller.isAssigned.value ? "Remove" : "Mark",
+              color: controller.isAssigned.value ? AppColors.error : null,
               onTap: () {
-                controller.isAssigned.value = !controller.isAssigned.value;
-              },
-            ) :
-            CustomSubmitButton(
-              text: "Mark",
-              onTap: () {
-                controller.isAssigned.value = !controller.isAssigned.value;
+                controller.updateParentSchedule();
               },
             ),
           ),

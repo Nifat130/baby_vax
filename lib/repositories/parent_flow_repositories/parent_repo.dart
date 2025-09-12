@@ -183,4 +183,20 @@ class ParentRepo{
     }
     return response;
   }
+
+  Future<bool> updateParent(Map<String, dynamic> requestBody) async{
+    try{
+      final response = await supabase.from("user_profiles").update({"profileDetails" : requestBody}).eq("id", AuthService.id.toString());
+      if(response == null){
+        log(response.toString());
+        return true;
+      }
+      else{
+        log(response.toString());
+      }
+    }catch(e){
+      log("❌ Fetch error: $e");
+    }
+    return false;
+  }
 }
