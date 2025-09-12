@@ -1,5 +1,6 @@
 
 
+import 'package:baby_vax/core/utils/logging/logger.dart';
 import 'package:baby_vax/data/hospital_flow/get_parent_information_model.dart';
 import 'package:baby_vax/data/parent_flow/get_my_children_model.dart';
 import 'package:baby_vax/repositories/parent_flow_repositories/parent_repo.dart';
@@ -26,6 +27,7 @@ class ParentHomeController extends GetxController{
   Future<void> getMyInformation() async{
     profileIsLoading.value = true;
     final dataList = await parentRepo.getMeAsParent();
+    AppLoggerHelper.info(dataList.toString());
     if(dataList.isNotEmpty){
       myInformation = GetParentInformationModel.fromJson(dataList[0]);
     }
@@ -37,6 +39,7 @@ class ParentHomeController extends GetxController{
 
   var children = <GetMyChildrenModel>[];
   Future<void> getMyChildren() async{
+    AppLoggerHelper.info("I am here");
     childrenListIsLoading.value = true;
     final childDataList = await parentRepo.getMyChildren();
     if(childDataList.isNotEmpty){

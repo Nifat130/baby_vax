@@ -1,5 +1,7 @@
 
 
+import 'dart:developer';
+
 import 'package:baby_vax/core/common/app_snackber.dart';
 import 'package:baby_vax/core/common/widgets/custom_picker_theme.dart';
 import 'package:baby_vax/core/common/widgets/progress_indicator.dart';
@@ -94,4 +96,27 @@ class EditChildController extends GetxController{
       AppSnackBar.showError("Failed to update information!!");
     }
   }
+
+  void removeChild(String childId) async {
+    try {
+      showProgressIndicator();
+
+      final response = await parentRepo.removeChild(childId);
+
+      if (response) {
+        Get.back(); // close loader
+        Get.back(); // go back one screen (like in addChild)
+        AppSnackBar.showSuccess("Child removed successfully");
+        await parentHomeController.getMyChildren();
+      } else {
+        Get.back();
+        AppSnackBar.showError("Failed to remove child!!");
+      }
+    } catch (e) {
+      Get.back();
+      log("❌ removeChild error: $e");
+      AppSnackBar.showError("Failed to remove child!!");
+    }
+  }
+
 }

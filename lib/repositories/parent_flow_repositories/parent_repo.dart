@@ -123,6 +123,43 @@ class ParentRepo{
     return false;
   }
 
+  Future<bool> removeChild(String childId) async {
+    try {
+      final response = await supabase
+          .from("children")
+          .delete()
+          .eq("id", childId)
+          .select();
+
+      if (response is List && response.isNotEmpty) {
+        log("Child removed: $response");
+        return true;
+      } else {
+        log("Delete response: $response");
+      }
+    } catch (e) {
+      if (e is PostgrestException) {
+        log("Error Code: ${e.code}");
+        log("Message: ${e.message}");
+        log("Details: ${e.details}");
+        log("Hint: ${e.hint}");
+
+        if (e.code == 'P0001') {
+          // example: custom error from Postgres function
+          AppSnackBar.showError("Unable to remove child");
+        } else {
+          AppSnackBar.showError(e.message);
+        }
+      } else {
+        log("Unexpected error: $e");
+        AppSnackBar.showError("Something went wrong. Try again.");
+      }
+    }
+
+    return false;
+  }
+
+
   Future<List> getVaccineEvents(String vaccineType) async{
 
     var response = [];
