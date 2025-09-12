@@ -32,6 +32,25 @@ class ParentRepo{
     }
     return response;
   }
+  Future<List> changePassword({required String currentPassword, required String newPassword}) async{
+
+    var response = [];
+    try{
+      // Upload profile image
+      final response = await Supabase.instance.client
+          .from("user_profiles")
+          .update({"password": newPassword})
+          .eq('id', AuthService.id.toString())
+          .eq('password', currentPassword)
+          .select();
+
+      return response;
+
+    }catch(e){
+      log("❌ Upload error: $e");
+    }
+    return response;
+  }
 
   Future<String> uploadChildrenPicture({required String path, required String file}) async{
     try{

@@ -41,7 +41,7 @@ class ParentChangePasswordScreen extends GetView<ParentInformationController> {
                             CustomTextFormField(
                               controller: controller.parentCurrentPass,
                               hintText: "Enter your password",
-                              obscureText: !controller.confirmPassVisibility.value,
+                              obscureText: !controller.currentPassVisibility.value,
                               validator: AppValidator.validatePassword,
                               suffixIcon: GestureDetector(
                                   onTap: (){
@@ -94,7 +94,11 @@ class ParentChangePasswordScreen extends GetView<ParentInformationController> {
                         32.heightSpace,
                         CustomSubmitButton(
                           text: "Save",
-                          onTap: (){},
+                          onTap: (){
+                            if(formState.currentState!.validate()){
+                              controller.changePassword();
+                            }
+                          },
                         ),
                       ],
                     ),

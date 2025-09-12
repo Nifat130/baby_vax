@@ -95,5 +95,21 @@ class ParentInformationController extends GetxController{
     }
   }
 
+  void changePassword() async{
+    showProgressIndicator();
+    final response = await parentRepo.changePassword(currentPassword: parentCurrentPass.text, newPassword: parentNewPass.text);
+
+    if(response.isNotEmpty){
+      Get.back();
+      Get.back();
+      AppSnackBar.showSuccess("Password changed successfully!!");
+    }
+    else{
+
+      Get.back();
+      AppSnackBar.showError("Failed to change password");
+    }
+  }
+
 
 }
