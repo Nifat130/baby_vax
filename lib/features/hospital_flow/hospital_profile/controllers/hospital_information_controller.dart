@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:baby_vax/core/common/app_snackber.dart';
 import 'package:baby_vax/core/common/widgets/progress_indicator.dart';
@@ -82,21 +83,24 @@ class HospitalInformationController extends GetxController{
       final lat = location.first.latitude;
       final long = location.first.longitude;
 
-      // if(!profileImage.value.startsWith('https')){
-      //   final profileFilePath =
-      //       "hospital/${AuthService.email}/profile_picture/profile_picture.png";
-      //   if(!await hospitalRepo.updatePicture(path: profileFilePath, file: profileImage.value)){
-      //     throw Exception();
-      //   }
-      // }
-      //
-      // if(!licensesImage.value.startsWith('https')){
-      //   final licenseFilePath =
-      //       "hospital/${AuthService.email}/license_picture/license_picture.png";
-      //   if(!await hospitalRepo.updatePicture(path: licenseFilePath, file: licensesImage.value)){
-      //     throw Exception();
-      //   }
-      // }
+      if(!profileImage.value.startsWith("https")){
+        final hospitalProfilePath = "hospital/${AuthService.email}/profile_picture/profile_picture.png";
+        final profileAdded = await hospitalRepo.updatePicture(path: hospitalProfilePath, file: File(profileImage.value));
+        if(!profileAdded){
+          Get.back();
+          AppSnackBar.showError("Failed to update profile picture");
+          return;
+        }
+      }
+      if(!licensesImage.value.startsWith("https")){
+        final licenseFilePath =  "hospital/${AuthService.email}/license_picture/license_picture.png";
+        final profileAdded = await hospitalRepo.updatePicture(path: licenseFilePath, file: File(licensesImage.value));
+        if(!profileAdded){
+          Get.back();
+          AppSnackBar.showError("Failed to update license picture");
+          return;
+        }
+      }
 
       final requestBody = {
         "hospitalName": hospitalName.text,

@@ -117,7 +117,7 @@ class HospitalEventController extends GetxController{
       myEvents.value = result;
     }
     else{
-      AppSnackBar.showError("Failed to retrieve data");
+      AppSnackBar.showError("Failed to retrieve data mahin");
     }
     isLoading.value = false;
   }
