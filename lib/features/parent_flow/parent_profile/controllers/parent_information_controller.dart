@@ -1,8 +1,10 @@
 
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:baby_vax/core/common/app_snackber.dart';
 import 'package:baby_vax/core/common/widgets/progress_indicator.dart';
+import 'package:baby_vax/core/services/Auth_service.dart';
 import 'package:baby_vax/core/utils/constants/image_path.dart';
 import 'package:baby_vax/core/utils/logging/logger.dart';
 import 'package:baby_vax/features/parent_flow/parent_profile/controllers/parent_profile_controller.dart';
@@ -38,12 +40,12 @@ class ParentInformationController extends GetxController{
   var currentPassVisibility = false.obs;
   var passVisibility = false.obs;
   var confirmPassVisibility = false.obs;
-  final parentName = TextEditingController(text: "Abdullah Talukdar");
-  final parentNumber = TextEditingController(text: "01565555555");
+  final parentName = TextEditingController();
+  final parentNumber = TextEditingController();
   final parentCurrentPass = TextEditingController();
   final parentNewPass = TextEditingController();
   final parentConfirmPass = TextEditingController();
-  final parentAddress = TextEditingController(text: "Mirpur, Dhaka, Bangladesh");
+  final parentAddress = TextEditingController();
 
   final parentController = Get.find<ParentHomeController>();
   Future<void> getMyInformation() async{
@@ -62,6 +64,18 @@ class ParentInformationController extends GetxController{
     try{
       showProgressIndicator();
       final location = await locationFromAddress(parentAddress.text);
+      // change picture
+
+      if(!profileImage.startsWith("https")){
+        final parentProfilePath = "parent/${AuthService.email}/profile_picture/profile_picture.png";
+        final profileAdded = await parentRepo.updatePicture(path: parentProfilePath, file: File(profileImage.value));
+        if(!profileAdded){
+          Get.back();
+          AppSnackBar.showError("Failed to update profile picture");
+          return;
+        }
+      }
+
       final requestBody = {
         "parentName": parentName.text,
         "parentAddress": {
