@@ -5,6 +5,7 @@ import 'package:baby_vax/core/common/widgets/progress_indicator.dart';
 import 'package:baby_vax/core/utils/logging/logger.dart';
 import 'package:baby_vax/data/hospital_flow/get_parent_information_model.dart';
 import 'package:baby_vax/features/parent_flow/parent_home_screen/controllers/parent_home_controller.dart';
+import 'package:baby_vax/features/parent_flow/parent_schedule_calendar/controllers/parent_schedule_calendar_controller.dart';
 import 'package:baby_vax/repositories/parent_flow_repositories/parent_repo.dart';
 import 'package:get/get.dart';
 
@@ -32,6 +33,7 @@ class ParentEventDetailsController extends GetxController{
   var schedule = [];
   var myInformation = GetParentInformationModel();
   var parentHomeController = Get.find<ParentHomeController>();
+  var parentScheduleCalenderController = Get.find<ParentScheduleCalendarController>();
   Future<void> checkIfAssigned() async{
     myInformation = parentHomeController.myInformation;
     schedule = myInformation.profileDetails!.schedule!;
@@ -66,6 +68,7 @@ class ParentEventDetailsController extends GetxController{
     final result = await parentRepo.updateParent(requestBody);
     if(result){
       await parentHomeController.getMyInformation();
+      await parentScheduleCalenderController.getMySchedule();
       Get.back();
       isAssigned.value = !isAssigned.value;
       isAssigned.value ?
