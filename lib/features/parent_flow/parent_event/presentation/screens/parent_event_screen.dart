@@ -60,12 +60,12 @@ class ParentEventScreen extends GetView<ParentEventController> {
                             ...controller.vaccineEvents.map((event) =>
                                 parentEventContainer(controller, event)
                             ),
-                            24.heightSpace
+                            200.heightSpace
                           ],
                         );
                       }
                     }
-                    )
+                    ),
                   ],
                 ),
               ),

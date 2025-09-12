@@ -65,6 +65,7 @@ class ParentEventDetailsController extends GetxController{
 
     final result = await parentRepo.updateParent(requestBody);
     if(result){
+      await parentHomeController.getMyInformation();
       Get.back();
       isAssigned.value = !isAssigned.value;
       isAssigned.value ?
