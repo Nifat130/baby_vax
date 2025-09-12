@@ -52,7 +52,7 @@ class AddChildController extends GetxController{
   }
 
   var parentRepo = ParentRepo();
-  var parentHomeController = ParentHomeController();
+  var parentHomeController = Get.find<ParentHomeController>();
 
   void addChild() async{
     try{

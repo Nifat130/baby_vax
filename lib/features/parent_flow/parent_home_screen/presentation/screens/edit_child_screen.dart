@@ -155,7 +155,7 @@ class EditChildScreen extends GetView<EditChildController> {
                   text: "Remove",
                   color: AppColors.error,
                   onTap: (){
-                    Get.back();
+                    controller.removeChild(controller.child.id.toString());
                   },
                 ),
               ),
