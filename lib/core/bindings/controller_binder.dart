@@ -7,6 +7,7 @@ import '../../features/hospital_flow/hospital_home/controllers/hospital_home_con
 import '../../features/hospital_flow/hospital_nav_bar/controllers/hospital_nav_bar_controller.dart';
 import '../../features/hospital_flow/hospital_profile/controllers/hospital_information_controller.dart';
 import '../../features/hospital_flow/hospital_profile/controllers/hospital_profile_controller.dart';
+import '../../features/parent_flow/google_map/controllers/google_map_controller.dart';
 import '../../features/parent_flow/parent_event/controllers/parent_event_controller.dart';
 import '../../features/parent_flow/parent_event/controllers/parent_event_details_controller.dart';
 import '../../features/parent_flow/parent_home_screen/controllers/add_child_controller.dart';
@@ -43,5 +44,6 @@ class ControllerBinder extends Bindings {
     Get.lazyPut<ParentEventDetailsController>(() => ParentEventDetailsController(), fenix: true,);
     Get.lazyPut<ParentScheduleCalendarController>(() => ParentScheduleCalendarController(), fenix: true,);
     Get.lazyPut<ChildDetailsScreenController>(() => ChildDetailsScreenController(), fenix: true,);
+    Get.lazyPut<GoogleMapScreenController>(() => GoogleMapScreenController(), fenix: true,);
   }
 }

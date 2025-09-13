@@ -3,8 +3,8 @@ import 'package:baby_vax/core/common/widgets/custom_text.dart';
 import 'package:baby_vax/core/common/widgets/show_progress_indicator.dart';
 import 'package:baby_vax/core/utils/constants/app_colors.dart';
 import 'package:baby_vax/core/utils/constants/app_sizer.dart';
-import 'package:baby_vax/core/utils/constants/image_path.dart';
 import 'package:baby_vax/features/parent_flow/parent_event/controllers/parent_event_details_controller.dart';
+import 'package:baby_vax/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -76,6 +76,18 @@ class ParentEventDetailsScreen extends GetView<ParentEventDetailsController> {
                                     children: [
                                       CustomText(text: controller.event.hospitalInfo!.hospitalName!, fontWeight: FontWeight.w600, fontSize: 18.sp, color: AppColors.primary,),
                                       CustomText(text: controller.event.hospitalInfo!.hospitalAddress!, fontSize: 13.sp, color: AppColors.textSecondary,),
+                                      GestureDetector(
+                                        onTap: (){
+                                          Get.toNamed(AppRoute.googleMapScreen, arguments: controller.event);
+                                        },
+                                        child: Row(
+                                          spacing: 4.w,
+                                          children: [
+                                            Icon(Icons.location_history, color: AppColors.warning,),
+                                            CustomText(text: "See on the map", color: AppColors.warning,),
+                                          ],
+                                        ),
+                                      ),
                                     ],
                                   ),
                                 ),
