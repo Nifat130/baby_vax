@@ -1,5 +1,7 @@
 
 
+import 'dart:developer';
+
 import 'package:baby_vax/data/parent_flow/get_my_children_model.dart';
 import 'package:baby_vax/features/parent_flow/parent_home_screen/controllers/parent_home_controller.dart';
 import 'package:get/get.dart';
@@ -11,7 +13,9 @@ class NotificationController extends GetxController{
   void onInit() async{
     // TODO: implement onInit
     super.onInit();
+    isLoading.value = true;
     await getNotification();
+    isLoading.value = false;
   }
 
   var parentHomeController = Get.find<ParentHomeController>();
@@ -19,7 +23,21 @@ class NotificationController extends GetxController{
   List<Map<String, String>> notificationList = [];
 
   Future<void> getNotification() async{
-
+    children = parentHomeController.children;
+    for (var child in children) {
+      final ageInDays = DateTime.now().difference(child.birthDate!.toLocal()).inDays;
+      log("cHILD NAME: ${child.name}");
+      log(ageInDays.toString());
+      for (var vaccine in totalVaccine) {
+        if(vaccine["time"] < ageInDays && vaccine["time"] + 7 > ageInDays){
+          final notificationBody = {
+            "title": "${child.name} needs ${vaccine['name']} Vaccine",
+            "subtitle": "As ${child.name} is $ageInDays days old ${child.gender == "Male" ? "he" : "she"} needs ${vaccine['name']} vaccine. Kindly give ${child.gender == "Male" ? "him" : "her"} the vaccine and do not forget to add in note!!",
+          };
+          notificationList.add(notificationBody);
+        }
+      }
+    }
   }
 
   final List<Map<String, dynamic>> totalVaccine = [
