@@ -11,5 +11,7 @@ class IconPath {
   static const String whiteNotificationIcon = '$_basePath/white_notification_icon.png';
   static const String scheduleIcon = '$_basePath/scheduleIcon.png';
   static const String notificationTwo = '$_basePath/notification_two.png';
+  static const String myMapIcon = '$_basePath/my_map_icon.png';
+  static const String hospitalMapIcon = '$_basePath/hospital_map_icon.png';
 
 }

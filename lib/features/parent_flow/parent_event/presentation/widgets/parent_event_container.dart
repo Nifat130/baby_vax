@@ -51,7 +51,7 @@ Widget parentEventContainer(dynamic controller, GetEventsModel event){
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               CircleAvatar(
-                backgroundImage: AssetImage(ImagePath.dummyProfilePicture),
+                backgroundImage: NetworkImage(event.hospitalInfo!.hospitalPicture!),
                 radius: 20.h,
               ),
               8.widthSpace,

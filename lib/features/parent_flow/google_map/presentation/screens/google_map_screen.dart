@@ -26,12 +26,13 @@ class GoogleMapScreen extends GetView<GoogleMapScreenController> {
               GoogleMap(
                 initialCameraPosition: controller.position,
                 markers: Set<Marker>.of(controller.markerList),
+                polylines: controller.polyline,
                 onMapCreated: (GoogleMapController mapController){
                   controller.mapController.complete(mapController);
                 },
                 myLocationEnabled: true,
               ),
-              customBackCenterTitleHeading("Google Map")
+              customBackCenterTitleHeading("See in Map")
             ],
           )
         ),
