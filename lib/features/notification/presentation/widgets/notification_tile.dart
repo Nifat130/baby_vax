@@ -9,8 +9,13 @@ Widget notificationTile({
   required String subtitle,
   bool isUnread = false,
 }) {
-  return Padding(
-    padding: EdgeInsets.symmetric(vertical: 12.h),
+  return Container(
+    decoration: BoxDecoration(
+      borderRadius: 8.radius,
+      border: Border.all(color: AppColors.textFormFieldBorder)
+    ),
+    margin: EdgeInsets.only(bottom: 8.h),
+    padding: EdgeInsets.symmetric(vertical: 16.h, horizontal: 8.w),
     child: Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
