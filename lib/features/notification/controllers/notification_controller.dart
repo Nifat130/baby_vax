@@ -26,15 +26,16 @@ class NotificationController extends GetxController{
     children = parentHomeController.children;
     for (var child in children) {
       final ageInDays = DateTime.now().difference(child.birthDate!.toLocal()).inDays;
-      log("cHILD NAME: ${child.name}");
       log(ageInDays.toString());
       for (var vaccine in totalVaccine) {
         if(vaccine["time"] < ageInDays && vaccine["time"] + 7 > ageInDays){
-          final notificationBody = {
-            "title": "${child.name} needs ${vaccine['name']} Vaccine",
-            "subtitle": "As ${child.name} is $ageInDays days old ${child.gender == "Male" ? "he" : "she"} needs ${vaccine['name']} vaccine. Kindly give ${child.gender == "Male" ? "him" : "her"} the vaccine and do not forget to add in note!!",
-          };
-          notificationList.add(notificationBody);
+          if(!child.givenVaccines!.contains(vaccine['name'])){
+            final notificationBody = {
+              "title": "${child.name} needs ${vaccine['name']} Vaccine",
+              "subtitle": "As ${child.name} is $ageInDays days old ${child.gender == "Male" ? "he" : "she"} needs ${vaccine['name']} vaccine. Kindly give ${child.gender == "Male" ? "him" : "her"} the vaccine and do not forget to add in note!!",
+            };
+            notificationList.add(notificationBody);
+          }
         }
       }
     }
