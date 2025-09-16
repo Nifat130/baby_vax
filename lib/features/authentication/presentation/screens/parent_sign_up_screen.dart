@@ -148,7 +148,7 @@ class ParentSignUpScreen extends GetView<SignUpController> {
                   CustomSubmitButton(
                     text: "Create Account",
                     onTap: (){
-                      if(formState.currentState!.validate()){
+                      if(formState.currentState!.validate() || controller.profileImage.value == ''){
                         controller.createParentAccount();
                       }
                     },
