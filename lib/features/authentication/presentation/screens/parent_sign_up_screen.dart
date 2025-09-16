@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:baby_vax/core/common/app_snackber.dart';
 import 'package:baby_vax/core/utils/constants/app_sizer.dart';
 import 'package:baby_vax/core/utils/constants/image_path.dart';
 import 'package:baby_vax/features/authentication/controllers/sign_up_controller.dart';
@@ -148,8 +149,10 @@ class ParentSignUpScreen extends GetView<SignUpController> {
                   CustomSubmitButton(
                     text: "Create Account",
                     onTap: (){
-                      if(formState.currentState!.validate() || controller.profileImage.value == ''){
-                        controller.createParentAccount();
+                      if(formState.currentState!.validate()){
+                        controller.profileImage.value != '' ?
+                        controller.createParentAccount() :
+                            AppSnackBar.showError("Upload profile picture");
                       }
                     },
                   ),
