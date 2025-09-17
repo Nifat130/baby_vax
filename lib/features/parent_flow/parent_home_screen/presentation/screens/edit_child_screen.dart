@@ -48,7 +48,7 @@ class EditChildScreen extends GetView<EditChildController> {
                                 child: CircleAvatar(
                                   backgroundImage: controller.profileImage.value == '' ?
                                   AssetImage(ImagePath.dummyProfilePicture) :
-                                  FileImage(File(controller.profileImage.value)),
+                                  NetworkImage(controller.profileImage.value),
                                   radius: 50.h,
                                 ),
                               )

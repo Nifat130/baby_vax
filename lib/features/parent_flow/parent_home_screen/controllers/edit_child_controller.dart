@@ -39,6 +39,7 @@ class EditChildController extends GetxController{
       fartherNameTEController.text = child.fatherName!;
       motherNameTEController.text = child.motherName!;
       birthPlaceTEController.text = child.birthPlace!;
+      profileImage.value = child.profilePicture!;
     }
   }
   var birthDate = "";
