@@ -39,13 +39,16 @@ class HospitalEventScreen extends GetView<HospitalEventController> {
                 }
                 else{
                   return SingleChildScrollView(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        ...controller.myEvents.map((event) =>
-                            eventContainer(controller, event)
-                        )
-                      ],
+                    child: Padding(
+                      padding: EdgeInsets.only(bottom: 100.h),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          ...controller.myEvents.map((event) =>
+                              eventContainer(controller, event)
+                          ),
+                        ],
+                      ),
                     ),
                   );
                 }

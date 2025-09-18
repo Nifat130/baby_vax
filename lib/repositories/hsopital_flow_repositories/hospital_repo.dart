@@ -98,7 +98,7 @@ class HospitalRepo{
       final response = await supabase.from("vaccine_events").insert(requestBody).select();
       if(response is List){
         Get.back();
-        AppSnackBar.showSuccess("Event Created Successfully");
+        //AppSnackBar.showSuccess("Event Created Successfully");
         log(response.toString());
         return true;
       }
