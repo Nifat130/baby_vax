@@ -8,7 +8,7 @@
 
 
     <application
-        android:label="baby_vax"
+        android:label="Baby Vax"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
