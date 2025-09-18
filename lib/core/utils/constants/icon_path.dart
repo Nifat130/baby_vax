@@ -13,5 +13,6 @@ class IconPath {
   static const String notificationTwo = '$_basePath/notification_two.png';
   static const String myMapIcon = '$_basePath/my_map_icon.png';
   static const String hospitalMapIcon = '$_basePath/hospital_map_icon.png';
+  static const String successMark = '$_basePath/success_mark.png';
 
 }

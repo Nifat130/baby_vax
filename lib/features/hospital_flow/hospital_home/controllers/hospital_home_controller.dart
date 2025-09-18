@@ -8,6 +8,7 @@ import 'package:baby_vax/core/common/widgets/progress_indicator.dart';
 import 'package:baby_vax/core/services/Auth_service.dart';
 import 'package:baby_vax/data/hospital_flow/get_hospital_information_model.dart';
 import 'package:baby_vax/features/hospital_flow/hospital_event/controllers/hospital_event_controller.dart';
+import 'package:baby_vax/routes/app_routes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -164,13 +165,14 @@ class HospitalHomeController extends GetxController{
       final hospitalEventController = Get.find<HospitalEventController>();
       // refresh event screen
       await hospitalEventController.getMyEvents();
-      vaccineName.clear();
-      eventDate.clear();
-      eventStart.clear();
-      eventEnd.clear();
-      inChargeName.clear();
-      inChargeContact.clear();
-      eventDescription.clear();
+      Get.offAllNamed(AppRoute.completeScreen);
+      // vaccineName.clear();
+      // eventDate.clear();
+      // eventStart.clear();
+      // eventEnd.clear();
+      // inChargeName.clear();
+      // inChargeContact.clear();
+      // eventDescription.clear();
     }
   }
 }

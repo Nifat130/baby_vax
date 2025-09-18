@@ -43,7 +43,6 @@ Widget notificationTile({
                 text: subtitle,
                 fontSize: 13.sp,
                 color: AppColors.textSecondary,
-                maxLines: 2,
               ),
               4.heightSpace,
             ],
