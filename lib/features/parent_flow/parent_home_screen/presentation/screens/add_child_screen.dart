@@ -82,7 +82,7 @@ class AddChildScreen extends GetView<AddChildController> {
                       8.heightSpace,
                       CustomTextFormField(
                         controller: controller.childNameTEController,
-                        hintText: "Enter vaccine name",
+                        hintText: "Enter child name",
                         validator: (value) => AppValidator.validateField(value, "Name"),
                       ),
                       16.heightSpace,
