@@ -13,7 +13,7 @@ class ImagePath {
   static const String devon = '$_basePath/devon.png';
   static const String darlene = '$_basePath/darlene.png';
   static const String johnDeo = '$_basePath/john_deo.png';
-  static const String babyCareImage = '$_basePath/baby_care_image.png';
+  static const String babyCareImage = '$_basePath/baby_care_image.jpg';
   static const String dummyProfilePicture =
       '$_basePath/dummyProfilePicture.png';
   static const String profileNCM = '$_basePath/profileNCM.png';
