@@ -1,5 +1,6 @@
 import 'package:baby_vax/core/common/widgets/custom_back_center_title_heading.dart';
 import 'package:baby_vax/core/common/widgets/custom_text.dart';
+import 'package:baby_vax/core/utils/constants/app_colors.dart';
 import 'package:baby_vax/core/utils/constants/app_sizer.dart';
 import 'package:baby_vax/core/utils/constants/image_path.dart';
 import 'package:flutter/material.dart';
@@ -80,6 +81,7 @@ class BabyCareScreen extends StatelessWidget {
       child: CustomText(
         text: text,
         fontSize: 16.sp,
+        color: AppColors.primary,
         fontWeight: FontWeight.bold,
       ),
     );
