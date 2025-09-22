@@ -4,6 +4,7 @@ import 'package:get/get.dart';import '../features/authentication/presentation/sc
 import '../features/authentication/presentation/screens/parent_sign_up_screen.dart';
 
 import '../features/authentication/presentation/screens/role_screen.dart';
+import '../features/health_tips/presentation/screens/baby_care_screen.dart';
 import '../features/hospital_flow/hospital_event/presentation/screens/hospital_event_screen.dart';
 import '../features/hospital_flow/hospital_home/presentation/screens/complete_screen.dart';
 import '../features/hospital_flow/hospital_home/presentation/screens/hospital_home_screen.dart';
@@ -57,6 +58,7 @@ class AppRoute {
   static String childDetailsScreen = "/childDetailsScreen";
   static String googleMapScreen = "/googleMapScreen";
   static String completeScreen = "/completeScreen";
+  static String babyCareScreen = "/babyCareScreen";
 
 
   static List<GetPage> routes = [
@@ -100,5 +102,6 @@ class AppRoute {
     GetPage(name: parentScheduleCalendarScreen, page: () => ParentScheduleCalendarScreen()),
     GetPage(name: childDetailsScreen, page: () => ChildDetailsScreen()),
     GetPage(name: googleMapScreen, page: () => GoogleMapScreen()),
+    GetPage(name: babyCareScreen, page: () => BabyCareScreen()),
   ];
 }
