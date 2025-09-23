@@ -44,5 +44,6 @@ class ImagePath {
   static const String mmrImage = '$_basePath/mmr_image.jpg';
   static const String dtpImage = '$_basePath/dtp_image.jpg';
   static const String ipvImage = '$_basePath/ipv_image.jpg';
+  static const String afterEffectImage = '$_basePath/after_effect_image.jpg';
   static const String typhoidImage = '$_basePath/typhoid_image.png';
 }

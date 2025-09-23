@@ -5,6 +5,7 @@ import '../features/authentication/presentation/screens/parent_sign_up_screen.da
 
 import '../features/authentication/presentation/screens/role_screen.dart';
 import '../features/health_tips/presentation/screens/baby_care_screen.dart';
+import '../features/health_tips/presentation/screens/vaccine_effects_screen.dart';
 import '../features/health_tips/presentation/screens/vaccine_pros_and_cons_screen.dart';
 import '../features/hospital_flow/hospital_event/presentation/screens/hospital_event_screen.dart';
 import '../features/hospital_flow/hospital_home/presentation/screens/complete_screen.dart';
@@ -61,6 +62,7 @@ class AppRoute {
   static String completeScreen = "/completeScreen";
   static String babyCareScreen = "/babyCareScreen";
   static String vaccineProsAndConsScreen = "/vaccineProsAndConsScreen";
+  static String vaccineEffectsScreen = "/vaccineEffectsScreen";
 
 
   static List<GetPage> routes = [
@@ -106,5 +108,6 @@ class AppRoute {
     GetPage(name: googleMapScreen, page: () => GoogleMapScreen()),
     GetPage(name: babyCareScreen, page: () => BabyCareScreen()),
     GetPage(name: vaccineProsAndConsScreen, page: () => VaccineProsAndConsScreen()),
+    GetPage(name: vaccineEffectsScreen, page: () => VaccineEffectsScreen()),
   ];
 }

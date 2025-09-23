@@ -54,7 +54,7 @@ class ParentHomeScreen extends GetView<ParentHomeController> {
                       children: [
                         info(image: IconPath.babyCareIcon, name: "Care", route: AppRoute.babyCareScreen),
                         info(image: IconPath.prosConsIcon, name: "Insights", route: AppRoute.vaccineProsAndConsScreen),
-                        info(image: IconPath.effectIcon, name: "Effects", route: AppRoute.vaccineProsAndConsScreen),
+                        info(image: IconPath.effectIcon, name: "Effects", route: AppRoute.vaccineEffectsScreen),
                       ],
                     ),
                     16.heightSpace,
