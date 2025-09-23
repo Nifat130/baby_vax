@@ -30,4 +30,19 @@ class ImagePath {
       '$_basePath/onboardingContainer.png';
   static const String onboardingBottomImage =
       '$_basePath/onboardingBottomImage.png';
+
+  /// Vaccine Images
+
+  static const String bcgImage = '$_basePath/bcg_image.jpg';
+  static const String opvImage = '$_basePath/opv_image.jpg';
+  static const String hepatitisImage = '$_basePath/hepatitis_image.jpg';
+  static const String opvOneThreeImage = '$_basePath/opv_one_three_image.jpg';
+  static const String pentabioImage = '$_basePath/pentabio_image.jpg';
+  static const String pneumoImage = '$_basePath/pneumo_image.jpg';
+  static const String rotaImage = '$_basePath/rota_image.jpg';
+  static const String inactivatedImage = '$_basePath/inactivated_image.jpg';
+  static const String mmrImage = '$_basePath/mmr_image.jpg';
+  static const String dtpImage = '$_basePath/dtp_image.jpg';
+  static const String ipvImage = '$_basePath/ipv_image.jpg';
+  static const String typhoidImage = '$_basePath/typhoid_image.png';
 }
