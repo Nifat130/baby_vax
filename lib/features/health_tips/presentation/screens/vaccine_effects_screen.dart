@@ -243,4 +243,3 @@ Widget bulletText(String text) {
   );
 }
 
-///
