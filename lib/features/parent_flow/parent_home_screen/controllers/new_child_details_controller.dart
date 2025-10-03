@@ -11,6 +11,7 @@ import '../../../../repositories/parent_flow_repositories/parent_repo.dart';
 
 class NewChildDetailsController extends GetxController{
   var isLoading = false.obs;
+  var showCalender = false.obs;
   var child = GetMyChildrenModel();
 
   var toShow = [].obs;
@@ -81,6 +82,8 @@ class NewChildDetailsController extends GetxController{
       ]
     },
   ];
+
+  var takenDoses = [].obs;
 
   @override
   void onInit() {
