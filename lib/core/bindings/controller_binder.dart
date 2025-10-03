@@ -14,6 +14,7 @@ import '../../features/parent_flow/parent_event/controllers/parent_event_details
 import '../../features/parent_flow/parent_home_screen/controllers/add_child_controller.dart';
 import '../../features/parent_flow/parent_home_screen/controllers/child_details_controller.dart';
 import '../../features/parent_flow/parent_home_screen/controllers/edit_child_controller.dart';
+import '../../features/parent_flow/parent_home_screen/controllers/new_child_details_controller.dart';
 import '../../features/parent_flow/parent_home_screen/controllers/parent_home_controller.dart';
 import '../../features/parent_flow/parent_nav_bar/controllers/parent_nav_bar_controller.dart';
 import '../../features/parent_flow/parent_profile/controllers/parent_information_controller.dart';
@@ -47,5 +48,6 @@ class ControllerBinder extends Bindings {
     Get.lazyPut<ChildDetailsScreenController>(() => ChildDetailsScreenController(), fenix: true,);
     Get.lazyPut<GoogleMapScreenController>(() => GoogleMapScreenController(), fenix: true,);
     Get.lazyPut<NotificationController>(() => NotificationController(), fenix: true,);
+    Get.lazyPut<NewChildDetailsController>(() => NewChildDetailsController(), fenix: true,);
   }
 }
