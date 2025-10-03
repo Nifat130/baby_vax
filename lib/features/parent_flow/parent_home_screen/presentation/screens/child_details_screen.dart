@@ -138,7 +138,7 @@ class ChildDetailsScreen extends GetView<ChildDetailsScreenController> {
           padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
           child: CustomSubmitButton(
             text: "Save",
-            color: Colors.orange,
+            color: AppColors.warning,
             onTap: (){
               controller.updateChild();
             },

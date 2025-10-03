@@ -1,5 +1,7 @@
 
 
+import 'dart:developer';
+
 import 'package:baby_vax/data/parent_flow/get_my_children_model.dart';
 import 'package:baby_vax/features/parent_flow/parent_home_screen/controllers/parent_home_controller.dart';
 import 'package:get/get.dart';
@@ -88,6 +90,9 @@ class ChildDetailsScreenController extends GetxController{
     super.onInit();
     if(Get.arguments != null){
       child = Get.arguments;
+      log(child.name.toString());
+      log(child.givenVaccines.toString());
+      log(child.givenDoses.toString());
       takenVaccines.clear();
       takenVaccines.addAll(child.givenVaccines!);
     }

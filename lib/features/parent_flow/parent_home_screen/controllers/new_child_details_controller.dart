@@ -83,7 +83,19 @@ class NewChildDetailsController extends GetxController{
     },
   ];
 
+  var serialOfDoses = {
+    0 : "At Birth",
+    1 : "6 Weeks",
+    2 : "10 Weeks",
+    3 : "14 Weeks",
+    4 : "9 Months",
+    5 : "15 Months",
+    6 : "18 Months",
+    7 : "4–5 Years",
+  };
+
   var takenDoses = [].obs;
+  var nextDose = ''.obs;
 
   @override
   void onInit() {
@@ -93,6 +105,10 @@ class NewChildDetailsController extends GetxController{
       child = Get.arguments;
       takenVaccines.clear();
       takenVaccines.addAll(child.givenVaccines!);
+      takenDoses.clear();
+      takenDoses.addAll(child.givenDoses!);
+      nextDose.value = serialOfDoses[takenDoses.length]!;
+      AppLoggerHelper.info(nextDose.value);
     }
   }
 
