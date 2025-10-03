@@ -26,7 +26,7 @@ Widget parentChildrenContainer(GetMyChildrenModel child){
   }
   return GestureDetector(
     onTap: (){
-      Get.toNamed(AppRoute.childDetailsScreen, arguments: child);
+      Get.toNamed(AppRoute.newChildDetailsScreen, arguments: child);
     },
     child: Container(
       decoration: BoxDecoration(

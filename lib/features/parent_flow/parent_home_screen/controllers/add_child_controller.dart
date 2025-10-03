@@ -72,7 +72,8 @@ class AddChildController extends GetxController{
           "profilePicture": result,
           "fatherName": fartherNameTEController.text,
           "motherName": motherNameTEController.text,
-          "givenVaccines": []
+          "givenVaccines": [],
+          "givenDoses": [],
         };
         log("=======================================================");
         log(requestBody.toString());

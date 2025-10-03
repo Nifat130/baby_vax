@@ -6,6 +6,8 @@ import 'package:baby_vax/core/utils/constants/app_sizer.dart';
 import 'package:baby_vax/core/utils/constants/image_path.dart';
 import 'package:baby_vax/features/parent_flow/parent_home_screen/controllers/child_details_controller.dart';
 import 'package:baby_vax/features/parent_flow/parent_home_screen/controllers/new_child_details_controller.dart';
+import 'package:baby_vax/features/parent_flow/parent_home_screen/presentation/widgets/new_child_details_calender_widget.dart';
+import 'package:baby_vax/features/parent_flow/parent_home_screen/presentation/widgets/new_child_details_list_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -58,73 +60,34 @@ class NewChildDetailsScreen extends GetView<NewChildDetailsController> {
                       ),
                     ),
                     24.heightSpace,
-                    Center(
-                      child: CustomText(text: "Vaccine Information", fontSize: 18.sp, textAlign: TextAlign.center, fontWeight: FontWeight.w600,),
-                    ),
-                    16.heightSpace,
-                    ...controller.vaccineList.map((time) =>
-                        Padding(
-                          padding: EdgeInsets.only(bottom: 16.h),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              GestureDetector(
-                                onTap: (){
-                                  controller.toShow.contains(time['time']) ?
-                                      controller.toShow.remove(time['time']) :
-                                      controller.toShow.add(time['time']);
-                                },
-                                child: Container(
-                                  width: double.infinity,
-                                  decoration: BoxDecoration(
-                                      color: AppColors.primary,
-                                      borderRadius: 8.radius
-                                  ),
-                                  padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
-                                  margin: EdgeInsets.only(bottom: 8.h),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    crossAxisAlignment: CrossAxisAlignment.center,
-                                    children: [
-                                      CustomText(text: time['time'], fontSize: 16.sp, color: AppColors.textWhite,),
-                                      Obx(() =>
-                                          controller.toShow.contains(time['time']) ?
-                                          Icon(Icons.keyboard_arrow_up_rounded, color: AppColors.textWhite,) :
-                                          Icon(Icons.keyboard_arrow_down_rounded, color: AppColors.textWhite,)
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              Obx(() =>
-                                  controller.toShow.contains(time['time']) ?
-                                      Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
-                                          ...time['vaccineNames'].map((name) =>
-                                              Row(
-                                                crossAxisAlignment: CrossAxisAlignment.center,
-                                                children: [
-                                                  Checkbox(
-                                                    value: controller.takenVaccines.contains(name['name']),
-                                                    activeColor: AppColors.primary,
-                                                    onChanged: (bool? value) {
-                                                      //log(name['taken']);
-                                                      controller.takenVaccines.contains(name['name']) ?
-                                                      controller.takenVaccines.remove(name['name']) :
-                                                      controller.takenVaccines.add(name['name']);
-                                                    },
-                                                  ),
-                                                  CustomText(text: name['name'], color: AppColors.textSecondary,)
-                                                ],
-                                              )
-                                          )
-                                        ],
-                                      ) : SizedBox()
-                              )
-                            ],
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        CustomText(text: "Vaccine Information", fontSize: 18.sp, textAlign: TextAlign.center, fontWeight: FontWeight.w600,),
+                        GestureDetector(
+                          onTap: (){
+                            controller.showCalender.value = !controller.showCalender.value;
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: AppColors.primary
+                            ),
+                            padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
+                            child: Obx(() =>
+                              controller.showCalender.value ?
+                              Icon(Icons.list, color: AppColors.textWhite, size: 20.h,) :
+                              Icon(Icons.calendar_month_outlined, color: AppColors.textWhite, size: 20.h,)
+                            )
                           ),
                         )
+                      ],
+                    ),
+                    18.heightSpace,
+                    Obx(() =>
+                      controller.showCalender.value ?
+                          NewChildDetailsCalenderWidget() :
+                          NewChildDetailsListWidget()
                     )
                   ],
                 ),
