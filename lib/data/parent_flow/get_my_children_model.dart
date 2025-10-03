@@ -4,9 +4,9 @@
 
 import 'dart:convert';
 
-List<GetMyChildrenModel> getMyChildrenModelFromJson(String str) => List<GetMyChildrenModel>.from(json.decode(str).map((x) => GetMyChildrenModel.fromJson(x)));
+GetMyChildrenModel getMyChildrenModelFromJson(String str) => GetMyChildrenModel.fromJson(json.decode(str));
 
-String getMyChildrenModelToJson(List<GetMyChildrenModel> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+String getMyChildrenModelToJson(GetMyChildrenModel data) => json.encode(data.toJson());
 
 class GetMyChildrenModel {
   String? id;
@@ -18,7 +18,8 @@ class GetMyChildrenModel {
   String? profilePicture;
   String? fatherName;
   String? motherName;
-  List<dynamic>? givenVaccines;
+  List<String>? givenVaccines;
+  List<GivenDose>? givenDoses;
 
   GetMyChildrenModel({
     this.id,
@@ -31,6 +32,7 @@ class GetMyChildrenModel {
     this.fatherName,
     this.motherName,
     this.givenVaccines,
+    this.givenDoses,
   });
 
   factory GetMyChildrenModel.fromJson(Map<String, dynamic> json) => GetMyChildrenModel(
@@ -43,7 +45,8 @@ class GetMyChildrenModel {
     profilePicture: json["profilePicture"],
     fatherName: json["fatherName"],
     motherName: json["motherName"],
-    givenVaccines: json["givenVaccines"] == null ? [] : List<dynamic>.from(json["givenVaccines"]!.map((x) => x)),
+    givenVaccines: json["givenVaccines"] == null ? [] : List<String>.from(json["givenVaccines"]!.map((x) => x)),
+    givenDoses: json["givenDoses"] == null ? [] : List<GivenDose>.from(json["givenDoses"]!.map((x) => GivenDose.fromJson(x))),
   );
 
   Map<String, dynamic> toJson() => {
@@ -57,5 +60,26 @@ class GetMyChildrenModel {
     "fatherName": fatherName,
     "motherName": motherName,
     "givenVaccines": givenVaccines == null ? [] : List<dynamic>.from(givenVaccines!.map((x) => x)),
+    "givenDoses": givenDoses == null ? [] : List<dynamic>.from(givenDoses!.map((x) => x.toJson())),
+  };
+}
+
+class GivenDose {
+  String? doseTime;
+  DateTime? givenTime;
+
+  GivenDose({
+    this.doseTime,
+    this.givenTime,
+  });
+
+  factory GivenDose.fromJson(Map<String, dynamic> json) => GivenDose(
+    doseTime: json["doseTime"],
+    givenTime: json["givenTime"] == null ? null : DateTime.parse(json["givenTime"]),
+  );
+
+  Map<String, dynamic> toJson() => {
+    "doseTime": doseTime,
+    "givenTime": givenTime?.toIso8601String(),
   };
 }
