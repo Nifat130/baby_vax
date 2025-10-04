@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:baby_vax/core/common/app_snackber.dart';
 import 'package:baby_vax/core/utils/constants/app_sizer.dart';
+import 'package:baby_vax/data/parent_flow/get_my_children_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -32,7 +33,7 @@ class NewChildDetailsListWidget extends GetView<NewChildDetailsController> {
                     child: Container(
                       width: double.infinity,
                       decoration: BoxDecoration(
-                          color: controller.nextDose.value == time['time'] ? AppColors.warning : AppColors.textSecondary,
+                          color: controller.nextDose.value == time['time'] ? AppColors.warning : controller.alreadyTakenDoses.any((dose) => dose.doseTime == time['time']) ? AppColors.success : AppColors.textSecondary,
                           borderRadius: 8.radius
                       ),
                       padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
@@ -45,20 +46,24 @@ class NewChildDetailsListWidget extends GetView<NewChildDetailsController> {
                             children: [
                               Obx(()=>
                                   Checkbox(
-                                    value: controller.takenDoses.any((dose) => dose["doseTime"] == time['time']),
+                                    value: controller.takenDoses.any((dose) => dose.doseTime == time['time']),
                                     side: BorderSide(color: AppColors.textWhite),
-                                    checkColor: AppColors.warning,
-                                    activeColor: controller.nextDose.value == time["time"] ? AppColors.textWhite : AppColors.warning,
+                                    checkColor: controller.alreadyTakenDoses.any((dose) => dose.doseTime == time['time']) ? AppColors.success : AppColors.warning,
+                                    activeColor: controller.nextDose.value == time["time"] || controller.alreadyTakenDoses.any((dose) => dose.doseTime == time['time']) ? AppColors.textWhite : Colors.transparent,
                                     onChanged: (value){
                                       var dose = controller.vaccineList.where((vaccine) => vaccine['time'] == time['time']).single;
                                       log(dose.toString());
-                                      var body = {
-                                        "doseTime" : time["time"],
-                                        "givenDate" : DateTime.now().toUtc().toIso8601String()
-                                      };
+                                      // var body = {
+                                      //   "doseTime" : time["time"],
+                                      //   "givenDate" : DateTime.now().toUtc().toIso8601String()
+                                      // };
+                                      var body = GivenDose(
+                                        doseTime: time["time"],
+                                        givenDate: DateTime.now().toUtc().toIso8601String()
+                                      );
                                       if(controller.nextDose.value == time['time']){
-                                        if(controller.takenDoses.any((vaccine) => vaccine['doseTime'] == time['time'])){
-                                          controller.takenDoses.removeWhere((vaccine) => vaccine['doseTime'] == time['time']);
+                                        if(controller.takenDoses.any((vaccine) => vaccine.doseTime == time['time'])){
+                                          controller.takenDoses.removeWhere((vaccine) => vaccine.doseTime == time['time']);
                                           for (var subVaccine in dose['vaccineNames'] as List<Map<String, dynamic>>) {
                                             controller.takenVaccines.remove(subVaccine['name']);
                                           }
@@ -71,6 +76,9 @@ class NewChildDetailsListWidget extends GetView<NewChildDetailsController> {
                                         }
                                         log(controller.takenDoses.toString());
                                         log(controller.takenVaccines.toString());
+                                      }
+                                      else if(controller.takenDoses.any((dose) => dose.doseTime == time['time'])){
+                                        AppSnackBar.showSuccess("Vaccine already given");
                                       }
                                       else{
                                         AppSnackBar.showError("Provide previous vaccines");

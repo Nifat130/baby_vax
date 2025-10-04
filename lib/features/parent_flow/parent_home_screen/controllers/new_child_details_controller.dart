@@ -94,7 +94,8 @@ class NewChildDetailsController extends GetxController{
     7 : "4–5 Years",
   };
 
-  var takenDoses = [].obs;
+  var takenDoses = <GivenDose>[].obs;
+  var alreadyTakenDoses = <GivenDose>[].obs;
   var nextDose = ''.obs;
 
   @override
@@ -107,6 +108,7 @@ class NewChildDetailsController extends GetxController{
       takenVaccines.addAll(child.givenVaccines!);
       takenDoses.clear();
       takenDoses.addAll(child.givenDoses!);
+      alreadyTakenDoses.addAll(child.givenDoses!);
       nextDose.value = serialOfDoses[takenDoses.length]!;
       AppLoggerHelper.info(nextDose.value);
     }
@@ -117,7 +119,8 @@ class NewChildDetailsController extends GetxController{
 
   void updateChild() async{
     final requestBody = {
-      "givenVaccines": takenVaccines
+      "givenVaccines": takenVaccines,
+      "givenDoses" : takenDoses
     };
     AppLoggerHelper.info(requestBody.toString());
     showProgressIndicator();
