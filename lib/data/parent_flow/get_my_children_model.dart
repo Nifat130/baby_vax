@@ -18,7 +18,7 @@ class GetMyChildrenModel {
   String? profilePicture;
   String? fatherName;
   String? motherName;
-  List<String>? givenVaccines;
+  List<dynamic>? givenVaccines;
   List<GivenDose>? givenDoses;
 
   GetMyChildrenModel({
@@ -66,20 +66,20 @@ class GetMyChildrenModel {
 
 class GivenDose {
   String? doseTime;
-  DateTime? givenTime;
+  String? givenDate;
 
   GivenDose({
     this.doseTime,
-    this.givenTime,
+    this.givenDate,
   });
 
   factory GivenDose.fromJson(Map<String, dynamic> json) => GivenDose(
     doseTime: json["doseTime"],
-    givenTime: json["givenTime"] == null ? null : DateTime.parse(json["givenTime"]),
+    givenDate: json["givenDate"],
   );
 
   Map<String, dynamic> toJson() => {
     "doseTime": doseTime,
-    "givenTime": givenTime?.toIso8601String(),
+    "givenDate": givenDate,
   };
 }
