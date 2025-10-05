@@ -68,7 +68,7 @@ class NewChildDetailsCalenderWidget extends GetView<NewChildDetailsController> {
           ),
         ),
         weekendDays: [],
-        firstDay: DateTime.now(),
+        firstDay: controller.child.birthDate!,
         lastDay: DateTime.now().add(Duration(days: 30)),
         focusedDay: DateTime.now(),
         enabledDayPredicate: (day) => true,
@@ -84,21 +84,27 @@ class NewChildDetailsCalenderWidget extends GetView<NewChildDetailsController> {
         },
         calendarBuilders: CalendarBuilders(
           defaultBuilder: (context, day, focusedDay) {
-            // for (var event in controller.scheduledDays) {
-            //   if (event.date!.toLocal().day == day.day && event.date!.toLocal().month == day.month) {
-            //     log(day.day.toString());
-            //     // Found a scheduled day, return custom styled text
-            //     return Center(
-            //       child: CustomText(
-            //         text: '${day.day}',
-            //         color: AppColors.warning,
-            //         fontWeight: FontWeight.w600,
-            //         fontSize: 14.sp,
-            //       ),
-            //     );
-            //   }
-            // }
-            // return null;
+            for (var dose in controller.alreadyTakenDoses) {
+              if ((DateTime.parse(dose.givenDate!)).day == day.day && (DateTime.parse(dose.givenDate!)).month == day.month) {
+                // Found a scheduled day, return custom styled text
+                return Center(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: AppColors.success
+                    ),
+                    padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 14.h),
+                    child: CustomText(
+                      text: '${day.day}',
+                      color: AppColors.textWhite,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 14.sp,
+                    ),
+                  ),
+                );
+              }
+            }
+            return null;
           },
         ),
       ),

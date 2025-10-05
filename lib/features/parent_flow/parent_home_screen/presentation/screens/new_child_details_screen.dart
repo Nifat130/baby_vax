@@ -41,8 +41,16 @@ class NewChildDetailsScreen extends GetView<NewChildDetailsController> {
                         children: [
                           Center(
                             child: CircleAvatar(
-                              backgroundImage: AssetImage(ImagePath.dummyProfilePicture),
                               radius: 55.h,
+                              backgroundColor: AppColors.primary,
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 4.h),
+                                child: ClipOval(
+                                  child: controller.child.profilePicture == null || controller.child.profilePicture == '' ?
+                                  Image.asset(ImagePath.dummyProfilePicture, fit: BoxFit.contain, height: double.infinity, width: double.infinity,) :
+                                  Image.network(controller.child.profilePicture!, fit: BoxFit.contain, height: double.infinity, width: double.infinity,),
+                                ),
+                              ),
                             ),
                           ),
                           16.heightSpace,
