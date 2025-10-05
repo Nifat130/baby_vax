@@ -69,7 +69,7 @@ class NewChildDetailsCalenderWidget extends GetView<NewChildDetailsController> {
         ),
         weekendDays: [],
         firstDay: controller.child.birthDate!,
-        lastDay: DateTime.now().add(Duration(days: 30)),
+        lastDay: controller.dateOfNextDose,
         focusedDay: DateTime.now(),
         enabledDayPredicate: (day) => true,
         selectedDayPredicate: (day) =>
@@ -103,6 +103,24 @@ class NewChildDetailsCalenderWidget extends GetView<NewChildDetailsController> {
                   ),
                 );
               }
+            }
+            if (controller.dateOfNextDose.day == day.day && controller.dateOfNextDose.month == day.month) {
+              // Found a scheduled day, return custom styled text
+              return Center(
+                child: Container(
+                  decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: AppColors.warning
+                  ),
+                  padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 14.h),
+                  child: CustomText(
+                    text: '${day.day}',
+                    color: AppColors.textWhite,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 14.sp,
+                  ),
+                ),
+              );
             }
             return null;
           },
