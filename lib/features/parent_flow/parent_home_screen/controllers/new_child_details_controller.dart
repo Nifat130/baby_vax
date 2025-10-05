@@ -94,9 +94,21 @@ class NewChildDetailsController extends GetxController{
     7 : "4–5 Years",
   };
 
+  final Map<String, dynamic> durationInDays = {
+    "6 Weeks": 42,
+    "10 Weeks": 70,
+    "14 Weeks": 98,
+    "9 Months": 270,
+    "15 Months": 450,
+    "18 Months": 540,
+    "4–5 Years": 1825, // range
+  };
+
+
   var takenDoses = <GivenDose>[].obs;
   var alreadyTakenDoses = <GivenDose>[].obs;
   var nextDose = ''.obs;
+  var dateOfNextDose = DateTime.now();
 
   @override
   void onInit() {
@@ -110,6 +122,10 @@ class NewChildDetailsController extends GetxController{
       takenDoses.addAll(child.givenDoses!);
       alreadyTakenDoses.addAll(child.givenDoses!);
       nextDose.value = serialOfDoses[takenDoses.length]!;
+      if(nextDose.value != "At Birth"){
+        dateOfNextDose = DateTime.parse(alreadyTakenDoses[alreadyTakenDoses.length - 1].givenDate!).add(Duration(days: durationInDays[nextDose.value]));
+        AppLoggerHelper.error(dateOfNextDose.toString());
+      }
       AppLoggerHelper.info(nextDose.value);
     }
   }
