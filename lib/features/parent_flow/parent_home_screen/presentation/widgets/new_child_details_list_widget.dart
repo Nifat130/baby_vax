@@ -57,9 +57,10 @@ class NewChildDetailsListWidget extends GetView<NewChildDetailsController> {
                                       //   "doseTime" : time["time"],
                                       //   "givenDate" : DateTime.now().toUtc().toIso8601String()
                                       // };
+                                      final date = DateTime.now().toUtc();
                                       var body = GivenDose(
                                         doseTime: time["time"],
-                                        givenDate: DateTime.now().toUtc().toIso8601String()
+                                        givenDate: DateTime.utc(date.year, date.month, date.day).toIso8601String()
                                       );
                                       if(controller.nextDose.value == time['time']){
                                         if(controller.takenDoses.any((vaccine) => vaccine.doseTime == time['time'])){
