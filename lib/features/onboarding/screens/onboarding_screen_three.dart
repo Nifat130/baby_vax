@@ -49,7 +49,7 @@ class OnboardingScreenThree extends StatelessWidget {
                   )
               ),
               Positioned.fill(
-                bottom: 10.h,
+                bottom: 18.h,
                 child: Align(
                   alignment: Alignment.bottomCenter,
                   child: GestureDetector(
@@ -58,7 +58,7 @@ class OnboardingScreenThree extends StatelessWidget {
                     },
                     child: Padding(
                       padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
-                      child: Image.asset(ImagePath.onboardingButtonImage),
+                      child: Image.asset(ImagePath.onboardingButtonImageTwo, height: 85.h, width: 84.w,),
                     ),
                   ),
                 ),
@@ -67,7 +67,7 @@ class OnboardingScreenThree extends StatelessWidget {
                 bottom: 0.h,
                 child: Align(
                   alignment: Alignment.bottomCenter,
-                  child: Image.asset(ImagePath.onboardingBottomImage),
+                  child: Image.asset(ImagePath.onboardingBottomImage, color: AppColors.primary,),
                 ),
               )
             ],

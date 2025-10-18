@@ -26,6 +26,8 @@ class ImagePath {
       '$_basePath/onboardingModelThreeImage.png';
   static const String onboardingButtonImage =
       '$_basePath/onboardingButtonImage.png';
+  static const String onboardingButtonImageTwo =
+      '$_basePath/onboarding_button_image.png';
   static const String onboardingContainer =
       '$_basePath/onboardingContainer.png';
   static const String onboardingBottomImage =
