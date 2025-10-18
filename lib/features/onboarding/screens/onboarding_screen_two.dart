@@ -50,7 +50,7 @@ class OnboardingScreenTwo extends StatelessWidget {
                   )
               ),
               Positioned.fill(
-                bottom: 10.h,
+                bottom: 18.h,
                 child: Align(
                   alignment: Alignment.bottomCenter,
                   child: GestureDetector(
@@ -59,7 +59,7 @@ class OnboardingScreenTwo extends StatelessWidget {
                     },
                     child: Padding(
                       padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
-                      child: Image.asset(ImagePath.onboardingButtonImage),
+                      child: Image.asset(ImagePath.onboardingButtonImageTwo, height: 85.h, width: 84.w,),
                     ),
                   ),
                 ),
@@ -70,7 +70,7 @@ class OnboardingScreenTwo extends StatelessWidget {
                   alignment: Alignment.bottomCenter,
                   child: GestureDetector(
                     onTap: (){},
-                    child: Image.asset(ImagePath.onboardingBottomImage),
+                    child: Image.asset(ImagePath.onboardingBottomImage, color: AppColors.primary,),
                   ),
                 ),
               )

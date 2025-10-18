@@ -4,7 +4,8 @@ class AppColors {
   AppColors._();
 
   // Brand Colors
-  static const Color primary = Color(0xFF6BAFB2);
+  //static const Color primary = Color(0xFF6BAFB2);
+  static const Color primary = Color(0xFF214b84);
   static Color secondary = Color(0xFF1BBFDC);
 
 
@@ -36,7 +37,7 @@ class AppColors {
 
   // Background Colors
   static const Color primaryBackGround = Color(0xFFFFFFFF);
-  static const Color secondaryBackGround = Color(0xFFDEF7F8);
+  static const Color secondaryBackGround = Color(0xFFA7CEFA);
   static const Color backgroundLight = Color(0xFFF9FAFB);
   static const Color backgroundDark = Color(0xFF121212);
   static const Color primaryBackground = Color(0xFFFFFFFF);
@@ -61,7 +62,8 @@ class AppColors {
   static const Color textFormFieldBorder = Color(0xFFD9D9D9);
 
   // Button
-  static const Color primaryButton = Color(0xFF6BAFB2);
+  //static const Color primaryButton = Color(0xFF6BAFB2);
+  static const Color primaryButton = Color(0xFF214b84);
 
 
 }
