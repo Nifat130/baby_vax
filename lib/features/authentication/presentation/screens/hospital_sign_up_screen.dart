@@ -205,7 +205,7 @@ class HospitalSignUpScreen extends GetView<SignUpController> {
                       CustomText(text: "Already have an account? ", color: AppColors.textSecondary,),
                       GestureDetector(
                         onTap: (){
-                          Get.offAllNamed(AppRoute.signInScreen);
+                          Get.until((route) => route.isFirst);
                         },
                         child: CustomText(text: "Sign In", color: AppColors.primary,),
                       ),

@@ -1,3 +1,4 @@
+import 'package:baby_vax/core/common/app_snackber.dart';
 import 'package:baby_vax/core/common/widgets/custom_submit_button.dart';
 import 'package:baby_vax/core/utils/constants/app_sizer.dart';
 import 'package:baby_vax/core/utils/constants/icon_path.dart';
@@ -53,9 +54,14 @@ class RoleScreen extends GetView<SignUpController> {
           child: CustomSubmitButton(
             text: "Continue",
             onTap: (){
-              controller.selectedRole.value == "Hospital" ?
-                  Get.toNamed(AppRoute.hospitalSignUpScreen) :
-                  Get.toNamed(AppRoute.parentSignUpScreen);
+              if(controller.selectedRole.value != ''){
+                controller.selectedRole.value == "Hospital" ?
+                Get.toNamed(AppRoute.hospitalSignUpScreen) :
+                Get.toNamed(AppRoute.parentSignUpScreen);
+              }
+              else{
+                AppSnackBar.showError("Please select a role");
+              }
             },
           ),
         ),

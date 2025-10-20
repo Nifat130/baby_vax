@@ -47,9 +47,9 @@ class ParentHomeController extends GetxController{
       children.clear();
       children.addAll(childDataList.map((child) => GetMyChildrenModel.fromJson(child)));
     }
-    else{
-      AppSnackBar.showError('Failed to fetch data!');
-    }
+    // else{
+    //   AppSnackBar.showError('No child data found!');
+    // }
     childrenListIsLoading.value = false;
   }
 
