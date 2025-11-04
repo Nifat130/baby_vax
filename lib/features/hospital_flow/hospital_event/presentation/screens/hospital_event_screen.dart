@@ -1,7 +1,6 @@
 import 'package:baby_vax/core/common/widgets/custom_heading.dart';
 import 'package:baby_vax/core/common/widgets/custom_progress_indicator.dart';
 import 'package:baby_vax/core/common/widgets/custom_text.dart';
-import 'package:baby_vax/core/common/widgets/progress_indicator.dart';
 import 'package:baby_vax/core/utils/constants/app_colors.dart';
 import 'package:baby_vax/core/utils/constants/app_sizer.dart';
 import 'package:baby_vax/features/hospital_flow/hospital_event/controllers/hospital_event_controller.dart';

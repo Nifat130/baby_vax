@@ -1,7 +1,6 @@
 import 'dart:developer';
 import 'package:baby_vax/core/common/widgets/custom_heading.dart';
 import 'package:baby_vax/core/common/widgets/custom_progress_indicator.dart';
-import 'package:baby_vax/core/common/widgets/show_progress_indicator.dart';
 import 'package:baby_vax/core/utils/constants/app_sizer.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

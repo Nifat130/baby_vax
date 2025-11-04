@@ -1,5 +1,4 @@
 import 'package:baby_vax/core/utils/constants/app_sizer.dart';
-import 'package:baby_vax/core/utils/constants/logo_path.dart';
 import 'package:baby_vax/features/authentication/controllers/sign_up_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';

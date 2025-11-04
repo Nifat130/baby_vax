@@ -19,7 +19,6 @@ import '../../features/parent_flow/parent_home_screen/controllers/parent_home_co
 import '../../features/parent_flow/parent_nav_bar/controllers/parent_nav_bar_controller.dart';
 import '../../features/parent_flow/parent_profile/controllers/parent_information_controller.dart';
 import '../../features/parent_flow/parent_profile/controllers/parent_profile_controller.dart';
-import '../../features/parent_flow/parent_profile/presentation/screens/parent_profile_screen.dart';
 import '../../features/parent_flow/parent_schedule_calendar/controllers/parent_schedule_calendar_controller.dart';
 import '../../features/splash_screen/controllers/splash_controller.dart';
 

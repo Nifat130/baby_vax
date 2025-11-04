@@ -9,7 +9,6 @@ import '../../../../../core/common/widgets/custom_textformfield.dart';
 import '../../../../../core/common/widgets/show_progress_indicator.dart';
 import '../../../../../core/utils/constants/app_colors.dart';
 import '../../../../../core/utils/validators/app_validator.dart';
-import '../../controllers/parent_information_controller.dart';
 
 class ParentChangePasswordScreen extends GetView<ParentInformationController> {
   ParentChangePasswordScreen({super.key});

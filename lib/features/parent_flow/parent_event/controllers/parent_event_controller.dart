@@ -4,7 +4,6 @@ import 'package:baby_vax/data/hospital_flow/get_events_model.dart';
 import 'package:baby_vax/repositories/parent_flow_repositories/parent_repo.dart';
 import 'package:get/get.dart';
 
-import '../../../../core/utils/constants/image_path.dart';
 
 class ParentEventController extends GetxController{
 

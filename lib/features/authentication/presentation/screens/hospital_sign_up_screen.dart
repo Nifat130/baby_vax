@@ -11,7 +11,6 @@ import '../../../../core/common/widgets/custom_text.dart';
 import '../../../../core/common/widgets/custom_textformfield.dart';
 import '../../../../core/utils/constants/app_colors.dart';
 import '../../../../core/utils/validators/app_validator.dart';
-import '../../../../routes/app_routes.dart';
 
 class HospitalSignUpScreen extends GetView<SignUpController> {
   HospitalSignUpScreen({super.key});

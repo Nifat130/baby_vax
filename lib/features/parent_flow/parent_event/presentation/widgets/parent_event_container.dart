@@ -1,9 +1,5 @@
-import 'package:baby_vax/core/common/app_snackber.dart';
 import 'package:baby_vax/data/hospital_flow/get_events_model.dart';
-import 'package:baby_vax/features/hospital_flow/hospital_event/controllers/hospital_event_controller.dart';
-import 'package:baby_vax/features/parent_flow/parent_event/controllers/parent_event_controller.dart';
 import 'package:baby_vax/routes/app_routes.dart';
-import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -11,7 +7,6 @@ import 'package:intl/intl.dart';
 import '../../../../../core/common/widgets/custom_text.dart';
 import '../../../../../core/utils/constants/app_colors.dart';
 import '../../../../../core/utils/constants/app_sizer.dart';
-import '../../../../../core/utils/constants/image_path.dart';
 
 Widget parentEventContainer(dynamic controller, GetEventsModel event){
 

@@ -9,7 +9,6 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../core/common/app_snackber.dart';
 import '../../core/utils/logging/logger.dart';
-import '../../data/hospital_flow/get_hospital_information_model.dart';
 
 class HospitalRepo{
 
@@ -96,18 +95,11 @@ class HospitalRepo{
   Future<bool> createEvent(Map<String, dynamic> requestBody) async{
     try{
       final response = await supabase.from("vaccine_events").insert(requestBody).select();
-      if(response is List){
-        Get.back();
-        //AppSnackBar.showSuccess("Event Created Successfully");
-        log(response.toString());
-        return true;
-      }
-      else{
-        Get.back();
-        AppSnackBar.showSuccess("Failed to create event!");
-        log(response.toString());
-      }
-    }catch(e){
+      Get.back();
+      //AppSnackBar.showSuccess("Event Created Successfully");
+      log(response.toString());
+      return true;
+        }catch(e){
       if (e is PostgrestException) {
         log("Error Code: ${e.code}");
         log("Message: ${e.message}");

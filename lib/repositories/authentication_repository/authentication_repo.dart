@@ -1,7 +1,6 @@
 import 'dart:developer';
 import 'dart:io';
 import 'package:baby_vax/core/common/app_snackber.dart';
-import 'package:baby_vax/core/common/widgets/progress_indicator.dart';
 import 'package:get/get.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -54,18 +53,11 @@ class AuthenticationRepo{
   Future<bool> createAccount(Map<String, dynamic> requestBody) async{
     try{
       final response = await supabase.from("user_profiles").insert(requestBody).select();
-      if(response is List){
-        Get.back();
-        AppSnackBar.showSuccess("Profile created successfully!!");
-        log(response.toString());
-        return true;
-      }
-      else{
-        Get.back();
-        AppSnackBar.showSuccess("Failed to create profile!");
-        log(response.toString());
-      }
-    }catch(e){
+      Get.back();
+      AppSnackBar.showSuccess("Profile created successfully!!");
+      log(response.toString());
+      return true;
+        }catch(e){
       if (e is PostgrestException) {
         log("Error Code: ${e.code}");
         log("Message: ${e.message}");
