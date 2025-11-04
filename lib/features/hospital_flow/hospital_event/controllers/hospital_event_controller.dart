@@ -117,7 +117,7 @@ class HospitalEventController extends GetxController{
       myEvents.value = result;
     }
     else{
-      AppSnackBar.showError("No event data found");
+      //AppSnackBar.showError("No event data found");
     }
     isLoading.value = false;
   }
