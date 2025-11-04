@@ -2,7 +2,6 @@ import 'package:baby_vax/core/utils/constants/app_sizer.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../utils/constants/app_colors.dart';
-import '../../utils/constants/icon_path.dart';
 import 'custom_text.dart';
 
 Widget customBackCenterTitleHeading(String title, {Widget? icon}){

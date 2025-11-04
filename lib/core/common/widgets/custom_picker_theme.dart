@@ -24,6 +24,6 @@ Theme customPickerTheme(BuildContext context, Widget child){
           onSurface: Colors.black, // default text color
         ),
       ),
-      child: child!,);
+      child: child,);
 
 }

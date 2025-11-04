@@ -1,18 +1,13 @@
 
 import 'dart:developer';
-import 'dart:io';
-import 'dart:typed_data';
 import 'package:baby_vax/core/common/widgets/progress_indicator.dart';
-import 'package:typed_data/typed_data.dart';
 
 import 'package:baby_vax/core/common/app_snackber.dart';
 import 'package:baby_vax/repositories/authentication_repository/authentication_repo.dart';
-import 'package:baby_vax/routes/app_routes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 
 class SignUpController extends GetxController{
 

@@ -6,7 +6,6 @@ import 'package:get/get.dart';
 
 import '../../../../../core/common/widgets/custom_text.dart';
 import '../../../../../core/utils/constants/app_colors.dart';
-import '../../../../../core/utils/constants/image_path.dart';
 
 Widget parentChildrenContainer(GetMyChildrenModel child){
 

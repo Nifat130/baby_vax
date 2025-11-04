@@ -1,6 +1,5 @@
 import 'dart:developer';
 
-import 'package:baby_vax/core/common/app_snackber.dart';
 import 'package:baby_vax/data/hospital_flow/get_events_model.dart';
 import 'package:baby_vax/features/hospital_flow/hospital_event/controllers/hospital_event_controller.dart';
 import 'package:flip_card/flip_card.dart';
@@ -10,7 +9,6 @@ import 'package:intl/intl.dart';
 import '../../../../../core/common/widgets/custom_text.dart';
 import '../../../../../core/utils/constants/app_colors.dart';
 import '../../../../../core/utils/constants/app_sizer.dart';
-import '../../../../../core/utils/constants/image_path.dart';
 
 Widget eventContainer(HospitalEventController controller, Map<String, dynamic> event){
 

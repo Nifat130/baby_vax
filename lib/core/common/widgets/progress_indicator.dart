@@ -4,7 +4,6 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 
 import '../../utils/constants/app_colors.dart';
-import '../../utils/constants/app_sizes.dart';
 
 Future<void> showProgressIndicator() async {
 

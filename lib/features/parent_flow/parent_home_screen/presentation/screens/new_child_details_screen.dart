@@ -4,7 +4,6 @@ import 'package:baby_vax/core/common/widgets/custom_text.dart';
 import 'package:baby_vax/core/utils/constants/app_colors.dart';
 import 'package:baby_vax/core/utils/constants/app_sizer.dart';
 import 'package:baby_vax/core/utils/constants/image_path.dart';
-import 'package:baby_vax/features/parent_flow/parent_home_screen/controllers/child_details_controller.dart';
 import 'package:baby_vax/features/parent_flow/parent_home_screen/controllers/new_child_details_controller.dart';
 import 'package:baby_vax/features/parent_flow/parent_home_screen/presentation/widgets/new_child_details_calender_widget.dart';
 import 'package:baby_vax/features/parent_flow/parent_home_screen/presentation/widgets/new_child_details_list_widget.dart';

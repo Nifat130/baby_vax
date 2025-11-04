@@ -3,21 +3,15 @@ import 'dart:io';
 import 'package:baby_vax/core/common/widgets/custom_back_center_title_heading.dart';
 import 'package:baby_vax/core/common/widgets/custom_progress_indicator.dart';
 import 'package:baby_vax/core/utils/constants/app_sizer.dart';
-import 'package:baby_vax/core/utils/constants/image_path.dart';
-import 'package:baby_vax/features/hospital_flow/hospital_profile/controllers/hospital_information_controller.dart';
-import 'package:baby_vax/features/parent_flow/parent_profile/controllers/parent_information_controller.dart';
 import 'package:baby_vax/features/parent_flow/parent_profile/controllers/parent_information_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 
 import '../../../../../core/common/widgets/custom_submit_button.dart';
 import '../../../../../core/common/widgets/custom_text.dart';
 import '../../../../../core/common/widgets/custom_textformfield.dart';
-import '../../../../../core/common/widgets/show_progress_indicator.dart';
 import '../../../../../core/utils/constants/app_colors.dart';
 import '../../../../../core/utils/validators/app_validator.dart';
-import '../../../../../routes/app_routes.dart';
 
 class ParentInformationScreen extends GetView<ParentInformationController> {
   ParentInformationScreen({super.key});

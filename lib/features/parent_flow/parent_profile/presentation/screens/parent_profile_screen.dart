@@ -4,10 +4,8 @@ import 'package:baby_vax/core/utils/constants/app_sizer.dart';
 import 'package:baby_vax/features/parent_flow/parent_profile/controllers/parent_profile_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/src/simple/get_view.dart';
 import '../../../../../core/common/widgets/custom_text.dart';
 import '../../../../../core/utils/constants/app_colors.dart';
-import '../../../../../core/utils/constants/image_path.dart';
 import '../../../../../routes/app_routes.dart';
 import '../widgets/profile_option_container.dart';
 

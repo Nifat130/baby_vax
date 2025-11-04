@@ -8,7 +8,6 @@ import 'package:baby_vax/features/parent_flow/parent_home_screen/controllers/par
 import 'package:baby_vax/repositories/parent_flow_repositories/parent_repo.dart';
 import 'package:get/get.dart';
 
-import '../../../../core/utils/constants/image_path.dart';
 
 class ParentScheduleCalendarController extends GetxController{
 

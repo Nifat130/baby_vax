@@ -1,12 +1,10 @@
 
 
-import 'package:baby_vax/core/services/Auth_service.dart';
 import 'package:baby_vax/core/utils/logging/logger.dart';
 import 'package:baby_vax/data/hospital_flow/get_parent_information_model.dart';
 import 'package:baby_vax/data/parent_flow/get_my_children_model.dart';
 import 'package:baby_vax/repositories/parent_flow_repositories/parent_repo.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 
 import '../../../../core/common/app_snackber.dart';
 

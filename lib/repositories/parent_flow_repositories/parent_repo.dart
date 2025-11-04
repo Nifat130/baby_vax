@@ -98,14 +98,9 @@ class ParentRepo{
   Future<bool> addChild(Map<String, dynamic> requestBody) async{
     try{
       final response = await supabase.from("children").insert(requestBody).select();
-      if(response is List){
-        log(response.toString());
-        return true;
-      }
-      else{
-        log(response.toString());
-      }
-    }catch(e){
+      log(response.toString());
+      return true;
+        }catch(e){
       if (e is PostgrestException) {
         log("Error Code: ${e.code}");
         log("Message: ${e.message}");
@@ -172,7 +167,7 @@ class ParentRepo{
           .eq("id", childId)
           .select();
 
-      if (response is List && response.isNotEmpty) {
+      if (response.isNotEmpty) {
         log("Child removed: $response");
         return true;
       } else {
@@ -248,13 +243,9 @@ class ParentRepo{
           .select("*")
           .inFilter("id", scheduleIds); // 'id' is the column name
 
-      if (response is List) {
-        log("✅ Vaccine events: $response");
-        return response;
-      } else {
-        log("⚠️ Unexpected response: $response");
-      }
-    } catch (e) {
+      log("✅ Vaccine events: $response");
+      return response;
+        } catch (e) {
       if (e is PostgrestException) {
         log("❌ Supabase error: ${e.message}");
         AppSnackBar.showError(e.message);
