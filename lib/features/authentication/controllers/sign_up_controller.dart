@@ -87,7 +87,7 @@ class SignUpController extends GetxController{
 
         log(requestBody.toString());
         if(await authRepoObject.createAccount(requestBody)){
-          Get.offAllNamed(AppRoute.signInScreen);
+          Get.until((route) => route.isFirst);
         }
       }
       else{
@@ -128,7 +128,7 @@ class SignUpController extends GetxController{
         };
         log(requestBody.toString());
         if(await authRepoObject.createAccount(requestBody)){
-          Get.offAllNamed(AppRoute.signInScreen);
+          Get.until((route) => route.isFirst);
         }
       }
       else{

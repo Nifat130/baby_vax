@@ -54,7 +54,7 @@ class OnboardingScreenThree extends StatelessWidget {
                   alignment: Alignment.bottomCenter,
                   child: GestureDetector(
                     onTap: (){
-                      Get.to(() => SignInScreen());
+                      Get.offAll(() => SignInScreen());
                     },
                     child: Padding(
                       padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
