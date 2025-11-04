@@ -18,7 +18,7 @@ class SplashScreen extends StatelessWidget{
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Image.asset(LogoPath.logoTwo, fit: BoxFit.fill),
+          Image.asset(LogoPath.logoTwo, fit: BoxFit.fill, height: 150.h, width: 150.w,),
         ],
       ),
       bottomNavigationBar: SafeArea(
